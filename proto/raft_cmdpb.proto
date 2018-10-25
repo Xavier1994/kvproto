@@ -271,6 +271,7 @@ message RaftRequestHeader {
     uint64 term = 6;
 
     bool sync_log = 7;
+    bool stale_read = 8; //support stale read, that means read can happen on follower
 }
 
 message RaftResponseHeader {

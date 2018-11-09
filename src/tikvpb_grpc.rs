@@ -123,6 +123,13 @@ const METHOD_TIKV_RAW_PUT: ::grpcio::Method<super::kvrpcpb::RawPutRequest, super
     resp_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
 };
 
+const METHOD_TIKV_RAW_CAS: ::grpcio::Method<super::kvrpcpb::RawCASRequest, super::kvrpcpb::RawCASResponse> = ::grpcio::Method {
+    ty: ::grpcio::MethodType::Unary,
+    name: "/tikvpb.Tikv/RawCAS",
+    req_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
+    resp_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
+};
+
 const METHOD_TIKV_RAW_BATCH_PUT: ::grpcio::Method<super::kvrpcpb::RawBatchPutRequest, super::kvrpcpb::RawBatchPutResponse> = ::grpcio::Method {
     ty: ::grpcio::MethodType::Unary,
     name: "/tikvpb.Tikv/RawBatchPut",
@@ -472,6 +479,22 @@ impl TikvClient {
         self.raw_put_async_opt(req, ::grpcio::CallOption::default())
     }
 
+    pub fn raw_cas_opt(&self, req: &super::kvrpcpb::RawCASRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<super::kvrpcpb::RawCASResponse> {
+        self.client.unary_call(&METHOD_TIKV_RAW_CAS, req, opt)
+    }
+
+    pub fn raw_cas(&self, req: &super::kvrpcpb::RawCASRequest) -> ::grpcio::Result<super::kvrpcpb::RawCASResponse> {
+        self.raw_cas_opt(req, ::grpcio::CallOption::default())
+    }
+
+    pub fn raw_cas_async_opt(&self, req: &super::kvrpcpb::RawCASRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::kvrpcpb::RawCASResponse>> {
+        self.client.unary_call_async(&METHOD_TIKV_RAW_CAS, req, opt)
+    }
+
+    pub fn raw_cas_async(&self, req: &super::kvrpcpb::RawCASRequest) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::kvrpcpb::RawCASResponse>> {
+        self.raw_cas_async_opt(req, ::grpcio::CallOption::default())
+    }
+
     pub fn raw_batch_put_opt(&self, req: &super::kvrpcpb::RawBatchPutRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<super::kvrpcpb::RawBatchPutResponse> {
         self.client.unary_call(&METHOD_TIKV_RAW_BATCH_PUT, req, opt)
     }
@@ -692,6 +715,7 @@ pub trait Tikv {
     fn raw_get(&self, ctx: ::grpcio::RpcContext, req: super::kvrpcpb::RawGetRequest, sink: ::grpcio::UnarySink<super::kvrpcpb::RawGetResponse>);
     fn raw_batch_get(&self, ctx: ::grpcio::RpcContext, req: super::kvrpcpb::RawBatchGetRequest, sink: ::grpcio::UnarySink<super::kvrpcpb::RawBatchGetResponse>);
     fn raw_put(&self, ctx: ::grpcio::RpcContext, req: super::kvrpcpb::RawPutRequest, sink: ::grpcio::UnarySink<super::kvrpcpb::RawPutResponse>);
+    fn raw_cas(&self, ctx: ::grpcio::RpcContext, req: super::kvrpcpb::RawCASRequest, sink: ::grpcio::UnarySink<super::kvrpcpb::RawCASResponse>);
     fn raw_batch_put(&self, ctx: ::grpcio::RpcContext, req: super::kvrpcpb::RawBatchPutRequest, sink: ::grpcio::UnarySink<super::kvrpcpb::RawBatchPutResponse>);
     fn raw_delete(&self, ctx: ::grpcio::RpcContext, req: super::kvrpcpb::RawDeleteRequest, sink: ::grpcio::UnarySink<super::kvrpcpb::RawDeleteResponse>);
     fn raw_batch_delete(&self, ctx: ::grpcio::RpcContext, req: super::kvrpcpb::RawBatchDeleteRequest, sink: ::grpcio::UnarySink<super::kvrpcpb::RawBatchDeleteResponse>);
@@ -769,6 +793,10 @@ pub fn create_tikv<S: Tikv + Send + Clone + 'static>(s: S) -> ::grpcio::Service 
     let instance = s.clone();
     builder = builder.add_unary_handler(&METHOD_TIKV_RAW_PUT, move |ctx, req, resp| {
         instance.raw_put(ctx, req, resp)
+    });
+    let instance = s.clone();
+    builder = builder.add_unary_handler(&METHOD_TIKV_RAW_CAS, move |ctx, req, resp| {
+        instance.raw_cas(ctx, req, resp)
     });
     let instance = s.clone();
     builder = builder.add_unary_handler(&METHOD_TIKV_RAW_BATCH_PUT, move |ctx, req, resp| {

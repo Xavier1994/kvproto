@@ -1376,6 +1376,7 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::raft_cmdpb::RaftRequestHeader, region_epoch_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::raft_cmdpb::RaftRequestHeader, term_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::raft_cmdpb::RaftRequestHeader, sync_log_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::raft_cmdpb::RaftRequestHeader, stale_read_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::raft_cmdpb::RaftResponseHeader, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1447,9 +1448,9 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROT
   { 278, -1, sizeof(::raft_cmdpb::StatusRequest)},
   { 286, -1, sizeof(::raft_cmdpb::StatusResponse)},
   { 294, -1, sizeof(::raft_cmdpb::RaftRequestHeader)},
-  { 306, -1, sizeof(::raft_cmdpb::RaftResponseHeader)},
-  { 314, -1, sizeof(::raft_cmdpb::RaftCmdRequest)},
-  { 323, -1, sizeof(::raft_cmdpb::RaftCmdResponse)},
+  { 307, -1, sizeof(::raft_cmdpb::RaftResponseHeader)},
+  { 315, -1, sizeof(::raft_cmdpb::RaftCmdRequest)},
+  { 324, -1, sizeof(::raft_cmdpb::RaftCmdResponse)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -1620,38 +1621,39 @@ void AddDescriptorsImpl() {
       "cmd_type\030\001 \001(\0162\031.raft_cmdpb.StatusCmdTyp"
       "e\0227\n\rregion_leader\030\002 \001(\0132 .raft_cmdpb.Re"
       "gionLeaderResponse\0227\n\rregion_detail\030\003 \001("
-      "\0132 .raft_cmdpb.RegionDetailResponse\"\260\001\n\021"
+      "\0132 .raft_cmdpb.RegionDetailResponse\"\304\001\n\021"
       "RaftRequestHeader\022\021\n\tregion_id\030\001 \001(\004\022\032\n\004"
       "peer\030\002 \001(\0132\014.metapb.Peer\022\023\n\013read_quorum\030"
       "\003 \001(\010\022\014\n\004uuid\030\004 \001(\014\022)\n\014region_epoch\030\005 \001("
       "\0132\023.metapb.RegionEpoch\022\014\n\004term\030\006 \001(\004\022\020\n\010"
-      "sync_log\030\007 \001(\010\"W\n\022RaftResponseHeader\022\035\n\005"
-      "error\030\001 \001(\0132\016.errorpb.Error\022\014\n\004uuid\030\002 \001("
-      "\014\022\024\n\014current_term\030\003 \001(\004\"\312\001\n\016RaftCmdReque"
-      "st\022-\n\006header\030\001 \001(\0132\035.raft_cmdpb.RaftRequ"
-      "estHeader\022%\n\010requests\030\002 \003(\0132\023.raft_cmdpb"
-      ".Request\022/\n\radmin_request\030\003 \001(\0132\030.raft_c"
-      "mdpb.AdminRequest\0221\n\016status_request\030\004 \001("
-      "\0132\031.raft_cmdpb.StatusRequest\"\322\001\n\017RaftCmd"
-      "Response\022.\n\006header\030\001 \001(\0132\036.raft_cmdpb.Ra"
-      "ftResponseHeader\022\'\n\tresponses\030\002 \003(\0132\024.ra"
-      "ft_cmdpb.Response\0221\n\016admin_response\030\003 \001("
-      "\0132\031.raft_cmdpb.AdminResponse\0223\n\017status_r"
-      "esponse\030\004 \001(\0132\032.raft_cmdpb.StatusRespons"
-      "e*l\n\007CmdType\022\013\n\007Invalid\020\000\022\007\n\003Get\020\001\022\007\n\003Pu"
-      "t\020\003\022\n\n\006Delete\020\004\022\010\n\004Snap\020\005\022\014\n\010Prewrite\020\006\022"
-      "\017\n\013DeleteRange\020\007\022\r\n\tIngestSST\020\010*\312\001\n\014Admi"
-      "nCmdType\022\020\n\014InvalidAdmin\020\000\022\016\n\nChangePeer"
-      "\020\001\022\r\n\005Split\020\002\032\002\010\001\022\016\n\nCompactLog\020\003\022\022\n\016Tra"
-      "nsferLeader\020\004\022\017\n\013ComputeHash\020\005\022\016\n\nVerify"
-      "Hash\020\006\022\020\n\014PrepareMerge\020\007\022\017\n\013CommitMerge\020"
-      "\010\022\021\n\rRollbackMerge\020\t\022\016\n\nBatchSplit\020\n*F\n\r"
-      "StatusCmdType\022\021\n\rInvalidStatus\020\000\022\020\n\014Regi"
-      "onLeader\020\001\022\020\n\014RegionDetail\020\002B\032\n\030com.ping"
-      "cap.tikv.kvprotob\006proto3"
+      "sync_log\030\007 \001(\010\022\022\n\nstale_read\030\010 \001(\010\"W\n\022Ra"
+      "ftResponseHeader\022\035\n\005error\030\001 \001(\0132\016.errorp"
+      "b.Error\022\014\n\004uuid\030\002 \001(\014\022\024\n\014current_term\030\003 "
+      "\001(\004\"\312\001\n\016RaftCmdRequest\022-\n\006header\030\001 \001(\0132\035"
+      ".raft_cmdpb.RaftRequestHeader\022%\n\010request"
+      "s\030\002 \003(\0132\023.raft_cmdpb.Request\022/\n\radmin_re"
+      "quest\030\003 \001(\0132\030.raft_cmdpb.AdminRequest\0221\n"
+      "\016status_request\030\004 \001(\0132\031.raft_cmdpb.Statu"
+      "sRequest\"\322\001\n\017RaftCmdResponse\022.\n\006header\030\001"
+      " \001(\0132\036.raft_cmdpb.RaftResponseHeader\022\'\n\t"
+      "responses\030\002 \003(\0132\024.raft_cmdpb.Response\0221\n"
+      "\016admin_response\030\003 \001(\0132\031.raft_cmdpb.Admin"
+      "Response\0223\n\017status_response\030\004 \001(\0132\032.raft"
+      "_cmdpb.StatusResponse*l\n\007CmdType\022\013\n\007Inva"
+      "lid\020\000\022\007\n\003Get\020\001\022\007\n\003Put\020\003\022\n\n\006Delete\020\004\022\010\n\004S"
+      "nap\020\005\022\014\n\010Prewrite\020\006\022\017\n\013DeleteRange\020\007\022\r\n\t"
+      "IngestSST\020\010*\312\001\n\014AdminCmdType\022\020\n\014InvalidA"
+      "dmin\020\000\022\016\n\nChangePeer\020\001\022\r\n\005Split\020\002\032\002\010\001\022\016\n"
+      "\nCompactLog\020\003\022\022\n\016TransferLeader\020\004\022\017\n\013Com"
+      "puteHash\020\005\022\016\n\nVerifyHash\020\006\022\020\n\014PrepareMer"
+      "ge\020\007\022\017\n\013CommitMerge\020\010\022\021\n\rRollbackMerge\020\t"
+      "\022\016\n\nBatchSplit\020\n*F\n\rStatusCmdType\022\021\n\rInv"
+      "alidStatus\020\000\022\020\n\014RegionLeader\020\001\022\020\n\014Region"
+      "Detail\020\002B\032\n\030com.pingcap.tikv.kvprotob\006pr"
+      "oto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 5064);
+      descriptor, 5084);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "raft_cmdpb.proto", &protobuf_RegisterTypes);
   ::protobuf_metapb_2eproto::AddDescriptors();
@@ -13499,6 +13501,7 @@ const int RaftRequestHeader::kUuidFieldNumber;
 const int RaftRequestHeader::kRegionEpochFieldNumber;
 const int RaftRequestHeader::kTermFieldNumber;
 const int RaftRequestHeader::kSyncLogFieldNumber;
+const int RaftRequestHeader::kStaleReadFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 RaftRequestHeader::RaftRequestHeader()
@@ -13527,16 +13530,16 @@ RaftRequestHeader::RaftRequestHeader(const RaftRequestHeader& from)
     region_epoch_ = NULL;
   }
   ::memcpy(&region_id_, &from.region_id_,
-    static_cast<size_t>(reinterpret_cast<char*>(&sync_log_) -
-    reinterpret_cast<char*>(&region_id_)) + sizeof(sync_log_));
+    static_cast<size_t>(reinterpret_cast<char*>(&stale_read_) -
+    reinterpret_cast<char*>(&region_id_)) + sizeof(stale_read_));
   // @@protoc_insertion_point(copy_constructor:raft_cmdpb.RaftRequestHeader)
 }
 
 void RaftRequestHeader::SharedCtor() {
   uuid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&peer_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&sync_log_) -
-      reinterpret_cast<char*>(&peer_)) + sizeof(sync_log_));
+      reinterpret_cast<char*>(&stale_read_) -
+      reinterpret_cast<char*>(&peer_)) + sizeof(stale_read_));
 }
 
 RaftRequestHeader::~RaftRequestHeader() {
@@ -13580,8 +13583,8 @@ void RaftRequestHeader::Clear() {
   }
   region_epoch_ = NULL;
   ::memset(&region_id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&sync_log_) -
-      reinterpret_cast<char*>(&region_id_)) + sizeof(sync_log_));
+      reinterpret_cast<char*>(&stale_read_) -
+      reinterpret_cast<char*>(&region_id_)) + sizeof(stale_read_));
   _internal_metadata_.Clear();
 }
 
@@ -13687,6 +13690,20 @@ bool RaftRequestHeader::MergePartialFromCodedStream(
         break;
       }
 
+      // bool stale_read = 8;
+      case 8: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(64u /* 64 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &stale_read_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -13751,6 +13768,11 @@ void RaftRequestHeader::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteBool(7, this->sync_log(), output);
   }
 
+  // bool stale_read = 8;
+  if (this->stale_read() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(8, this->stale_read(), output);
+  }
+
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
@@ -13804,6 +13826,11 @@ void RaftRequestHeader::SerializeWithCachedSizes(
   // bool sync_log = 7;
   if (this->sync_log() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(7, this->sync_log(), target);
+  }
+
+  // bool stale_read = 8;
+  if (this->stale_read() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(8, this->stale_read(), target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -13868,6 +13895,11 @@ size_t RaftRequestHeader::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
+  // bool stale_read = 8;
+  if (this->stale_read() != 0) {
+    total_size += 1 + 1;
+  }
+
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
@@ -13917,6 +13949,9 @@ void RaftRequestHeader::MergeFrom(const RaftRequestHeader& from) {
   if (from.sync_log() != 0) {
     set_sync_log(from.sync_log());
   }
+  if (from.stale_read() != 0) {
+    set_stale_read(from.stale_read());
+  }
 }
 
 void RaftRequestHeader::CopyFrom(const ::google::protobuf::Message& from) {
@@ -13951,6 +13986,7 @@ void RaftRequestHeader::InternalSwap(RaftRequestHeader* other) {
   swap(term_, other->term_);
   swap(read_quorum_, other->read_quorum_);
   swap(sync_log_, other->sync_log_);
+  swap(stale_read_, other->stale_read_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
 }
 

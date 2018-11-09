@@ -264,10 +264,36 @@ message RawPutRequest {
     bytes value = 3;
     string cf = 4;
 }
-
 message RawPutResponse {
     errorpb.Error region_error = 1;
     string error = 2;
+}
+
+enum CASRequestType {
+    Set = 0;
+    Remove = 1;
+}
+
+message RawCASRequest {
+    Context context = 1;
+    CASRequestType cas_request_type = 2;
+    bytes key = 3;
+    bytes value = 4;
+    string cf = 5;
+}
+
+enum CASResult{
+    Unknown = 0;
+    Success = 1;
+    Falied = 2;
+}
+
+message RawCASResponse {
+    errorpb.Error region_error = 1;
+    string error = 2;
+    CASRequestType cas_request_type = 3;
+    CASResult res_flag = 4;
+    bytes value = 5;
 }
 
 message RawBatchPutRequest {

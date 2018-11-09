@@ -5533,6 +5533,12 @@ class RaftRequestHeader : public ::google::protobuf::Message /* @@protoc_inserti
   bool sync_log() const;
   void set_sync_log(bool value);
 
+  // bool stale_read = 8;
+  void clear_stale_read();
+  static const int kStaleReadFieldNumber = 8;
+  bool stale_read() const;
+  void set_stale_read(bool value);
+
   // @@protoc_insertion_point(class_scope:raft_cmdpb.RaftRequestHeader)
  private:
 
@@ -5544,6 +5550,7 @@ class RaftRequestHeader : public ::google::protobuf::Message /* @@protoc_inserti
   ::google::protobuf::uint64 term_;
   bool read_quorum_;
   bool sync_log_;
+  bool stale_read_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_raft_5fcmdpb_2eproto::TableStruct;
 };
@@ -10062,6 +10069,20 @@ inline void RaftRequestHeader::set_sync_log(bool value) {
   
   sync_log_ = value;
   // @@protoc_insertion_point(field_set:raft_cmdpb.RaftRequestHeader.sync_log)
+}
+
+// bool stale_read = 8;
+inline void RaftRequestHeader::clear_stale_read() {
+  stale_read_ = false;
+}
+inline bool RaftRequestHeader::stale_read() const {
+  // @@protoc_insertion_point(field_get:raft_cmdpb.RaftRequestHeader.stale_read)
+  return stale_read_;
+}
+inline void RaftRequestHeader::set_stale_read(bool value) {
+  
+  stale_read_ = value;
+  // @@protoc_insertion_point(field_set:raft_cmdpb.RaftRequestHeader.stale_read)
 }
 
 // -------------------------------------------------------------------

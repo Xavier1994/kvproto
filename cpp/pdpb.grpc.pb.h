@@ -194,6 +194,15 @@ class PD final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::pdpb::UpdateGCSafePointResponse>> PrepareAsyncUpdateGCSafePoint(::grpc::ClientContext* context, const ::pdpb::UpdateGCSafePointRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::pdpb::UpdateGCSafePointResponse>>(PrepareAsyncUpdateGCSafePointRaw(context, request, cq));
     }
+    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::pdpb::SyncRegionRequest, ::pdpb::SyncRegionResponse>> SyncRegions(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::pdpb::SyncRegionRequest, ::pdpb::SyncRegionResponse>>(SyncRegionsRaw(context));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::pdpb::SyncRegionRequest, ::pdpb::SyncRegionResponse>> AsyncSyncRegions(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::pdpb::SyncRegionRequest, ::pdpb::SyncRegionResponse>>(AsyncSyncRegionsRaw(context, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::pdpb::SyncRegionRequest, ::pdpb::SyncRegionResponse>> PrepareAsyncSyncRegions(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::pdpb::SyncRegionRequest, ::pdpb::SyncRegionResponse>>(PrepareAsyncSyncRegionsRaw(context, cq));
+    }
   private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::pdpb::GetMembersResponse>* AsyncGetMembersRaw(::grpc::ClientContext* context, const ::pdpb::GetMembersRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::pdpb::GetMembersResponse>* PrepareAsyncGetMembersRaw(::grpc::ClientContext* context, const ::pdpb::GetMembersRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -241,6 +250,9 @@ class PD final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::pdpb::GetGCSafePointResponse>* PrepareAsyncGetGCSafePointRaw(::grpc::ClientContext* context, const ::pdpb::GetGCSafePointRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::pdpb::UpdateGCSafePointResponse>* AsyncUpdateGCSafePointRaw(::grpc::ClientContext* context, const ::pdpb::UpdateGCSafePointRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::pdpb::UpdateGCSafePointResponse>* PrepareAsyncUpdateGCSafePointRaw(::grpc::ClientContext* context, const ::pdpb::UpdateGCSafePointRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderWriterInterface< ::pdpb::SyncRegionRequest, ::pdpb::SyncRegionResponse>* SyncRegionsRaw(::grpc::ClientContext* context) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::pdpb::SyncRegionRequest, ::pdpb::SyncRegionResponse>* AsyncSyncRegionsRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::pdpb::SyncRegionRequest, ::pdpb::SyncRegionResponse>* PrepareAsyncSyncRegionsRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -403,6 +415,15 @@ class PD final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::pdpb::UpdateGCSafePointResponse>> PrepareAsyncUpdateGCSafePoint(::grpc::ClientContext* context, const ::pdpb::UpdateGCSafePointRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::pdpb::UpdateGCSafePointResponse>>(PrepareAsyncUpdateGCSafePointRaw(context, request, cq));
     }
+    std::unique_ptr< ::grpc::ClientReaderWriter< ::pdpb::SyncRegionRequest, ::pdpb::SyncRegionResponse>> SyncRegions(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriter< ::pdpb::SyncRegionRequest, ::pdpb::SyncRegionResponse>>(SyncRegionsRaw(context));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::pdpb::SyncRegionRequest, ::pdpb::SyncRegionResponse>> AsyncSyncRegions(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::pdpb::SyncRegionRequest, ::pdpb::SyncRegionResponse>>(AsyncSyncRegionsRaw(context, cq, tag));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::pdpb::SyncRegionRequest, ::pdpb::SyncRegionResponse>> PrepareAsyncSyncRegions(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::pdpb::SyncRegionRequest, ::pdpb::SyncRegionResponse>>(PrepareAsyncSyncRegionsRaw(context, cq));
+    }
 
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
@@ -452,6 +473,9 @@ class PD final {
     ::grpc::ClientAsyncResponseReader< ::pdpb::GetGCSafePointResponse>* PrepareAsyncGetGCSafePointRaw(::grpc::ClientContext* context, const ::pdpb::GetGCSafePointRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::pdpb::UpdateGCSafePointResponse>* AsyncUpdateGCSafePointRaw(::grpc::ClientContext* context, const ::pdpb::UpdateGCSafePointRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::pdpb::UpdateGCSafePointResponse>* PrepareAsyncUpdateGCSafePointRaw(::grpc::ClientContext* context, const ::pdpb::UpdateGCSafePointRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReaderWriter< ::pdpb::SyncRegionRequest, ::pdpb::SyncRegionResponse>* SyncRegionsRaw(::grpc::ClientContext* context) override;
+    ::grpc::ClientAsyncReaderWriter< ::pdpb::SyncRegionRequest, ::pdpb::SyncRegionResponse>* AsyncSyncRegionsRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReaderWriter< ::pdpb::SyncRegionRequest, ::pdpb::SyncRegionResponse>* PrepareAsyncSyncRegionsRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetMembers_;
     const ::grpc::internal::RpcMethod rpcmethod_Tso_;
     const ::grpc::internal::RpcMethod rpcmethod_Bootstrap_;
@@ -474,6 +498,7 @@ class PD final {
     const ::grpc::internal::RpcMethod rpcmethod_ScatterRegion_;
     const ::grpc::internal::RpcMethod rpcmethod_GetGCSafePoint_;
     const ::grpc::internal::RpcMethod rpcmethod_UpdateGCSafePoint_;
+    const ::grpc::internal::RpcMethod rpcmethod_SyncRegions_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -505,6 +530,7 @@ class PD final {
     virtual ::grpc::Status ScatterRegion(::grpc::ServerContext* context, const ::pdpb::ScatterRegionRequest* request, ::pdpb::ScatterRegionResponse* response);
     virtual ::grpc::Status GetGCSafePoint(::grpc::ServerContext* context, const ::pdpb::GetGCSafePointRequest* request, ::pdpb::GetGCSafePointResponse* response);
     virtual ::grpc::Status UpdateGCSafePoint(::grpc::ServerContext* context, const ::pdpb::UpdateGCSafePointRequest* request, ::pdpb::UpdateGCSafePointResponse* response);
+    virtual ::grpc::Status SyncRegions(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::pdpb::SyncRegionResponse, ::pdpb::SyncRegionRequest>* stream);
   };
   template <class BaseClass>
   class WithAsyncMethod_GetMembers : public BaseClass {
@@ -946,7 +972,27 @@ class PD final {
       ::grpc::Service::RequestAsyncUnary(21, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetMembers<WithAsyncMethod_Tso<WithAsyncMethod_Bootstrap<WithAsyncMethod_IsBootstrapped<WithAsyncMethod_AllocID<WithAsyncMethod_GetStore<WithAsyncMethod_PutStore<WithAsyncMethod_GetAllStores<WithAsyncMethod_StoreHeartbeat<WithAsyncMethod_RegionHeartbeat<WithAsyncMethod_GetRegion<WithAsyncMethod_GetPrevRegion<WithAsyncMethod_GetRegionByID<WithAsyncMethod_AskSplit<WithAsyncMethod_ReportSplit<WithAsyncMethod_AskBatchSplit<WithAsyncMethod_ReportBatchSplit<WithAsyncMethod_GetClusterConfig<WithAsyncMethod_PutClusterConfig<WithAsyncMethod_ScatterRegion<WithAsyncMethod_GetGCSafePoint<WithAsyncMethod_UpdateGCSafePoint<Service > > > > > > > > > > > > > > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_SyncRegions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithAsyncMethod_SyncRegions() {
+      ::grpc::Service::MarkMethodAsync(22);
+    }
+    ~WithAsyncMethod_SyncRegions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SyncRegions(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::pdpb::SyncRegionResponse, ::pdpb::SyncRegionRequest>* stream)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSyncRegions(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::pdpb::SyncRegionResponse, ::pdpb::SyncRegionRequest>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(22, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_GetMembers<WithAsyncMethod_Tso<WithAsyncMethod_Bootstrap<WithAsyncMethod_IsBootstrapped<WithAsyncMethod_AllocID<WithAsyncMethod_GetStore<WithAsyncMethod_PutStore<WithAsyncMethod_GetAllStores<WithAsyncMethod_StoreHeartbeat<WithAsyncMethod_RegionHeartbeat<WithAsyncMethod_GetRegion<WithAsyncMethod_GetPrevRegion<WithAsyncMethod_GetRegionByID<WithAsyncMethod_AskSplit<WithAsyncMethod_ReportSplit<WithAsyncMethod_AskBatchSplit<WithAsyncMethod_ReportBatchSplit<WithAsyncMethod_GetClusterConfig<WithAsyncMethod_PutClusterConfig<WithAsyncMethod_ScatterRegion<WithAsyncMethod_GetGCSafePoint<WithAsyncMethod_UpdateGCSafePoint<WithAsyncMethod_SyncRegions<Service > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithGenericMethod_GetMembers : public BaseClass {
    private:
@@ -1317,6 +1363,23 @@ class PD final {
     }
     // disable synchronous version of this method
     ::grpc::Status UpdateGCSafePoint(::grpc::ServerContext* context, const ::pdpb::UpdateGCSafePointRequest* request, ::pdpb::UpdateGCSafePointResponse* response) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SyncRegions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithGenericMethod_SyncRegions() {
+      ::grpc::Service::MarkMethodGeneric(22);
+    }
+    ~WithGenericMethod_SyncRegions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SyncRegions(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::pdpb::SyncRegionResponse, ::pdpb::SyncRegionRequest>* stream)  override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1759,6 +1822,26 @@ class PD final {
     }
     void RequestUpdateGCSafePoint(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(21, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SyncRegions : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithRawMethod_SyncRegions() {
+      ::grpc::Service::MarkMethodRaw(22);
+    }
+    ~WithRawMethod_SyncRegions() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SyncRegions(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::pdpb::SyncRegionResponse, ::pdpb::SyncRegionRequest>* stream)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSyncRegions(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(22, context, stream, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>

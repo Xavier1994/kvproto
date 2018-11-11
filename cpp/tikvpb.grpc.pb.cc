@@ -31,6 +31,7 @@ static const char* Tikv_method_names[] = {
   "/tikvpb.Tikv/RawGet",
   "/tikvpb.Tikv/RawBatchGet",
   "/tikvpb.Tikv/RawPut",
+  "/tikvpb.Tikv/RawCAS",
   "/tikvpb.Tikv/RawBatchPut",
   "/tikvpb.Tikv/RawDelete",
   "/tikvpb.Tikv/RawBatchDelete",
@@ -69,20 +70,21 @@ Tikv::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
   , rpcmethod_RawGet_(Tikv_method_names[12], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_RawBatchGet_(Tikv_method_names[13], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_RawPut_(Tikv_method_names[14], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_RawBatchPut_(Tikv_method_names[15], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_RawDelete_(Tikv_method_names[16], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_RawBatchDelete_(Tikv_method_names[17], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_RawScan_(Tikv_method_names[18], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_RawDeleteRange_(Tikv_method_names[19], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_RawBatchScan_(Tikv_method_names[20], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UnsafeDestroyRange_(Tikv_method_names[21], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Coprocessor_(Tikv_method_names[22], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_CoprocessorStream_(Tikv_method_names[23], ::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
-  , rpcmethod_Raft_(Tikv_method_names[24], ::grpc::internal::RpcMethod::CLIENT_STREAMING, channel)
-  , rpcmethod_Snapshot_(Tikv_method_names[25], ::grpc::internal::RpcMethod::CLIENT_STREAMING, channel)
-  , rpcmethod_SplitRegion_(Tikv_method_names[26], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_MvccGetByKey_(Tikv_method_names[27], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_MvccGetByStartTs_(Tikv_method_names[28], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RawCAS_(Tikv_method_names[15], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RawBatchPut_(Tikv_method_names[16], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RawDelete_(Tikv_method_names[17], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RawBatchDelete_(Tikv_method_names[18], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RawScan_(Tikv_method_names[19], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RawDeleteRange_(Tikv_method_names[20], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_RawBatchScan_(Tikv_method_names[21], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UnsafeDestroyRange_(Tikv_method_names[22], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Coprocessor_(Tikv_method_names[23], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CoprocessorStream_(Tikv_method_names[24], ::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_Raft_(Tikv_method_names[25], ::grpc::internal::RpcMethod::CLIENT_STREAMING, channel)
+  , rpcmethod_Snapshot_(Tikv_method_names[26], ::grpc::internal::RpcMethod::CLIENT_STREAMING, channel)
+  , rpcmethod_SplitRegion_(Tikv_method_names[27], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MvccGetByKey_(Tikv_method_names[28], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_MvccGetByStartTs_(Tikv_method_names[29], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status Tikv::Stub::KvGet(::grpc::ClientContext* context, const ::kvrpcpb::GetRequest& request, ::kvrpcpb::GetResponse* response) {
@@ -263,6 +265,18 @@ Tikv::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
 
 ::grpc::ClientAsyncResponseReader< ::kvrpcpb::RawPutResponse>* Tikv::Stub::PrepareAsyncRawPutRaw(::grpc::ClientContext* context, const ::kvrpcpb::RawPutRequest& request, ::grpc::CompletionQueue* cq) {
   return ::grpc::internal::ClientAsyncResponseReaderFactory< ::kvrpcpb::RawPutResponse>::Create(channel_.get(), cq, rpcmethod_RawPut_, context, request, false);
+}
+
+::grpc::Status Tikv::Stub::RawCAS(::grpc::ClientContext* context, const ::kvrpcpb::RawCASRequest& request, ::kvrpcpb::RawCASResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_RawCAS_, context, request, response);
+}
+
+::grpc::ClientAsyncResponseReader< ::kvrpcpb::RawCASResponse>* Tikv::Stub::AsyncRawCASRaw(::grpc::ClientContext* context, const ::kvrpcpb::RawCASRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderFactory< ::kvrpcpb::RawCASResponse>::Create(channel_.get(), cq, rpcmethod_RawCAS_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::kvrpcpb::RawCASResponse>* Tikv::Stub::PrepareAsyncRawCASRaw(::grpc::ClientContext* context, const ::kvrpcpb::RawCASRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderFactory< ::kvrpcpb::RawCASResponse>::Create(channel_.get(), cq, rpcmethod_RawCAS_, context, request, false);
 }
 
 ::grpc::Status Tikv::Stub::RawBatchPut(::grpc::ClientContext* context, const ::kvrpcpb::RawBatchPutRequest& request, ::kvrpcpb::RawBatchPutResponse* response) {
@@ -512,70 +526,75 @@ Tikv::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Tikv_method_names[15],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Tikv::Service, ::kvrpcpb::RawCASRequest, ::kvrpcpb::RawCASResponse>(
+          std::mem_fn(&Tikv::Service::RawCAS), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Tikv_method_names[16],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Tikv::Service, ::kvrpcpb::RawBatchPutRequest, ::kvrpcpb::RawBatchPutResponse>(
           std::mem_fn(&Tikv::Service::RawBatchPut), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Tikv_method_names[16],
+      Tikv_method_names[17],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Tikv::Service, ::kvrpcpb::RawDeleteRequest, ::kvrpcpb::RawDeleteResponse>(
           std::mem_fn(&Tikv::Service::RawDelete), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Tikv_method_names[17],
+      Tikv_method_names[18],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Tikv::Service, ::kvrpcpb::RawBatchDeleteRequest, ::kvrpcpb::RawBatchDeleteResponse>(
           std::mem_fn(&Tikv::Service::RawBatchDelete), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Tikv_method_names[18],
+      Tikv_method_names[19],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Tikv::Service, ::kvrpcpb::RawScanRequest, ::kvrpcpb::RawScanResponse>(
           std::mem_fn(&Tikv::Service::RawScan), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Tikv_method_names[19],
+      Tikv_method_names[20],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Tikv::Service, ::kvrpcpb::RawDeleteRangeRequest, ::kvrpcpb::RawDeleteRangeResponse>(
           std::mem_fn(&Tikv::Service::RawDeleteRange), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Tikv_method_names[20],
+      Tikv_method_names[21],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Tikv::Service, ::kvrpcpb::RawBatchScanRequest, ::kvrpcpb::RawBatchScanResponse>(
           std::mem_fn(&Tikv::Service::RawBatchScan), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Tikv_method_names[21],
+      Tikv_method_names[22],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Tikv::Service, ::kvrpcpb::UnsafeDestroyRangeRequest, ::kvrpcpb::UnsafeDestroyRangeResponse>(
           std::mem_fn(&Tikv::Service::UnsafeDestroyRange), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Tikv_method_names[22],
+      Tikv_method_names[23],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Tikv::Service, ::coprocessor::Request, ::coprocessor::Response>(
           std::mem_fn(&Tikv::Service::Coprocessor), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Tikv_method_names[23],
+      Tikv_method_names[24],
       ::grpc::internal::RpcMethod::SERVER_STREAMING,
       new ::grpc::internal::ServerStreamingHandler< Tikv::Service, ::coprocessor::Request, ::coprocessor::Response>(
           std::mem_fn(&Tikv::Service::CoprocessorStream), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Tikv_method_names[24],
+      Tikv_method_names[25],
       ::grpc::internal::RpcMethod::CLIENT_STREAMING,
       new ::grpc::internal::ClientStreamingHandler< Tikv::Service, ::raft_serverpb::RaftMessage, ::raft_serverpb::Done>(
           std::mem_fn(&Tikv::Service::Raft), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Tikv_method_names[25],
+      Tikv_method_names[26],
       ::grpc::internal::RpcMethod::CLIENT_STREAMING,
       new ::grpc::internal::ClientStreamingHandler< Tikv::Service, ::raft_serverpb::SnapshotChunk, ::raft_serverpb::Done>(
           std::mem_fn(&Tikv::Service::Snapshot), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Tikv_method_names[26],
+      Tikv_method_names[27],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Tikv::Service, ::kvrpcpb::SplitRegionRequest, ::kvrpcpb::SplitRegionResponse>(
           std::mem_fn(&Tikv::Service::SplitRegion), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Tikv_method_names[27],
+      Tikv_method_names[28],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Tikv::Service, ::kvrpcpb::MvccGetByKeyRequest, ::kvrpcpb::MvccGetByKeyResponse>(
           std::mem_fn(&Tikv::Service::MvccGetByKey), this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      Tikv_method_names[28],
+      Tikv_method_names[29],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Tikv::Service, ::kvrpcpb::MvccGetByStartTsRequest, ::kvrpcpb::MvccGetByStartTsResponse>(
           std::mem_fn(&Tikv::Service::MvccGetByStartTs), this)));
@@ -683,6 +702,13 @@ Tikv::Service::~Service() {
 }
 
 ::grpc::Status Tikv::Service::RawPut(::grpc::ServerContext* context, const ::kvrpcpb::RawPutRequest* request, ::kvrpcpb::RawPutResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Tikv::Service::RawCAS(::grpc::ServerContext* context, const ::kvrpcpb::RawCASRequest* request, ::kvrpcpb::RawCASResponse* response) {
   (void) context;
   (void) request;
   (void) response;

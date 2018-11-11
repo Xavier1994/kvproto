@@ -106,6 +106,9 @@ message ScanRequest {
     uint64 version = 4;
     bool key_only = 5;
     bool reverse = 6;
+    // For compatibility, when scanning forward, the range to scan is [start_key, end_key); and when scanning
+    // backward, the range is [end_key, start_key).
+    bytes end_key = 7;
 }
 
 message KvPair {
@@ -369,6 +372,7 @@ message RawScanRequest {
     uint32 limit = 3;
     bool key_only = 4;
     string cf = 5;
+    bool reverse = 6;
 }
 
 message RawScanResponse {
@@ -387,6 +391,7 @@ message RawBatchScanRequest {
     uint32 each_limit = 3; // max number of returning kv pairs for each scanning range
     bool key_only = 4;
     string cf = 5;
+    bool reverse = 6;
 }
 
 message RawBatchScanResponse {

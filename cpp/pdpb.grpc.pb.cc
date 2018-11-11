@@ -38,6 +38,7 @@ static const char* PD_method_names[] = {
   "/pdpb.PD/ScatterRegion",
   "/pdpb.PD/GetGCSafePoint",
   "/pdpb.PD/UpdateGCSafePoint",
+  "/pdpb.PD/SyncRegions",
 };
 
 std::unique_ptr< PD::Stub> PD::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -69,6 +70,7 @@ PD::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
   , rpcmethod_ScatterRegion_(PD_method_names[19], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetGCSafePoint_(PD_method_names[20], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_UpdateGCSafePoint_(PD_method_names[21], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SyncRegions_(PD_method_names[22], ::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
   {}
 
 ::grpc::Status PD::Stub::GetMembers(::grpc::ClientContext* context, const ::pdpb::GetMembersRequest& request, ::pdpb::GetMembersResponse* response) {
@@ -335,6 +337,18 @@ PD::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
   return ::grpc::internal::ClientAsyncResponseReaderFactory< ::pdpb::UpdateGCSafePointResponse>::Create(channel_.get(), cq, rpcmethod_UpdateGCSafePoint_, context, request, false);
 }
 
+::grpc::ClientReaderWriter< ::pdpb::SyncRegionRequest, ::pdpb::SyncRegionResponse>* PD::Stub::SyncRegionsRaw(::grpc::ClientContext* context) {
+  return ::grpc::internal::ClientReaderWriterFactory< ::pdpb::SyncRegionRequest, ::pdpb::SyncRegionResponse>::Create(channel_.get(), rpcmethod_SyncRegions_, context);
+}
+
+::grpc::ClientAsyncReaderWriter< ::pdpb::SyncRegionRequest, ::pdpb::SyncRegionResponse>* PD::Stub::AsyncSyncRegionsRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::pdpb::SyncRegionRequest, ::pdpb::SyncRegionResponse>::Create(channel_.get(), cq, rpcmethod_SyncRegions_, context, true, tag);
+}
+
+::grpc::ClientAsyncReaderWriter< ::pdpb::SyncRegionRequest, ::pdpb::SyncRegionResponse>* PD::Stub::PrepareAsyncSyncRegionsRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::pdpb::SyncRegionRequest, ::pdpb::SyncRegionResponse>::Create(channel_.get(), cq, rpcmethod_SyncRegions_, context, false, nullptr);
+}
+
 PD::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       PD_method_names[0],
@@ -446,6 +460,11 @@ PD::Service::Service() {
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< PD::Service, ::pdpb::UpdateGCSafePointRequest, ::pdpb::UpdateGCSafePointResponse>(
           std::mem_fn(&PD::Service::UpdateGCSafePoint), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      PD_method_names[22],
+      ::grpc::internal::RpcMethod::BIDI_STREAMING,
+      new ::grpc::internal::BidiStreamingHandler< PD::Service, ::pdpb::SyncRegionRequest, ::pdpb::SyncRegionResponse>(
+          std::mem_fn(&PD::Service::SyncRegions), this)));
 }
 
 PD::Service::~Service() {
@@ -600,6 +619,12 @@ PD::Service::~Service() {
   (void) context;
   (void) request;
   (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status PD::Service::SyncRegions(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::pdpb::SyncRegionResponse, ::pdpb::SyncRegionRequest>* stream) {
+  (void) context;
+  (void) stream;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 

@@ -142,6 +142,13 @@ class Tikv final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::kvrpcpb::RawPutResponse>> PrepareAsyncRawPut(::grpc::ClientContext* context, const ::kvrpcpb::RawPutRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::kvrpcpb::RawPutResponse>>(PrepareAsyncRawPutRaw(context, request, cq));
     }
+    virtual ::grpc::Status RawCAS(::grpc::ClientContext* context, const ::kvrpcpb::RawCASRequest& request, ::kvrpcpb::RawCASResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::kvrpcpb::RawCASResponse>> AsyncRawCAS(::grpc::ClientContext* context, const ::kvrpcpb::RawCASRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::kvrpcpb::RawCASResponse>>(AsyncRawCASRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::kvrpcpb::RawCASResponse>> PrepareAsyncRawCAS(::grpc::ClientContext* context, const ::kvrpcpb::RawCASRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::kvrpcpb::RawCASResponse>>(PrepareAsyncRawCASRaw(context, request, cq));
+    }
     virtual ::grpc::Status RawBatchPut(::grpc::ClientContext* context, const ::kvrpcpb::RawBatchPutRequest& request, ::kvrpcpb::RawBatchPutResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::kvrpcpb::RawBatchPutResponse>> AsyncRawBatchPut(::grpc::ClientContext* context, const ::kvrpcpb::RawBatchPutRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::kvrpcpb::RawBatchPutResponse>>(AsyncRawBatchPutRaw(context, request, cq));
@@ -282,6 +289,8 @@ class Tikv final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::kvrpcpb::RawBatchGetResponse>* PrepareAsyncRawBatchGetRaw(::grpc::ClientContext* context, const ::kvrpcpb::RawBatchGetRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::kvrpcpb::RawPutResponse>* AsyncRawPutRaw(::grpc::ClientContext* context, const ::kvrpcpb::RawPutRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::kvrpcpb::RawPutResponse>* PrepareAsyncRawPutRaw(::grpc::ClientContext* context, const ::kvrpcpb::RawPutRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::kvrpcpb::RawCASResponse>* AsyncRawCASRaw(::grpc::ClientContext* context, const ::kvrpcpb::RawCASRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::kvrpcpb::RawCASResponse>* PrepareAsyncRawCASRaw(::grpc::ClientContext* context, const ::kvrpcpb::RawCASRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::kvrpcpb::RawBatchPutResponse>* AsyncRawBatchPutRaw(::grpc::ClientContext* context, const ::kvrpcpb::RawBatchPutRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::kvrpcpb::RawBatchPutResponse>* PrepareAsyncRawBatchPutRaw(::grpc::ClientContext* context, const ::kvrpcpb::RawBatchPutRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::kvrpcpb::RawDeleteResponse>* AsyncRawDeleteRaw(::grpc::ClientContext* context, const ::kvrpcpb::RawDeleteRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -422,6 +431,13 @@ class Tikv final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::kvrpcpb::RawPutResponse>> PrepareAsyncRawPut(::grpc::ClientContext* context, const ::kvrpcpb::RawPutRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::kvrpcpb::RawPutResponse>>(PrepareAsyncRawPutRaw(context, request, cq));
     }
+    ::grpc::Status RawCAS(::grpc::ClientContext* context, const ::kvrpcpb::RawCASRequest& request, ::kvrpcpb::RawCASResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::kvrpcpb::RawCASResponse>> AsyncRawCAS(::grpc::ClientContext* context, const ::kvrpcpb::RawCASRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::kvrpcpb::RawCASResponse>>(AsyncRawCASRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::kvrpcpb::RawCASResponse>> PrepareAsyncRawCAS(::grpc::ClientContext* context, const ::kvrpcpb::RawCASRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::kvrpcpb::RawCASResponse>>(PrepareAsyncRawCASRaw(context, request, cq));
+    }
     ::grpc::Status RawBatchPut(::grpc::ClientContext* context, const ::kvrpcpb::RawBatchPutRequest& request, ::kvrpcpb::RawBatchPutResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::kvrpcpb::RawBatchPutResponse>> AsyncRawBatchPut(::grpc::ClientContext* context, const ::kvrpcpb::RawBatchPutRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::kvrpcpb::RawBatchPutResponse>>(AsyncRawBatchPutRaw(context, request, cq));
@@ -559,6 +575,8 @@ class Tikv final {
     ::grpc::ClientAsyncResponseReader< ::kvrpcpb::RawBatchGetResponse>* PrepareAsyncRawBatchGetRaw(::grpc::ClientContext* context, const ::kvrpcpb::RawBatchGetRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::kvrpcpb::RawPutResponse>* AsyncRawPutRaw(::grpc::ClientContext* context, const ::kvrpcpb::RawPutRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::kvrpcpb::RawPutResponse>* PrepareAsyncRawPutRaw(::grpc::ClientContext* context, const ::kvrpcpb::RawPutRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::kvrpcpb::RawCASResponse>* AsyncRawCASRaw(::grpc::ClientContext* context, const ::kvrpcpb::RawCASRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::kvrpcpb::RawCASResponse>* PrepareAsyncRawCASRaw(::grpc::ClientContext* context, const ::kvrpcpb::RawCASRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::kvrpcpb::RawBatchPutResponse>* AsyncRawBatchPutRaw(::grpc::ClientContext* context, const ::kvrpcpb::RawBatchPutRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::kvrpcpb::RawBatchPutResponse>* PrepareAsyncRawBatchPutRaw(::grpc::ClientContext* context, const ::kvrpcpb::RawBatchPutRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::kvrpcpb::RawDeleteResponse>* AsyncRawDeleteRaw(::grpc::ClientContext* context, const ::kvrpcpb::RawDeleteRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -605,6 +623,7 @@ class Tikv final {
     const ::grpc::internal::RpcMethod rpcmethod_RawGet_;
     const ::grpc::internal::RpcMethod rpcmethod_RawBatchGet_;
     const ::grpc::internal::RpcMethod rpcmethod_RawPut_;
+    const ::grpc::internal::RpcMethod rpcmethod_RawCAS_;
     const ::grpc::internal::RpcMethod rpcmethod_RawBatchPut_;
     const ::grpc::internal::RpcMethod rpcmethod_RawDelete_;
     const ::grpc::internal::RpcMethod rpcmethod_RawBatchDelete_;
@@ -643,6 +662,7 @@ class Tikv final {
     virtual ::grpc::Status RawGet(::grpc::ServerContext* context, const ::kvrpcpb::RawGetRequest* request, ::kvrpcpb::RawGetResponse* response);
     virtual ::grpc::Status RawBatchGet(::grpc::ServerContext* context, const ::kvrpcpb::RawBatchGetRequest* request, ::kvrpcpb::RawBatchGetResponse* response);
     virtual ::grpc::Status RawPut(::grpc::ServerContext* context, const ::kvrpcpb::RawPutRequest* request, ::kvrpcpb::RawPutResponse* response);
+    virtual ::grpc::Status RawCAS(::grpc::ServerContext* context, const ::kvrpcpb::RawCASRequest* request, ::kvrpcpb::RawCASResponse* response);
     virtual ::grpc::Status RawBatchPut(::grpc::ServerContext* context, const ::kvrpcpb::RawBatchPutRequest* request, ::kvrpcpb::RawBatchPutResponse* response);
     virtual ::grpc::Status RawDelete(::grpc::ServerContext* context, const ::kvrpcpb::RawDeleteRequest* request, ::kvrpcpb::RawDeleteResponse* response);
     virtual ::grpc::Status RawBatchDelete(::grpc::ServerContext* context, const ::kvrpcpb::RawBatchDeleteRequest* request, ::kvrpcpb::RawBatchDeleteResponse* response);
@@ -964,12 +984,32 @@ class Tikv final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_RawCAS : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithAsyncMethod_RawCAS() {
+      ::grpc::Service::MarkMethodAsync(15);
+    }
+    ~WithAsyncMethod_RawCAS() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RawCAS(::grpc::ServerContext* context, const ::kvrpcpb::RawCASRequest* request, ::kvrpcpb::RawCASResponse* response) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestRawCAS(::grpc::ServerContext* context, ::kvrpcpb::RawCASRequest* request, ::grpc::ServerAsyncResponseWriter< ::kvrpcpb::RawCASResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(15, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_RawBatchPut : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_RawBatchPut() {
-      ::grpc::Service::MarkMethodAsync(15);
+      ::grpc::Service::MarkMethodAsync(16);
     }
     ~WithAsyncMethod_RawBatchPut() override {
       BaseClassMustBeDerivedFromService(this);
@@ -980,7 +1020,7 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRawBatchPut(::grpc::ServerContext* context, ::kvrpcpb::RawBatchPutRequest* request, ::grpc::ServerAsyncResponseWriter< ::kvrpcpb::RawBatchPutResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(15, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(16, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -989,7 +1029,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_RawDelete() {
-      ::grpc::Service::MarkMethodAsync(16);
+      ::grpc::Service::MarkMethodAsync(17);
     }
     ~WithAsyncMethod_RawDelete() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1000,7 +1040,7 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRawDelete(::grpc::ServerContext* context, ::kvrpcpb::RawDeleteRequest* request, ::grpc::ServerAsyncResponseWriter< ::kvrpcpb::RawDeleteResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(16, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(17, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1009,7 +1049,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_RawBatchDelete() {
-      ::grpc::Service::MarkMethodAsync(17);
+      ::grpc::Service::MarkMethodAsync(18);
     }
     ~WithAsyncMethod_RawBatchDelete() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1020,7 +1060,7 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRawBatchDelete(::grpc::ServerContext* context, ::kvrpcpb::RawBatchDeleteRequest* request, ::grpc::ServerAsyncResponseWriter< ::kvrpcpb::RawBatchDeleteResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(17, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(18, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1029,7 +1069,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_RawScan() {
-      ::grpc::Service::MarkMethodAsync(18);
+      ::grpc::Service::MarkMethodAsync(19);
     }
     ~WithAsyncMethod_RawScan() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1040,7 +1080,7 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRawScan(::grpc::ServerContext* context, ::kvrpcpb::RawScanRequest* request, ::grpc::ServerAsyncResponseWriter< ::kvrpcpb::RawScanResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(18, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(19, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1049,7 +1089,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_RawDeleteRange() {
-      ::grpc::Service::MarkMethodAsync(19);
+      ::grpc::Service::MarkMethodAsync(20);
     }
     ~WithAsyncMethod_RawDeleteRange() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1060,7 +1100,7 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRawDeleteRange(::grpc::ServerContext* context, ::kvrpcpb::RawDeleteRangeRequest* request, ::grpc::ServerAsyncResponseWriter< ::kvrpcpb::RawDeleteRangeResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(19, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(20, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1069,7 +1109,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_RawBatchScan() {
-      ::grpc::Service::MarkMethodAsync(20);
+      ::grpc::Service::MarkMethodAsync(21);
     }
     ~WithAsyncMethod_RawBatchScan() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1080,7 +1120,7 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRawBatchScan(::grpc::ServerContext* context, ::kvrpcpb::RawBatchScanRequest* request, ::grpc::ServerAsyncResponseWriter< ::kvrpcpb::RawBatchScanResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(20, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(21, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1089,7 +1129,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_UnsafeDestroyRange() {
-      ::grpc::Service::MarkMethodAsync(21);
+      ::grpc::Service::MarkMethodAsync(22);
     }
     ~WithAsyncMethod_UnsafeDestroyRange() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1100,7 +1140,7 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUnsafeDestroyRange(::grpc::ServerContext* context, ::kvrpcpb::UnsafeDestroyRangeRequest* request, ::grpc::ServerAsyncResponseWriter< ::kvrpcpb::UnsafeDestroyRangeResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(21, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(22, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1109,7 +1149,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_Coprocessor() {
-      ::grpc::Service::MarkMethodAsync(22);
+      ::grpc::Service::MarkMethodAsync(23);
     }
     ~WithAsyncMethod_Coprocessor() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1120,7 +1160,7 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCoprocessor(::grpc::ServerContext* context, ::coprocessor::Request* request, ::grpc::ServerAsyncResponseWriter< ::coprocessor::Response>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(22, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(23, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1129,7 +1169,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_CoprocessorStream() {
-      ::grpc::Service::MarkMethodAsync(23);
+      ::grpc::Service::MarkMethodAsync(24);
     }
     ~WithAsyncMethod_CoprocessorStream() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1140,7 +1180,7 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCoprocessorStream(::grpc::ServerContext* context, ::coprocessor::Request* request, ::grpc::ServerAsyncWriter< ::coprocessor::Response>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncServerStreaming(23, context, request, writer, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncServerStreaming(24, context, request, writer, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1149,7 +1189,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_Raft() {
-      ::grpc::Service::MarkMethodAsync(24);
+      ::grpc::Service::MarkMethodAsync(25);
     }
     ~WithAsyncMethod_Raft() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1160,7 +1200,7 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRaft(::grpc::ServerContext* context, ::grpc::ServerAsyncReader< ::raft_serverpb::Done, ::raft_serverpb::RaftMessage>* reader, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncClientStreaming(24, context, reader, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncClientStreaming(25, context, reader, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1169,7 +1209,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_Snapshot() {
-      ::grpc::Service::MarkMethodAsync(25);
+      ::grpc::Service::MarkMethodAsync(26);
     }
     ~WithAsyncMethod_Snapshot() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1180,7 +1220,7 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSnapshot(::grpc::ServerContext* context, ::grpc::ServerAsyncReader< ::raft_serverpb::Done, ::raft_serverpb::SnapshotChunk>* reader, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncClientStreaming(25, context, reader, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncClientStreaming(26, context, reader, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1189,7 +1229,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_SplitRegion() {
-      ::grpc::Service::MarkMethodAsync(26);
+      ::grpc::Service::MarkMethodAsync(27);
     }
     ~WithAsyncMethod_SplitRegion() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1200,7 +1240,7 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSplitRegion(::grpc::ServerContext* context, ::kvrpcpb::SplitRegionRequest* request, ::grpc::ServerAsyncResponseWriter< ::kvrpcpb::SplitRegionResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(26, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(27, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1209,7 +1249,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_MvccGetByKey() {
-      ::grpc::Service::MarkMethodAsync(27);
+      ::grpc::Service::MarkMethodAsync(28);
     }
     ~WithAsyncMethod_MvccGetByKey() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1220,7 +1260,7 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestMvccGetByKey(::grpc::ServerContext* context, ::kvrpcpb::MvccGetByKeyRequest* request, ::grpc::ServerAsyncResponseWriter< ::kvrpcpb::MvccGetByKeyResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(27, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(28, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1229,7 +1269,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithAsyncMethod_MvccGetByStartTs() {
-      ::grpc::Service::MarkMethodAsync(28);
+      ::grpc::Service::MarkMethodAsync(29);
     }
     ~WithAsyncMethod_MvccGetByStartTs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1240,10 +1280,10 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestMvccGetByStartTs(::grpc::ServerContext* context, ::kvrpcpb::MvccGetByStartTsRequest* request, ::grpc::ServerAsyncResponseWriter< ::kvrpcpb::MvccGetByStartTsResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(28, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(29, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_KvGet<WithAsyncMethod_KvScan<WithAsyncMethod_KvPrewrite<WithAsyncMethod_KvCommit<WithAsyncMethod_KvImport<WithAsyncMethod_KvCleanup<WithAsyncMethod_KvBatchGet<WithAsyncMethod_KvBatchRollback<WithAsyncMethod_KvScanLock<WithAsyncMethod_KvResolveLock<WithAsyncMethod_KvGC<WithAsyncMethod_KvDeleteRange<WithAsyncMethod_RawGet<WithAsyncMethod_RawBatchGet<WithAsyncMethod_RawPut<WithAsyncMethod_RawBatchPut<WithAsyncMethod_RawDelete<WithAsyncMethod_RawBatchDelete<WithAsyncMethod_RawScan<WithAsyncMethod_RawDeleteRange<WithAsyncMethod_RawBatchScan<WithAsyncMethod_UnsafeDestroyRange<WithAsyncMethod_Coprocessor<WithAsyncMethod_CoprocessorStream<WithAsyncMethod_Raft<WithAsyncMethod_Snapshot<WithAsyncMethod_SplitRegion<WithAsyncMethod_MvccGetByKey<WithAsyncMethod_MvccGetByStartTs<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
+  typedef WithAsyncMethod_KvGet<WithAsyncMethod_KvScan<WithAsyncMethod_KvPrewrite<WithAsyncMethod_KvCommit<WithAsyncMethod_KvImport<WithAsyncMethod_KvCleanup<WithAsyncMethod_KvBatchGet<WithAsyncMethod_KvBatchRollback<WithAsyncMethod_KvScanLock<WithAsyncMethod_KvResolveLock<WithAsyncMethod_KvGC<WithAsyncMethod_KvDeleteRange<WithAsyncMethod_RawGet<WithAsyncMethod_RawBatchGet<WithAsyncMethod_RawPut<WithAsyncMethod_RawCAS<WithAsyncMethod_RawBatchPut<WithAsyncMethod_RawDelete<WithAsyncMethod_RawBatchDelete<WithAsyncMethod_RawScan<WithAsyncMethod_RawDeleteRange<WithAsyncMethod_RawBatchScan<WithAsyncMethod_UnsafeDestroyRange<WithAsyncMethod_Coprocessor<WithAsyncMethod_CoprocessorStream<WithAsyncMethod_Raft<WithAsyncMethod_Snapshot<WithAsyncMethod_SplitRegion<WithAsyncMethod_MvccGetByKey<WithAsyncMethod_MvccGetByStartTs<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithGenericMethod_KvGet : public BaseClass {
    private:
@@ -1500,12 +1540,29 @@ class Tikv final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_RawCAS : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithGenericMethod_RawCAS() {
+      ::grpc::Service::MarkMethodGeneric(15);
+    }
+    ~WithGenericMethod_RawCAS() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RawCAS(::grpc::ServerContext* context, const ::kvrpcpb::RawCASRequest* request, ::kvrpcpb::RawCASResponse* response) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_RawBatchPut : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_RawBatchPut() {
-      ::grpc::Service::MarkMethodGeneric(15);
+      ::grpc::Service::MarkMethodGeneric(16);
     }
     ~WithGenericMethod_RawBatchPut() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1522,7 +1579,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_RawDelete() {
-      ::grpc::Service::MarkMethodGeneric(16);
+      ::grpc::Service::MarkMethodGeneric(17);
     }
     ~WithGenericMethod_RawDelete() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1539,7 +1596,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_RawBatchDelete() {
-      ::grpc::Service::MarkMethodGeneric(17);
+      ::grpc::Service::MarkMethodGeneric(18);
     }
     ~WithGenericMethod_RawBatchDelete() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1556,7 +1613,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_RawScan() {
-      ::grpc::Service::MarkMethodGeneric(18);
+      ::grpc::Service::MarkMethodGeneric(19);
     }
     ~WithGenericMethod_RawScan() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1573,7 +1630,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_RawDeleteRange() {
-      ::grpc::Service::MarkMethodGeneric(19);
+      ::grpc::Service::MarkMethodGeneric(20);
     }
     ~WithGenericMethod_RawDeleteRange() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1590,7 +1647,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_RawBatchScan() {
-      ::grpc::Service::MarkMethodGeneric(20);
+      ::grpc::Service::MarkMethodGeneric(21);
     }
     ~WithGenericMethod_RawBatchScan() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1607,7 +1664,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_UnsafeDestroyRange() {
-      ::grpc::Service::MarkMethodGeneric(21);
+      ::grpc::Service::MarkMethodGeneric(22);
     }
     ~WithGenericMethod_UnsafeDestroyRange() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1624,7 +1681,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_Coprocessor() {
-      ::grpc::Service::MarkMethodGeneric(22);
+      ::grpc::Service::MarkMethodGeneric(23);
     }
     ~WithGenericMethod_Coprocessor() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1641,7 +1698,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_CoprocessorStream() {
-      ::grpc::Service::MarkMethodGeneric(23);
+      ::grpc::Service::MarkMethodGeneric(24);
     }
     ~WithGenericMethod_CoprocessorStream() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1658,7 +1715,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_Raft() {
-      ::grpc::Service::MarkMethodGeneric(24);
+      ::grpc::Service::MarkMethodGeneric(25);
     }
     ~WithGenericMethod_Raft() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1675,7 +1732,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_Snapshot() {
-      ::grpc::Service::MarkMethodGeneric(25);
+      ::grpc::Service::MarkMethodGeneric(26);
     }
     ~WithGenericMethod_Snapshot() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1692,7 +1749,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_SplitRegion() {
-      ::grpc::Service::MarkMethodGeneric(26);
+      ::grpc::Service::MarkMethodGeneric(27);
     }
     ~WithGenericMethod_SplitRegion() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1709,7 +1766,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_MvccGetByKey() {
-      ::grpc::Service::MarkMethodGeneric(27);
+      ::grpc::Service::MarkMethodGeneric(28);
     }
     ~WithGenericMethod_MvccGetByKey() override {
       BaseClassMustBeDerivedFromService(this);
@@ -1726,7 +1783,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithGenericMethod_MvccGetByStartTs() {
-      ::grpc::Service::MarkMethodGeneric(28);
+      ::grpc::Service::MarkMethodGeneric(29);
     }
     ~WithGenericMethod_MvccGetByStartTs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2038,12 +2095,32 @@ class Tikv final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_RawCAS : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithRawMethod_RawCAS() {
+      ::grpc::Service::MarkMethodRaw(15);
+    }
+    ~WithRawMethod_RawCAS() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status RawCAS(::grpc::ServerContext* context, const ::kvrpcpb::RawCASRequest* request, ::kvrpcpb::RawCASResponse* response) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestRawCAS(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(15, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_RawBatchPut : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithRawMethod_RawBatchPut() {
-      ::grpc::Service::MarkMethodRaw(15);
+      ::grpc::Service::MarkMethodRaw(16);
     }
     ~WithRawMethod_RawBatchPut() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2054,7 +2131,7 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRawBatchPut(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(15, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(16, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2063,7 +2140,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithRawMethod_RawDelete() {
-      ::grpc::Service::MarkMethodRaw(16);
+      ::grpc::Service::MarkMethodRaw(17);
     }
     ~WithRawMethod_RawDelete() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2074,7 +2151,7 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRawDelete(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(16, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(17, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2083,7 +2160,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithRawMethod_RawBatchDelete() {
-      ::grpc::Service::MarkMethodRaw(17);
+      ::grpc::Service::MarkMethodRaw(18);
     }
     ~WithRawMethod_RawBatchDelete() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2094,7 +2171,7 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRawBatchDelete(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(17, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(18, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2103,7 +2180,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithRawMethod_RawScan() {
-      ::grpc::Service::MarkMethodRaw(18);
+      ::grpc::Service::MarkMethodRaw(19);
     }
     ~WithRawMethod_RawScan() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2114,7 +2191,7 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRawScan(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(18, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(19, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2123,7 +2200,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithRawMethod_RawDeleteRange() {
-      ::grpc::Service::MarkMethodRaw(19);
+      ::grpc::Service::MarkMethodRaw(20);
     }
     ~WithRawMethod_RawDeleteRange() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2134,7 +2211,7 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRawDeleteRange(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(19, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(20, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2143,7 +2220,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithRawMethod_RawBatchScan() {
-      ::grpc::Service::MarkMethodRaw(20);
+      ::grpc::Service::MarkMethodRaw(21);
     }
     ~WithRawMethod_RawBatchScan() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2154,7 +2231,7 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRawBatchScan(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(20, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(21, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2163,7 +2240,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithRawMethod_UnsafeDestroyRange() {
-      ::grpc::Service::MarkMethodRaw(21);
+      ::grpc::Service::MarkMethodRaw(22);
     }
     ~WithRawMethod_UnsafeDestroyRange() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2174,7 +2251,7 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestUnsafeDestroyRange(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(21, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(22, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2183,7 +2260,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithRawMethod_Coprocessor() {
-      ::grpc::Service::MarkMethodRaw(22);
+      ::grpc::Service::MarkMethodRaw(23);
     }
     ~WithRawMethod_Coprocessor() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2194,7 +2271,7 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCoprocessor(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(22, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(23, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2203,7 +2280,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithRawMethod_CoprocessorStream() {
-      ::grpc::Service::MarkMethodRaw(23);
+      ::grpc::Service::MarkMethodRaw(24);
     }
     ~WithRawMethod_CoprocessorStream() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2214,7 +2291,7 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestCoprocessorStream(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncWriter< ::grpc::ByteBuffer>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncServerStreaming(23, context, request, writer, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncServerStreaming(24, context, request, writer, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2223,7 +2300,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithRawMethod_Raft() {
-      ::grpc::Service::MarkMethodRaw(24);
+      ::grpc::Service::MarkMethodRaw(25);
     }
     ~WithRawMethod_Raft() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2234,7 +2311,7 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRaft(::grpc::ServerContext* context, ::grpc::ServerAsyncReader< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* reader, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncClientStreaming(24, context, reader, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncClientStreaming(25, context, reader, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2243,7 +2320,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithRawMethod_Snapshot() {
-      ::grpc::Service::MarkMethodRaw(25);
+      ::grpc::Service::MarkMethodRaw(26);
     }
     ~WithRawMethod_Snapshot() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2254,7 +2331,7 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSnapshot(::grpc::ServerContext* context, ::grpc::ServerAsyncReader< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* reader, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncClientStreaming(25, context, reader, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncClientStreaming(26, context, reader, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2263,7 +2340,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithRawMethod_SplitRegion() {
-      ::grpc::Service::MarkMethodRaw(26);
+      ::grpc::Service::MarkMethodRaw(27);
     }
     ~WithRawMethod_SplitRegion() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2274,7 +2351,7 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestSplitRegion(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(26, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(27, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2283,7 +2360,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithRawMethod_MvccGetByKey() {
-      ::grpc::Service::MarkMethodRaw(27);
+      ::grpc::Service::MarkMethodRaw(28);
     }
     ~WithRawMethod_MvccGetByKey() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2294,7 +2371,7 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestMvccGetByKey(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(27, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(28, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2303,7 +2380,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithRawMethod_MvccGetByStartTs() {
-      ::grpc::Service::MarkMethodRaw(28);
+      ::grpc::Service::MarkMethodRaw(29);
     }
     ~WithRawMethod_MvccGetByStartTs() override {
       BaseClassMustBeDerivedFromService(this);
@@ -2314,7 +2391,7 @@ class Tikv final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestMvccGetByStartTs(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(28, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(29, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -2618,12 +2695,32 @@ class Tikv final {
     virtual ::grpc::Status StreamedRawPut(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::kvrpcpb::RawPutRequest,::kvrpcpb::RawPutResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_RawCAS : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithStreamedUnaryMethod_RawCAS() {
+      ::grpc::Service::MarkMethodStreamed(15,
+        new ::grpc::internal::StreamedUnaryHandler< ::kvrpcpb::RawCASRequest, ::kvrpcpb::RawCASResponse>(std::bind(&WithStreamedUnaryMethod_RawCAS<BaseClass>::StreamedRawCAS, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_RawCAS() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status RawCAS(::grpc::ServerContext* context, const ::kvrpcpb::RawCASRequest* request, ::kvrpcpb::RawCASResponse* response) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedRawCAS(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::kvrpcpb::RawCASRequest,::kvrpcpb::RawCASResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_RawBatchPut : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithStreamedUnaryMethod_RawBatchPut() {
-      ::grpc::Service::MarkMethodStreamed(15,
+      ::grpc::Service::MarkMethodStreamed(16,
         new ::grpc::internal::StreamedUnaryHandler< ::kvrpcpb::RawBatchPutRequest, ::kvrpcpb::RawBatchPutResponse>(std::bind(&WithStreamedUnaryMethod_RawBatchPut<BaseClass>::StreamedRawBatchPut, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_RawBatchPut() override {
@@ -2643,7 +2740,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithStreamedUnaryMethod_RawDelete() {
-      ::grpc::Service::MarkMethodStreamed(16,
+      ::grpc::Service::MarkMethodStreamed(17,
         new ::grpc::internal::StreamedUnaryHandler< ::kvrpcpb::RawDeleteRequest, ::kvrpcpb::RawDeleteResponse>(std::bind(&WithStreamedUnaryMethod_RawDelete<BaseClass>::StreamedRawDelete, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_RawDelete() override {
@@ -2663,7 +2760,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithStreamedUnaryMethod_RawBatchDelete() {
-      ::grpc::Service::MarkMethodStreamed(17,
+      ::grpc::Service::MarkMethodStreamed(18,
         new ::grpc::internal::StreamedUnaryHandler< ::kvrpcpb::RawBatchDeleteRequest, ::kvrpcpb::RawBatchDeleteResponse>(std::bind(&WithStreamedUnaryMethod_RawBatchDelete<BaseClass>::StreamedRawBatchDelete, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_RawBatchDelete() override {
@@ -2683,7 +2780,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithStreamedUnaryMethod_RawScan() {
-      ::grpc::Service::MarkMethodStreamed(18,
+      ::grpc::Service::MarkMethodStreamed(19,
         new ::grpc::internal::StreamedUnaryHandler< ::kvrpcpb::RawScanRequest, ::kvrpcpb::RawScanResponse>(std::bind(&WithStreamedUnaryMethod_RawScan<BaseClass>::StreamedRawScan, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_RawScan() override {
@@ -2703,7 +2800,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithStreamedUnaryMethod_RawDeleteRange() {
-      ::grpc::Service::MarkMethodStreamed(19,
+      ::grpc::Service::MarkMethodStreamed(20,
         new ::grpc::internal::StreamedUnaryHandler< ::kvrpcpb::RawDeleteRangeRequest, ::kvrpcpb::RawDeleteRangeResponse>(std::bind(&WithStreamedUnaryMethod_RawDeleteRange<BaseClass>::StreamedRawDeleteRange, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_RawDeleteRange() override {
@@ -2723,7 +2820,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithStreamedUnaryMethod_RawBatchScan() {
-      ::grpc::Service::MarkMethodStreamed(20,
+      ::grpc::Service::MarkMethodStreamed(21,
         new ::grpc::internal::StreamedUnaryHandler< ::kvrpcpb::RawBatchScanRequest, ::kvrpcpb::RawBatchScanResponse>(std::bind(&WithStreamedUnaryMethod_RawBatchScan<BaseClass>::StreamedRawBatchScan, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_RawBatchScan() override {
@@ -2743,7 +2840,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithStreamedUnaryMethod_UnsafeDestroyRange() {
-      ::grpc::Service::MarkMethodStreamed(21,
+      ::grpc::Service::MarkMethodStreamed(22,
         new ::grpc::internal::StreamedUnaryHandler< ::kvrpcpb::UnsafeDestroyRangeRequest, ::kvrpcpb::UnsafeDestroyRangeResponse>(std::bind(&WithStreamedUnaryMethod_UnsafeDestroyRange<BaseClass>::StreamedUnsafeDestroyRange, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_UnsafeDestroyRange() override {
@@ -2763,7 +2860,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithStreamedUnaryMethod_Coprocessor() {
-      ::grpc::Service::MarkMethodStreamed(22,
+      ::grpc::Service::MarkMethodStreamed(23,
         new ::grpc::internal::StreamedUnaryHandler< ::coprocessor::Request, ::coprocessor::Response>(std::bind(&WithStreamedUnaryMethod_Coprocessor<BaseClass>::StreamedCoprocessor, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_Coprocessor() override {
@@ -2783,7 +2880,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithStreamedUnaryMethod_SplitRegion() {
-      ::grpc::Service::MarkMethodStreamed(26,
+      ::grpc::Service::MarkMethodStreamed(27,
         new ::grpc::internal::StreamedUnaryHandler< ::kvrpcpb::SplitRegionRequest, ::kvrpcpb::SplitRegionResponse>(std::bind(&WithStreamedUnaryMethod_SplitRegion<BaseClass>::StreamedSplitRegion, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_SplitRegion() override {
@@ -2803,7 +2900,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithStreamedUnaryMethod_MvccGetByKey() {
-      ::grpc::Service::MarkMethodStreamed(27,
+      ::grpc::Service::MarkMethodStreamed(28,
         new ::grpc::internal::StreamedUnaryHandler< ::kvrpcpb::MvccGetByKeyRequest, ::kvrpcpb::MvccGetByKeyResponse>(std::bind(&WithStreamedUnaryMethod_MvccGetByKey<BaseClass>::StreamedMvccGetByKey, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_MvccGetByKey() override {
@@ -2823,7 +2920,7 @@ class Tikv final {
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithStreamedUnaryMethod_MvccGetByStartTs() {
-      ::grpc::Service::MarkMethodStreamed(28,
+      ::grpc::Service::MarkMethodStreamed(29,
         new ::grpc::internal::StreamedUnaryHandler< ::kvrpcpb::MvccGetByStartTsRequest, ::kvrpcpb::MvccGetByStartTsResponse>(std::bind(&WithStreamedUnaryMethod_MvccGetByStartTs<BaseClass>::StreamedMvccGetByStartTs, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithStreamedUnaryMethod_MvccGetByStartTs() override {
@@ -2837,14 +2934,14 @@ class Tikv final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedMvccGetByStartTs(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::kvrpcpb::MvccGetByStartTsRequest,::kvrpcpb::MvccGetByStartTsResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_KvGet<WithStreamedUnaryMethod_KvScan<WithStreamedUnaryMethod_KvPrewrite<WithStreamedUnaryMethod_KvCommit<WithStreamedUnaryMethod_KvImport<WithStreamedUnaryMethod_KvCleanup<WithStreamedUnaryMethod_KvBatchGet<WithStreamedUnaryMethod_KvBatchRollback<WithStreamedUnaryMethod_KvScanLock<WithStreamedUnaryMethod_KvResolveLock<WithStreamedUnaryMethod_KvGC<WithStreamedUnaryMethod_KvDeleteRange<WithStreamedUnaryMethod_RawGet<WithStreamedUnaryMethod_RawBatchGet<WithStreamedUnaryMethod_RawPut<WithStreamedUnaryMethod_RawBatchPut<WithStreamedUnaryMethod_RawDelete<WithStreamedUnaryMethod_RawBatchDelete<WithStreamedUnaryMethod_RawScan<WithStreamedUnaryMethod_RawDeleteRange<WithStreamedUnaryMethod_RawBatchScan<WithStreamedUnaryMethod_UnsafeDestroyRange<WithStreamedUnaryMethod_Coprocessor<WithStreamedUnaryMethod_SplitRegion<WithStreamedUnaryMethod_MvccGetByKey<WithStreamedUnaryMethod_MvccGetByStartTs<Service > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_KvGet<WithStreamedUnaryMethod_KvScan<WithStreamedUnaryMethod_KvPrewrite<WithStreamedUnaryMethod_KvCommit<WithStreamedUnaryMethod_KvImport<WithStreamedUnaryMethod_KvCleanup<WithStreamedUnaryMethod_KvBatchGet<WithStreamedUnaryMethod_KvBatchRollback<WithStreamedUnaryMethod_KvScanLock<WithStreamedUnaryMethod_KvResolveLock<WithStreamedUnaryMethod_KvGC<WithStreamedUnaryMethod_KvDeleteRange<WithStreamedUnaryMethod_RawGet<WithStreamedUnaryMethod_RawBatchGet<WithStreamedUnaryMethod_RawPut<WithStreamedUnaryMethod_RawCAS<WithStreamedUnaryMethod_RawBatchPut<WithStreamedUnaryMethod_RawDelete<WithStreamedUnaryMethod_RawBatchDelete<WithStreamedUnaryMethod_RawScan<WithStreamedUnaryMethod_RawDeleteRange<WithStreamedUnaryMethod_RawBatchScan<WithStreamedUnaryMethod_UnsafeDestroyRange<WithStreamedUnaryMethod_Coprocessor<WithStreamedUnaryMethod_SplitRegion<WithStreamedUnaryMethod_MvccGetByKey<WithStreamedUnaryMethod_MvccGetByStartTs<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
   template <class BaseClass>
   class WithSplitStreamingMethod_CoprocessorStream : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service *service) {}
    public:
     WithSplitStreamingMethod_CoprocessorStream() {
-      ::grpc::Service::MarkMethodStreamed(23,
+      ::grpc::Service::MarkMethodStreamed(24,
         new ::grpc::internal::SplitServerStreamingHandler< ::coprocessor::Request, ::coprocessor::Response>(std::bind(&WithSplitStreamingMethod_CoprocessorStream<BaseClass>::StreamedCoprocessorStream, this, std::placeholders::_1, std::placeholders::_2)));
     }
     ~WithSplitStreamingMethod_CoprocessorStream() override {
@@ -2859,7 +2956,7 @@ class Tikv final {
     virtual ::grpc::Status StreamedCoprocessorStream(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::coprocessor::Request,::coprocessor::Response>* server_split_streamer) = 0;
   };
   typedef WithSplitStreamingMethod_CoprocessorStream<Service > SplitStreamedService;
-  typedef WithStreamedUnaryMethod_KvGet<WithStreamedUnaryMethod_KvScan<WithStreamedUnaryMethod_KvPrewrite<WithStreamedUnaryMethod_KvCommit<WithStreamedUnaryMethod_KvImport<WithStreamedUnaryMethod_KvCleanup<WithStreamedUnaryMethod_KvBatchGet<WithStreamedUnaryMethod_KvBatchRollback<WithStreamedUnaryMethod_KvScanLock<WithStreamedUnaryMethod_KvResolveLock<WithStreamedUnaryMethod_KvGC<WithStreamedUnaryMethod_KvDeleteRange<WithStreamedUnaryMethod_RawGet<WithStreamedUnaryMethod_RawBatchGet<WithStreamedUnaryMethod_RawPut<WithStreamedUnaryMethod_RawBatchPut<WithStreamedUnaryMethod_RawDelete<WithStreamedUnaryMethod_RawBatchDelete<WithStreamedUnaryMethod_RawScan<WithStreamedUnaryMethod_RawDeleteRange<WithStreamedUnaryMethod_RawBatchScan<WithStreamedUnaryMethod_UnsafeDestroyRange<WithStreamedUnaryMethod_Coprocessor<WithSplitStreamingMethod_CoprocessorStream<WithStreamedUnaryMethod_SplitRegion<WithStreamedUnaryMethod_MvccGetByKey<WithStreamedUnaryMethod_MvccGetByStartTs<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_KvGet<WithStreamedUnaryMethod_KvScan<WithStreamedUnaryMethod_KvPrewrite<WithStreamedUnaryMethod_KvCommit<WithStreamedUnaryMethod_KvImport<WithStreamedUnaryMethod_KvCleanup<WithStreamedUnaryMethod_KvBatchGet<WithStreamedUnaryMethod_KvBatchRollback<WithStreamedUnaryMethod_KvScanLock<WithStreamedUnaryMethod_KvResolveLock<WithStreamedUnaryMethod_KvGC<WithStreamedUnaryMethod_KvDeleteRange<WithStreamedUnaryMethod_RawGet<WithStreamedUnaryMethod_RawBatchGet<WithStreamedUnaryMethod_RawPut<WithStreamedUnaryMethod_RawCAS<WithStreamedUnaryMethod_RawBatchPut<WithStreamedUnaryMethod_RawDelete<WithStreamedUnaryMethod_RawBatchDelete<WithStreamedUnaryMethod_RawScan<WithStreamedUnaryMethod_RawDeleteRange<WithStreamedUnaryMethod_RawBatchScan<WithStreamedUnaryMethod_UnsafeDestroyRange<WithStreamedUnaryMethod_Coprocessor<WithSplitStreamingMethod_CoprocessorStream<WithStreamedUnaryMethod_SplitRegion<WithStreamedUnaryMethod_MvccGetByKey<WithStreamedUnaryMethod_MvccGetByStartTs<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace tikvpb

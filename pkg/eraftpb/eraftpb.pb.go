@@ -1066,9 +1066,6 @@ func encodeVarintEraftpb(dAtA []byte, offset int, v uint64) int {
 	return offset + 1
 }
 func (m *Entry) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.EntryType != 0 {
@@ -1098,9 +1095,6 @@ func (m *Entry) Size() (n int) {
 }
 
 func (m *SnapshotMetadata) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.ConfState != nil {
@@ -1120,9 +1114,6 @@ func (m *SnapshotMetadata) Size() (n int) {
 }
 
 func (m *Snapshot) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	l = len(m.Data)
@@ -1140,9 +1131,6 @@ func (m *Snapshot) Size() (n int) {
 }
 
 func (m *Message) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.MsgType != 0 {
@@ -1193,9 +1181,6 @@ func (m *Message) Size() (n int) {
 }
 
 func (m *HardState) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Term != 0 {
@@ -1214,9 +1199,6 @@ func (m *HardState) Size() (n int) {
 }
 
 func (m *ConfState) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if len(m.Nodes) > 0 {
@@ -1240,9 +1222,6 @@ func (m *ConfState) Size() (n int) {
 }
 
 func (m *ConfChange) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Id != 0 {
@@ -2200,17 +2179,6 @@ func (m *ConfState) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				var elementCount int
-				var count int
-				for _, integer := range dAtA {
-					if integer < 128 {
-						count++
-					}
-				}
-				elementCount = count
-				if elementCount != 0 && len(m.Nodes) == 0 {
-					m.Nodes = make([]uint64, 0, elementCount)
-				}
 				for iNdEx < postIndex {
 					var v uint64
 					for shift := uint(0); ; shift += 7 {
@@ -2272,17 +2240,6 @@ func (m *ConfState) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
-				}
-				var elementCount int
-				var count int
-				for _, integer := range dAtA {
-					if integer < 128 {
-						count++
-					}
-				}
-				elementCount = count
-				if elementCount != 0 && len(m.Learners) == 0 {
-					m.Learners = make([]uint64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64

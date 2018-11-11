@@ -10,11 +10,11 @@ import (
 
 	proto "github.com/golang/protobuf/proto"
 
+	errorpb "github.com/Xavier1994/kvproto/pkg/errorpb"
+
+	metapb "github.com/Xavier1994/kvproto/pkg/metapb"
+
 	_ "github.com/gogo/protobuf/gogoproto"
-
-	errorpb "github.com/pingcap/kvproto/pkg/errorpb"
-
-	metapb "github.com/pingcap/kvproto/pkg/metapb"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -7693,9 +7693,6 @@ func encodeVarintKvrpcpb(dAtA []byte, offset int, v uint64) int {
 	return offset + 1
 }
 func (m *LockInfo) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	l = len(m.PrimaryLock)
@@ -7719,9 +7716,6 @@ func (m *LockInfo) Size() (n int) {
 }
 
 func (m *KeyError) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Locked != nil {
@@ -7747,9 +7741,6 @@ func (m *KeyError) Size() (n int) {
 }
 
 func (m *WriteConflict) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.StartTs != 0 {
@@ -7773,9 +7764,6 @@ func (m *WriteConflict) Size() (n int) {
 }
 
 func (m *Context) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionId != 0 {
@@ -7820,9 +7808,6 @@ func (m *Context) Size() (n int) {
 }
 
 func (m *HandleTime) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.WaitMs != 0 {
@@ -7838,9 +7823,6 @@ func (m *HandleTime) Size() (n int) {
 }
 
 func (m *ScanInfo) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Total != 0 {
@@ -7856,9 +7838,6 @@ func (m *ScanInfo) Size() (n int) {
 }
 
 func (m *ScanDetail) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Write != nil {
@@ -7880,9 +7859,6 @@ func (m *ScanDetail) Size() (n int) {
 }
 
 func (m *ExecDetails) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.HandleTime != nil {
@@ -7900,9 +7876,6 @@ func (m *ExecDetails) Size() (n int) {
 }
 
 func (m *GetRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Context != nil {
@@ -7923,9 +7896,6 @@ func (m *GetRequest) Size() (n int) {
 }
 
 func (m *GetResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionError != nil {
@@ -7947,9 +7917,6 @@ func (m *GetResponse) Size() (n int) {
 }
 
 func (m *ScanRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Context != nil {
@@ -7983,9 +7950,6 @@ func (m *ScanRequest) Size() (n int) {
 }
 
 func (m *KvPair) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Error != nil {
@@ -8007,9 +7971,6 @@ func (m *KvPair) Size() (n int) {
 }
 
 func (m *ScanResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionError != nil {
@@ -8029,9 +7990,6 @@ func (m *ScanResponse) Size() (n int) {
 }
 
 func (m *Mutation) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Op != 0 {
@@ -8052,9 +8010,6 @@ func (m *Mutation) Size() (n int) {
 }
 
 func (m *PrewriteRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Context != nil {
@@ -8087,9 +8042,6 @@ func (m *PrewriteRequest) Size() (n int) {
 }
 
 func (m *PrewriteResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionError != nil {
@@ -8109,9 +8061,6 @@ func (m *PrewriteResponse) Size() (n int) {
 }
 
 func (m *CommitRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Context != nil {
@@ -8137,9 +8086,6 @@ func (m *CommitRequest) Size() (n int) {
 }
 
 func (m *CommitResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionError != nil {
@@ -8157,9 +8103,6 @@ func (m *CommitResponse) Size() (n int) {
 }
 
 func (m *ImportRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if len(m.Mutations) > 0 {
@@ -8178,9 +8121,6 @@ func (m *ImportRequest) Size() (n int) {
 }
 
 func (m *ImportResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionError != nil {
@@ -8198,9 +8138,6 @@ func (m *ImportResponse) Size() (n int) {
 }
 
 func (m *BatchRollbackRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Context != nil {
@@ -8223,9 +8160,6 @@ func (m *BatchRollbackRequest) Size() (n int) {
 }
 
 func (m *BatchRollbackResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionError != nil {
@@ -8243,9 +8177,6 @@ func (m *BatchRollbackResponse) Size() (n int) {
 }
 
 func (m *CleanupRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Context != nil {
@@ -8266,9 +8197,6 @@ func (m *CleanupRequest) Size() (n int) {
 }
 
 func (m *CleanupResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionError != nil {
@@ -8289,9 +8217,6 @@ func (m *CleanupResponse) Size() (n int) {
 }
 
 func (m *BatchGetRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Context != nil {
@@ -8314,9 +8239,6 @@ func (m *BatchGetRequest) Size() (n int) {
 }
 
 func (m *BatchGetResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionError != nil {
@@ -8336,9 +8258,6 @@ func (m *BatchGetResponse) Size() (n int) {
 }
 
 func (m *ScanLockRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Context != nil {
@@ -8362,9 +8281,6 @@ func (m *ScanLockRequest) Size() (n int) {
 }
 
 func (m *ScanLockResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionError != nil {
@@ -8388,9 +8304,6 @@ func (m *ScanLockResponse) Size() (n int) {
 }
 
 func (m *TxnInfo) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Txn != 0 {
@@ -8406,9 +8319,6 @@ func (m *TxnInfo) Size() (n int) {
 }
 
 func (m *ResolveLockRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Context != nil {
@@ -8434,9 +8344,6 @@ func (m *ResolveLockRequest) Size() (n int) {
 }
 
 func (m *ResolveLockResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionError != nil {
@@ -8454,9 +8361,6 @@ func (m *ResolveLockResponse) Size() (n int) {
 }
 
 func (m *GCRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Context != nil {
@@ -8473,9 +8377,6 @@ func (m *GCRequest) Size() (n int) {
 }
 
 func (m *GCResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionError != nil {
@@ -8493,9 +8394,6 @@ func (m *GCResponse) Size() (n int) {
 }
 
 func (m *RawGetRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Context != nil {
@@ -8517,9 +8415,6 @@ func (m *RawGetRequest) Size() (n int) {
 }
 
 func (m *RawGetResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionError != nil {
@@ -8541,9 +8436,6 @@ func (m *RawGetResponse) Size() (n int) {
 }
 
 func (m *RawPutRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Context != nil {
@@ -8569,9 +8461,6 @@ func (m *RawPutRequest) Size() (n int) {
 }
 
 func (m *RawPutResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionError != nil {
@@ -8589,9 +8478,6 @@ func (m *RawPutResponse) Size() (n int) {
 }
 
 func (m *RawCASRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Context != nil {
@@ -8620,9 +8506,6 @@ func (m *RawCASRequest) Size() (n int) {
 }
 
 func (m *RawCASResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionError != nil {
@@ -8650,9 +8533,6 @@ func (m *RawCASResponse) Size() (n int) {
 }
 
 func (m *RawBatchPutRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Context != nil {
@@ -8676,9 +8556,6 @@ func (m *RawBatchPutRequest) Size() (n int) {
 }
 
 func (m *RawBatchPutResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionError != nil {
@@ -8696,9 +8573,6 @@ func (m *RawBatchPutResponse) Size() (n int) {
 }
 
 func (m *RawBatchGetRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Context != nil {
@@ -8722,9 +8596,6 @@ func (m *RawBatchGetRequest) Size() (n int) {
 }
 
 func (m *RawBatchGetResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionError != nil {
@@ -8744,9 +8615,6 @@ func (m *RawBatchGetResponse) Size() (n int) {
 }
 
 func (m *RawDeleteRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Context != nil {
@@ -8768,9 +8636,6 @@ func (m *RawDeleteRequest) Size() (n int) {
 }
 
 func (m *RawDeleteResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionError != nil {
@@ -8788,9 +8653,6 @@ func (m *RawDeleteResponse) Size() (n int) {
 }
 
 func (m *RawBatchDeleteRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Context != nil {
@@ -8814,9 +8676,6 @@ func (m *RawBatchDeleteRequest) Size() (n int) {
 }
 
 func (m *RawBatchDeleteResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionError != nil {
@@ -8834,9 +8693,6 @@ func (m *RawBatchDeleteResponse) Size() (n int) {
 }
 
 func (m *DeleteRangeRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Context != nil {
@@ -8858,9 +8714,6 @@ func (m *DeleteRangeRequest) Size() (n int) {
 }
 
 func (m *DeleteRangeResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionError != nil {
@@ -8878,9 +8731,6 @@ func (m *DeleteRangeResponse) Size() (n int) {
 }
 
 func (m *RawDeleteRangeRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Context != nil {
@@ -8906,9 +8756,6 @@ func (m *RawDeleteRangeRequest) Size() (n int) {
 }
 
 func (m *RawDeleteRangeResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionError != nil {
@@ -8926,9 +8773,6 @@ func (m *RawDeleteRangeResponse) Size() (n int) {
 }
 
 func (m *RawScanRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Context != nil {
@@ -8959,9 +8803,6 @@ func (m *RawScanRequest) Size() (n int) {
 }
 
 func (m *RawScanResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionError != nil {
@@ -8981,9 +8822,6 @@ func (m *RawScanResponse) Size() (n int) {
 }
 
 func (m *KeyRange) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	l = len(m.StartKey)
@@ -9001,9 +8839,6 @@ func (m *KeyRange) Size() (n int) {
 }
 
 func (m *RawBatchScanRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Context != nil {
@@ -9036,9 +8871,6 @@ func (m *RawBatchScanRequest) Size() (n int) {
 }
 
 func (m *RawBatchScanResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionError != nil {
@@ -9058,9 +8890,6 @@ func (m *RawBatchScanResponse) Size() (n int) {
 }
 
 func (m *MvccWrite) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Type != 0 {
@@ -9083,9 +8912,6 @@ func (m *MvccWrite) Size() (n int) {
 }
 
 func (m *MvccValue) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.StartTs != 0 {
@@ -9102,9 +8928,6 @@ func (m *MvccValue) Size() (n int) {
 }
 
 func (m *MvccLock) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Type != 0 {
@@ -9128,9 +8951,6 @@ func (m *MvccLock) Size() (n int) {
 }
 
 func (m *MvccInfo) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Lock != nil {
@@ -9156,9 +8976,6 @@ func (m *MvccInfo) Size() (n int) {
 }
 
 func (m *MvccGetByKeyRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Context != nil {
@@ -9176,9 +8993,6 @@ func (m *MvccGetByKeyRequest) Size() (n int) {
 }
 
 func (m *MvccGetByKeyResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionError != nil {
@@ -9200,9 +9014,6 @@ func (m *MvccGetByKeyResponse) Size() (n int) {
 }
 
 func (m *MvccGetByStartTsRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Context != nil {
@@ -9219,9 +9030,6 @@ func (m *MvccGetByStartTsRequest) Size() (n int) {
 }
 
 func (m *MvccGetByStartTsResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionError != nil {
@@ -9247,9 +9055,6 @@ func (m *MvccGetByStartTsResponse) Size() (n int) {
 }
 
 func (m *SplitRegionRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Context != nil {
@@ -9267,9 +9072,6 @@ func (m *SplitRegionRequest) Size() (n int) {
 }
 
 func (m *SplitRegionResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionError != nil {
@@ -9291,9 +9093,6 @@ func (m *SplitRegionResponse) Size() (n int) {
 }
 
 func (m *UnsafeDestroyRangeRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Context != nil {
@@ -9315,9 +9114,6 @@ func (m *UnsafeDestroyRangeRequest) Size() (n int) {
 }
 
 func (m *UnsafeDestroyRangeResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionError != nil {

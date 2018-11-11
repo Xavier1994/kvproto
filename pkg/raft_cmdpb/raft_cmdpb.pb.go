@@ -10,13 +10,13 @@ import (
 
 	proto "github.com/golang/protobuf/proto"
 
-	eraftpb "github.com/pingcap/kvproto/pkg/eraftpb"
+	eraftpb "github.com/Xavier1994/kvproto/pkg/eraftpb"
 
-	errorpb "github.com/pingcap/kvproto/pkg/errorpb"
+	errorpb "github.com/Xavier1994/kvproto/pkg/errorpb"
 
-	import_sstpb "github.com/pingcap/kvproto/pkg/import_sstpb"
+	import_sstpb "github.com/Xavier1994/kvproto/pkg/import_sstpb"
 
-	metapb "github.com/pingcap/kvproto/pkg/metapb"
+	metapb "github.com/Xavier1994/kvproto/pkg/metapb"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -5019,9 +5019,6 @@ func encodeVarintRaftCmdpb(dAtA []byte, offset int, v uint64) int {
 	return offset + 1
 }
 func (m *GetRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	l = len(m.Cf)
@@ -5039,9 +5036,6 @@ func (m *GetRequest) Size() (n int) {
 }
 
 func (m *GetResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	l = len(m.Value)
@@ -5055,9 +5049,6 @@ func (m *GetResponse) Size() (n int) {
 }
 
 func (m *PutRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	l = len(m.Cf)
@@ -5079,9 +5070,6 @@ func (m *PutRequest) Size() (n int) {
 }
 
 func (m *PutResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.XXX_unrecognized != nil {
@@ -5091,9 +5079,6 @@ func (m *PutResponse) Size() (n int) {
 }
 
 func (m *CompareAndSetRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	l = len(m.Cf)
@@ -5118,9 +5103,6 @@ func (m *CompareAndSetRequest) Size() (n int) {
 }
 
 func (m *CompareAndSetResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.CasType != 0 {
@@ -5140,9 +5122,6 @@ func (m *CompareAndSetResponse) Size() (n int) {
 }
 
 func (m *DeleteRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	l = len(m.Cf)
@@ -5160,9 +5139,6 @@ func (m *DeleteRequest) Size() (n int) {
 }
 
 func (m *DeleteResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.XXX_unrecognized != nil {
@@ -5172,9 +5148,6 @@ func (m *DeleteResponse) Size() (n int) {
 }
 
 func (m *DeleteRangeRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	l = len(m.Cf)
@@ -5196,9 +5169,6 @@ func (m *DeleteRangeRequest) Size() (n int) {
 }
 
 func (m *DeleteRangeResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.XXX_unrecognized != nil {
@@ -5208,9 +5178,6 @@ func (m *DeleteRangeResponse) Size() (n int) {
 }
 
 func (m *SnapRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.XXX_unrecognized != nil {
@@ -5220,9 +5187,6 @@ func (m *SnapRequest) Size() (n int) {
 }
 
 func (m *SnapResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Region != nil {
@@ -5236,9 +5200,6 @@ func (m *SnapResponse) Size() (n int) {
 }
 
 func (m *PrewriteRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	l = len(m.Key)
@@ -5260,9 +5221,6 @@ func (m *PrewriteRequest) Size() (n int) {
 }
 
 func (m *PrewriteResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.XXX_unrecognized != nil {
@@ -5272,9 +5230,6 @@ func (m *PrewriteResponse) Size() (n int) {
 }
 
 func (m *IngestSSTRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Sst != nil {
@@ -5288,9 +5243,6 @@ func (m *IngestSSTRequest) Size() (n int) {
 }
 
 func (m *IngestSSTResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.XXX_unrecognized != nil {
@@ -5300,9 +5252,6 @@ func (m *IngestSSTResponse) Size() (n int) {
 }
 
 func (m *Request) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.CmdType != 0 {
@@ -5347,9 +5296,6 @@ func (m *Request) Size() (n int) {
 }
 
 func (m *Response) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.CmdType != 0 {
@@ -5394,9 +5340,6 @@ func (m *Response) Size() (n int) {
 }
 
 func (m *ChangePeerRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.ChangeType != 0 {
@@ -5413,9 +5356,6 @@ func (m *ChangePeerRequest) Size() (n int) {
 }
 
 func (m *ChangePeerResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Region != nil {
@@ -5429,9 +5369,6 @@ func (m *ChangePeerResponse) Size() (n int) {
 }
 
 func (m *SplitRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	l = len(m.SplitKey)
@@ -5458,9 +5395,6 @@ func (m *SplitRequest) Size() (n int) {
 }
 
 func (m *SplitResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Left != nil {
@@ -5478,9 +5412,6 @@ func (m *SplitResponse) Size() (n int) {
 }
 
 func (m *BatchSplitRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if len(m.Requests) > 0 {
@@ -5499,9 +5430,6 @@ func (m *BatchSplitRequest) Size() (n int) {
 }
 
 func (m *BatchSplitResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if len(m.Regions) > 0 {
@@ -5517,9 +5445,6 @@ func (m *BatchSplitResponse) Size() (n int) {
 }
 
 func (m *CompactLogRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.CompactIndex != 0 {
@@ -5535,9 +5460,6 @@ func (m *CompactLogRequest) Size() (n int) {
 }
 
 func (m *CompactLogResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.XXX_unrecognized != nil {
@@ -5547,9 +5469,6 @@ func (m *CompactLogResponse) Size() (n int) {
 }
 
 func (m *TransferLeaderRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Peer != nil {
@@ -5563,9 +5482,6 @@ func (m *TransferLeaderRequest) Size() (n int) {
 }
 
 func (m *TransferLeaderResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.XXX_unrecognized != nil {
@@ -5575,9 +5491,6 @@ func (m *TransferLeaderResponse) Size() (n int) {
 }
 
 func (m *VerifyHashRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Index != 0 {
@@ -5594,9 +5507,6 @@ func (m *VerifyHashRequest) Size() (n int) {
 }
 
 func (m *VerifyHashResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.XXX_unrecognized != nil {
@@ -5606,9 +5516,6 @@ func (m *VerifyHashResponse) Size() (n int) {
 }
 
 func (m *PrepareMergeRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.MinIndex != 0 {
@@ -5625,9 +5532,6 @@ func (m *PrepareMergeRequest) Size() (n int) {
 }
 
 func (m *PrepareMergeResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.XXX_unrecognized != nil {
@@ -5637,9 +5541,6 @@ func (m *PrepareMergeResponse) Size() (n int) {
 }
 
 func (m *CommitMergeRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Source != nil {
@@ -5662,9 +5563,6 @@ func (m *CommitMergeRequest) Size() (n int) {
 }
 
 func (m *CommitMergeResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.XXX_unrecognized != nil {
@@ -5674,9 +5572,6 @@ func (m *CommitMergeResponse) Size() (n int) {
 }
 
 func (m *RollbackMergeRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Commit != 0 {
@@ -5689,9 +5584,6 @@ func (m *RollbackMergeRequest) Size() (n int) {
 }
 
 func (m *RollbackMergeResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.XXX_unrecognized != nil {
@@ -5701,9 +5593,6 @@ func (m *RollbackMergeResponse) Size() (n int) {
 }
 
 func (m *AdminRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.CmdType != 0 {
@@ -5752,9 +5641,6 @@ func (m *AdminRequest) Size() (n int) {
 }
 
 func (m *AdminResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.CmdType != 0 {
@@ -5803,9 +5689,6 @@ func (m *AdminResponse) Size() (n int) {
 }
 
 func (m *RegionLeaderRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.XXX_unrecognized != nil {
@@ -5815,9 +5698,6 @@ func (m *RegionLeaderRequest) Size() (n int) {
 }
 
 func (m *RegionLeaderResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Leader != nil {
@@ -5831,9 +5711,6 @@ func (m *RegionLeaderResponse) Size() (n int) {
 }
 
 func (m *RegionDetailRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.XXX_unrecognized != nil {
@@ -5843,9 +5720,6 @@ func (m *RegionDetailRequest) Size() (n int) {
 }
 
 func (m *RegionDetailResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Region != nil {
@@ -5863,9 +5737,6 @@ func (m *RegionDetailResponse) Size() (n int) {
 }
 
 func (m *StatusRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.CmdType != 0 {
@@ -5886,9 +5757,6 @@ func (m *StatusRequest) Size() (n int) {
 }
 
 func (m *StatusResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.CmdType != 0 {
@@ -5909,9 +5777,6 @@ func (m *StatusResponse) Size() (n int) {
 }
 
 func (m *RaftRequestHeader) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.RegionId != 0 {
@@ -5948,9 +5813,6 @@ func (m *RaftRequestHeader) Size() (n int) {
 }
 
 func (m *RaftResponseHeader) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Error != nil {
@@ -5971,9 +5833,6 @@ func (m *RaftResponseHeader) Size() (n int) {
 }
 
 func (m *RaftCmdRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Header != nil {
@@ -6001,9 +5860,6 @@ func (m *RaftCmdRequest) Size() (n int) {
 }
 
 func (m *RaftCmdResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
 	var l int
 	_ = l
 	if m.Header != nil {
@@ -8504,17 +8360,6 @@ func (m *SplitRequest) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
-				}
-				var elementCount int
-				var count int
-				for _, integer := range dAtA {
-					if integer < 128 {
-						count++
-					}
-				}
-				elementCount = count
-				if elementCount != 0 && len(m.NewPeerIds) == 0 {
-					m.NewPeerIds = make([]uint64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64

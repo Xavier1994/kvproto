@@ -13,7 +13,7 @@ if [ -z $GOPATH ]; then
     exit 1
 fi
 
-GO_PREFIX_PATH=github.com/pingcap/kvproto/pkg
+GO_PREFIX_PATH=github.com/Xavier1994/kvproto/pkg
 
 gogo_protobuf_url=github.com/gogo/protobuf
 CURRENT_DIR=$(pwd)

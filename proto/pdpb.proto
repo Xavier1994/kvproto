@@ -264,6 +264,27 @@ message RegionHeartbeatRequest {
     TimeInterval interval = 12;
     // Approximate number of keys.
     uint64 approximate_keys = 13;
+
+    // report peer progress
+    map<uint64, Progress> voter_progress = 14;
+    map<uint64, Progress> learner_progress = 15;
+}
+
+enum ProgressState {
+    Probe = 0;
+    Replicate = 1;
+    Snapshot = 2;
+}
+
+// this progress is the follower's progress which replicate leader's log
+message Progress {
+    uint64 matched = 1;
+    uint64 next_idx = 2;
+
+    bool paused = 3;
+    uint64 pending_snapshot = 4;
+    bool is_learner = 5;
+    ProgressState state = 6;
 }
 
 message ChangePeer {

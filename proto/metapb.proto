@@ -82,3 +82,8 @@ message Progress {
     bool is_learner = 5;
     ProgressState state = 6;
 }
+
+message PeerStats {
+    metapb.Peer peer = 1;
+    uint64 down_seconds = 2;
+}

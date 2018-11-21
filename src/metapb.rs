@@ -2053,6 +2053,219 @@ impl ::protobuf::reflect::ProtobufValue for Progress {
     }
 }
 
+#[derive(PartialEq,Clone,Default)]
+pub struct PeerStats {
+    // message fields
+    pub peer: ::protobuf::SingularPtrField<Peer>,
+    pub down_seconds: u64,
+    // special fields
+    unknown_fields: ::protobuf::UnknownFields,
+    cached_size: ::protobuf::CachedSize,
+}
+
+impl PeerStats {
+    pub fn new() -> PeerStats {
+        ::std::default::Default::default()
+    }
+
+    // .metapb.Peer peer = 1;
+
+    pub fn clear_peer(&mut self) {
+        self.peer.clear();
+    }
+
+    pub fn has_peer(&self) -> bool {
+        self.peer.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_peer(&mut self, v: Peer) {
+        self.peer = ::protobuf::SingularPtrField::some(v);
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_peer(&mut self) -> &mut Peer {
+        if self.peer.is_none() {
+            self.peer.set_default();
+        }
+        self.peer.as_mut().unwrap()
+    }
+
+    // Take field
+    pub fn take_peer(&mut self) -> Peer {
+        self.peer.take().unwrap_or_else(|| Peer::new())
+    }
+
+    pub fn get_peer(&self) -> &Peer {
+        self.peer.as_ref().unwrap_or_else(|| Peer::default_instance())
+    }
+
+    // uint64 down_seconds = 2;
+
+    pub fn clear_down_seconds(&mut self) {
+        self.down_seconds = 0;
+    }
+
+    // Param is passed by value, moved
+    pub fn set_down_seconds(&mut self, v: u64) {
+        self.down_seconds = v;
+    }
+
+    pub fn get_down_seconds(&self) -> u64 {
+        self.down_seconds
+    }
+}
+
+impl ::protobuf::Message for PeerStats {
+    fn is_initialized(&self) -> bool {
+        for v in &self.peer {
+            if !v.is_initialized() {
+                return false;
+            }
+        };
+        true
+    }
+
+    fn merge_from(&mut self, is: &mut ::protobuf::CodedInputStream) -> ::protobuf::ProtobufResult<()> {
+        while !is.eof()? {
+            let (field_number, wire_type) = is.read_tag_unpack()?;
+            match field_number {
+                1 => {
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.peer)?;
+                },
+                2 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    let tmp = is.read_uint64()?;
+                    self.down_seconds = tmp;
+                },
+                _ => {
+                    ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
+                },
+            };
+        }
+        ::std::result::Result::Ok(())
+    }
+
+    // Compute sizes of nested messages
+    #[allow(unused_variables)]
+    fn compute_size(&self) -> u32 {
+        let mut my_size = 0;
+        if let Some(ref v) = self.peer.as_ref() {
+            let len = v.compute_size();
+            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+        }
+        if self.down_seconds != 0 {
+            my_size += ::protobuf::rt::value_size(2, self.down_seconds, ::protobuf::wire_format::WireTypeVarint);
+        }
+        my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
+        self.cached_size.set(my_size);
+        my_size
+    }
+
+    fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream) -> ::protobuf::ProtobufResult<()> {
+        if let Some(ref v) = self.peer.as_ref() {
+            os.write_tag(1, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+            os.write_raw_varint32(v.get_cached_size())?;
+            v.write_to_with_cached_sizes(os)?;
+        }
+        if self.down_seconds != 0 {
+            os.write_uint64(2, self.down_seconds)?;
+        }
+        os.write_unknown_fields(self.get_unknown_fields())?;
+        ::std::result::Result::Ok(())
+    }
+
+    fn get_cached_size(&self) -> u32 {
+        self.cached_size.get()
+    }
+
+    fn get_unknown_fields(&self) -> &::protobuf::UnknownFields {
+        &self.unknown_fields
+    }
+
+    fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
+        &mut self.unknown_fields
+    }
+
+    fn as_any(&self) -> &::std::any::Any {
+        self as &::std::any::Any
+    }
+    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
+        self as &mut ::std::any::Any
+    }
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+        self
+    }
+
+    fn descriptor(&self) -> &'static ::protobuf::reflect::MessageDescriptor {
+        Self::descriptor_static()
+    }
+
+    fn new() -> PeerStats {
+        PeerStats::new()
+    }
+
+    fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
+        static mut descriptor: ::protobuf::lazy::Lazy<::protobuf::reflect::MessageDescriptor> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const ::protobuf::reflect::MessageDescriptor,
+        };
+        unsafe {
+            descriptor.get(|| {
+                let mut fields = ::std::vec::Vec::new();
+                fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<Peer>>(
+                    "peer",
+                    |m: &PeerStats| { &m.peer },
+                    |m: &mut PeerStats| { &mut m.peer },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeUint64>(
+                    "down_seconds",
+                    |m: &PeerStats| { &m.down_seconds },
+                    |m: &mut PeerStats| { &mut m.down_seconds },
+                ));
+                ::protobuf::reflect::MessageDescriptor::new::<PeerStats>(
+                    "PeerStats",
+                    fields,
+                    file_descriptor_proto()
+                )
+            })
+        }
+    }
+
+    fn default_instance() -> &'static PeerStats {
+        static mut instance: ::protobuf::lazy::Lazy<PeerStats> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const PeerStats,
+        };
+        unsafe {
+            instance.get(PeerStats::new)
+        }
+    }
+}
+
+impl ::protobuf::Clear for PeerStats {
+    fn clear(&mut self) {
+        self.clear_peer();
+        self.clear_down_seconds();
+        self.unknown_fields.clear();
+    }
+}
+
+impl ::std::fmt::Debug for PeerStats {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        ::protobuf::text_format::fmt(self, f)
+    }
+}
+
+impl ::protobuf::reflect::ProtobufValue for PeerStats {
+    fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
+        ::protobuf::reflect::ProtobufValueRef::Message(self)
+    }
+}
+
 #[derive(Clone,PartialEq,Eq,Debug,Hash)]
 pub enum StoreState {
     Up = 0,
@@ -2195,31 +2408,33 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x12\x16\n\x06paused\x18\x03\x20\x01(\x08R\x06paused\x12)\n\x10pending_s\
     napshot\x18\x04\x20\x01(\x04R\x0fpendingSnapshot\x12\x1d\n\nis_learner\
     \x18\x05\x20\x01(\x08R\tisLearner\x12+\n\x05state\x18\x06\x20\x01(\x0e2\
-    \x15.metapb.ProgressStateR\x05state*0\n\nStoreState\x12\x06\n\x02Up\x10\
-    \0\x12\x0b\n\x07Offline\x10\x01\x12\r\n\tTombstone\x10\x02*7\n\rProgress\
-    State\x12\t\n\x05Probe\x10\0\x12\r\n\tReplicate\x10\x01\x12\x0c\n\x08Sna\
-    pshot\x10\x02B&\n\x18com.pingcap.tikv.kvproto\xc8\xe2\x1e\x01\xd0\xe2\
-    \x1e\x01\xe0\xe2\x1e\x01J\xbd\x17\n\x06\x12\x04\0\0S\x01\n\x08\n\x01\x0c\
-    \x12\x03\0\0\x12\n\x08\n\x01\x02\x12\x03\x01\x08\x0e\n\t\n\x02\x03\0\x12\
-    \x03\x03\x07\x1d\n\x08\n\x01\x08\x12\x03\x05\0(\n\x0b\n\x04\x08\xa9\xec\
-    \x03\x12\x03\x05\0(\n\x08\n\x01\x08\x12\x03\x06\0$\n\x0b\n\x04\x08\xac\
-    \xec\x03\x12\x03\x06\0$\n\x08\n\x01\x08\x12\x03\x07\0*\n\x0b\n\x04\x08\
-    \xaa\xec\x03\x12\x03\x07\0*\n\x08\n\x01\x08\x12\x03\t\01\n\t\n\x02\x08\
-    \x01\x12\x03\t\01\n\n\n\x02\x04\0\x12\x04\x0b\0\x11\x01\n\n\n\x03\x04\0\
-    \x01\x12\x03\x0b\x08\x0f\n\x0b\n\x04\x04\0\x02\0\x12\x03\x0c\x04\x12\n\r\
-    \n\x05\x04\0\x02\0\x04\x12\x04\x0c\x04\x0b\x11\n\x0c\n\x05\x04\0\x02\0\
-    \x05\x12\x03\x0c\x04\n\n\x0c\n\x05\x04\0\x02\0\x01\x12\x03\x0c\x0b\r\n\
-    \x0c\n\x05\x04\0\x02\0\x03\x12\x03\x0c\x10\x11\n\x82\x01\n\x04\x04\0\x02\
-    \x01\x12\x03\x0f\x04\x1e\x1a\\\x20max\x20peer\x20count\x20for\x20a\x20re\
-    gion.\n\x20pd\x20will\x20do\x20the\x20auto-balance\x20if\x20region\x20pe\
-    er\x20count\x20mismatches.\n\"\x17\x20more\x20attributes......\n\n\r\n\
-    \x05\x04\0\x02\x01\x04\x12\x04\x0f\x04\x0c\x12\n\x0c\n\x05\x04\0\x02\x01\
-    \x05\x12\x03\x0f\x04\n\n\x0c\n\x05\x04\0\x02\x01\x01\x12\x03\x0f\x0b\x19\
-    \n\x0c\n\x05\x04\0\x02\x01\x03\x12\x03\x0f\x1c\x1d\n\n\n\x02\x05\0\x12\
-    \x04\x13\0\x17\x01\n\n\n\x03\x05\0\x01\x12\x03\x13\x05\x0f\n\x0b\n\x04\
-    \x05\0\x02\0\x12\x03\x14\x04\x0b\n\x0c\n\x05\x05\0\x02\0\x01\x12\x03\x14\
-    \x04\x06\n\x0c\n\x05\x05\0\x02\0\x02\x12\x03\x14\t\n\n\x0b\n\x04\x05\0\
-    \x02\x01\x12\x03\x15\x04\x10\n\x0c\n\x05\x05\0\x02\x01\x01\x12\x03\x15\
+    \x15.metapb.ProgressStateR\x05state\"P\n\tPeerStats\x12\x20\n\x04peer\
+    \x18\x01\x20\x01(\x0b2\x0c.metapb.PeerR\x04peer\x12!\n\x0cdown_seconds\
+    \x18\x02\x20\x01(\x04R\x0bdownSeconds*0\n\nStoreState\x12\x06\n\x02Up\
+    \x10\0\x12\x0b\n\x07Offline\x10\x01\x12\r\n\tTombstone\x10\x02*7\n\rProg\
+    ressState\x12\t\n\x05Probe\x10\0\x12\r\n\tReplicate\x10\x01\x12\x0c\n\
+    \x08Snapshot\x10\x02B&\n\x18com.pingcap.tikv.kvproto\xe0\xe2\x1e\x01\xc8\
+    \xe2\x1e\x01\xd0\xe2\x1e\x01J\xe1\x18\n\x06\x12\x04\0\0X\x01\n\x08\n\x01\
+    \x0c\x12\x03\0\0\x12\n\x08\n\x01\x02\x12\x03\x01\x08\x0e\n\t\n\x02\x03\0\
+    \x12\x03\x03\x07\x1d\n\x08\n\x01\x08\x12\x03\x05\0(\n\x0b\n\x04\x08\xa9\
+    \xec\x03\x12\x03\x05\0(\n\x08\n\x01\x08\x12\x03\x06\0$\n\x0b\n\x04\x08\
+    \xac\xec\x03\x12\x03\x06\0$\n\x08\n\x01\x08\x12\x03\x07\0*\n\x0b\n\x04\
+    \x08\xaa\xec\x03\x12\x03\x07\0*\n\x08\n\x01\x08\x12\x03\t\01\n\t\n\x02\
+    \x08\x01\x12\x03\t\01\n\n\n\x02\x04\0\x12\x04\x0b\0\x11\x01\n\n\n\x03\
+    \x04\0\x01\x12\x03\x0b\x08\x0f\n\x0b\n\x04\x04\0\x02\0\x12\x03\x0c\x04\
+    \x12\n\r\n\x05\x04\0\x02\0\x04\x12\x04\x0c\x04\x0b\x11\n\x0c\n\x05\x04\0\
+    \x02\0\x05\x12\x03\x0c\x04\n\n\x0c\n\x05\x04\0\x02\0\x01\x12\x03\x0c\x0b\
+    \r\n\x0c\n\x05\x04\0\x02\0\x03\x12\x03\x0c\x10\x11\n\x82\x01\n\x04\x04\0\
+    \x02\x01\x12\x03\x0f\x04\x1e\x1a\\\x20max\x20peer\x20count\x20for\x20a\
+    \x20region.\n\x20pd\x20will\x20do\x20the\x20auto-balance\x20if\x20region\
+    \x20peer\x20count\x20mismatches.\n\"\x17\x20more\x20attributes......\n\n\
+    \r\n\x05\x04\0\x02\x01\x04\x12\x04\x0f\x04\x0c\x12\n\x0c\n\x05\x04\0\x02\
+    \x01\x05\x12\x03\x0f\x04\n\n\x0c\n\x05\x04\0\x02\x01\x01\x12\x03\x0f\x0b\
+    \x19\n\x0c\n\x05\x04\0\x02\x01\x03\x12\x03\x0f\x1c\x1d\n\n\n\x02\x05\0\
+    \x12\x04\x13\0\x17\x01\n\n\n\x03\x05\0\x01\x12\x03\x13\x05\x0f\n\x0b\n\
+    \x04\x05\0\x02\0\x12\x03\x14\x04\x0b\n\x0c\n\x05\x05\0\x02\0\x01\x12\x03\
+    \x14\x04\x06\n\x0c\n\x05\x05\0\x02\0\x02\x12\x03\x14\t\n\n\x0b\n\x04\x05\
+    \0\x02\x01\x12\x03\x15\x04\x10\n\x0c\n\x05\x05\0\x02\x01\x01\x12\x03\x15\
     \x04\x0b\n\x0c\n\x05\x05\0\x02\x01\x02\x12\x03\x15\x0e\x0f\n\x0b\n\x04\
     \x05\0\x02\x02\x12\x03\x16\x04\x12\n\x0c\n\x05\x05\0\x02\x02\x01\x12\x03\
     \x16\x04\r\n\x0c\n\x05\x05\0\x02\x02\x02\x12\x03\x16\x10\x11\nA\n\x02\
@@ -2330,7 +2545,15 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x03Q\x16\x17\n\x0b\n\x04\x04\x07\x02\x05\x12\x03R\x04\x1c\n\r\n\x05\x04\
     \x07\x02\x05\x04\x12\x04R\x04Q\x18\n\x0c\n\x05\x04\x07\x02\x05\x06\x12\
     \x03R\x04\x11\n\x0c\n\x05\x04\x07\x02\x05\x01\x12\x03R\x12\x17\n\x0c\n\
-    \x05\x04\x07\x02\x05\x03\x12\x03R\x1a\x1bb\x06proto3\
+    \x05\x04\x07\x02\x05\x03\x12\x03R\x1a\x1b\n\n\n\x02\x04\x08\x12\x04U\0X\
+    \x01\n\n\n\x03\x04\x08\x01\x12\x03U\x08\x11\n\x0b\n\x04\x04\x08\x02\0\
+    \x12\x03V\x04\x19\n\r\n\x05\x04\x08\x02\0\x04\x12\x04V\x04U\x13\n\x0c\n\
+    \x05\x04\x08\x02\0\x06\x12\x03V\x04\x0f\n\x0c\n\x05\x04\x08\x02\0\x01\
+    \x12\x03V\x10\x14\n\x0c\n\x05\x04\x08\x02\0\x03\x12\x03V\x17\x18\n\x0b\n\
+    \x04\x04\x08\x02\x01\x12\x03W\x04\x1c\n\r\n\x05\x04\x08\x02\x01\x04\x12\
+    \x04W\x04V\x19\n\x0c\n\x05\x04\x08\x02\x01\x05\x12\x03W\x04\n\n\x0c\n\
+    \x05\x04\x08\x02\x01\x01\x12\x03W\x0b\x17\n\x0c\n\x05\x04\x08\x02\x01\
+    \x03\x12\x03W\x1a\x1bb\x06proto3\
 ";
 
 static mut file_descriptor_proto_lazy: ::protobuf::lazy::Lazy<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::lazy::Lazy {

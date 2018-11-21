@@ -17980,225 +17980,12 @@ impl ::protobuf::reflect::ProtobufValue for GetRegionStateRequest {
 }
 
 #[derive(PartialEq,Clone,Default)]
-pub struct PeerStats {
-    // message fields
-    pub peer: ::protobuf::SingularPtrField<super::metapb::Peer>,
-    pub down_seconds: u64,
-    // special fields
-    unknown_fields: ::protobuf::UnknownFields,
-    cached_size: ::protobuf::CachedSize,
-}
-
-impl PeerStats {
-    pub fn new() -> PeerStats {
-        ::std::default::Default::default()
-    }
-
-    // .metapb.Peer peer = 1;
-
-    pub fn clear_peer(&mut self) {
-        self.peer.clear();
-    }
-
-    pub fn has_peer(&self) -> bool {
-        self.peer.is_some()
-    }
-
-    // Param is passed by value, moved
-    pub fn set_peer(&mut self, v: super::metapb::Peer) {
-        self.peer = ::protobuf::SingularPtrField::some(v);
-    }
-
-    // Mutable pointer to the field.
-    // If field is not initialized, it is initialized with default value first.
-    pub fn mut_peer(&mut self) -> &mut super::metapb::Peer {
-        if self.peer.is_none() {
-            self.peer.set_default();
-        }
-        self.peer.as_mut().unwrap()
-    }
-
-    // Take field
-    pub fn take_peer(&mut self) -> super::metapb::Peer {
-        self.peer.take().unwrap_or_else(|| super::metapb::Peer::new())
-    }
-
-    pub fn get_peer(&self) -> &super::metapb::Peer {
-        self.peer.as_ref().unwrap_or_else(|| super::metapb::Peer::default_instance())
-    }
-
-    // uint64 down_seconds = 2;
-
-    pub fn clear_down_seconds(&mut self) {
-        self.down_seconds = 0;
-    }
-
-    // Param is passed by value, moved
-    pub fn set_down_seconds(&mut self, v: u64) {
-        self.down_seconds = v;
-    }
-
-    pub fn get_down_seconds(&self) -> u64 {
-        self.down_seconds
-    }
-}
-
-impl ::protobuf::Message for PeerStats {
-    fn is_initialized(&self) -> bool {
-        for v in &self.peer {
-            if !v.is_initialized() {
-                return false;
-            }
-        };
-        true
-    }
-
-    fn merge_from(&mut self, is: &mut ::protobuf::CodedInputStream) -> ::protobuf::ProtobufResult<()> {
-        while !is.eof()? {
-            let (field_number, wire_type) = is.read_tag_unpack()?;
-            match field_number {
-                1 => {
-                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.peer)?;
-                },
-                2 => {
-                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
-                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
-                    }
-                    let tmp = is.read_uint64()?;
-                    self.down_seconds = tmp;
-                },
-                _ => {
-                    ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
-                },
-            };
-        }
-        ::std::result::Result::Ok(())
-    }
-
-    // Compute sizes of nested messages
-    #[allow(unused_variables)]
-    fn compute_size(&self) -> u32 {
-        let mut my_size = 0;
-        if let Some(ref v) = self.peer.as_ref() {
-            let len = v.compute_size();
-            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
-        }
-        if self.down_seconds != 0 {
-            my_size += ::protobuf::rt::value_size(2, self.down_seconds, ::protobuf::wire_format::WireTypeVarint);
-        }
-        my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
-        self.cached_size.set(my_size);
-        my_size
-    }
-
-    fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream) -> ::protobuf::ProtobufResult<()> {
-        if let Some(ref v) = self.peer.as_ref() {
-            os.write_tag(1, ::protobuf::wire_format::WireTypeLengthDelimited)?;
-            os.write_raw_varint32(v.get_cached_size())?;
-            v.write_to_with_cached_sizes(os)?;
-        }
-        if self.down_seconds != 0 {
-            os.write_uint64(2, self.down_seconds)?;
-        }
-        os.write_unknown_fields(self.get_unknown_fields())?;
-        ::std::result::Result::Ok(())
-    }
-
-    fn get_cached_size(&self) -> u32 {
-        self.cached_size.get()
-    }
-
-    fn get_unknown_fields(&self) -> &::protobuf::UnknownFields {
-        &self.unknown_fields
-    }
-
-    fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
-        &mut self.unknown_fields
-    }
-
-    fn as_any(&self) -> &::std::any::Any {
-        self as &::std::any::Any
-    }
-    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
-        self as &mut ::std::any::Any
-    }
-    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
-        self
-    }
-
-    fn descriptor(&self) -> &'static ::protobuf::reflect::MessageDescriptor {
-        Self::descriptor_static()
-    }
-
-    fn new() -> PeerStats {
-        PeerStats::new()
-    }
-
-    fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
-        static mut descriptor: ::protobuf::lazy::Lazy<::protobuf::reflect::MessageDescriptor> = ::protobuf::lazy::Lazy {
-            lock: ::protobuf::lazy::ONCE_INIT,
-            ptr: 0 as *const ::protobuf::reflect::MessageDescriptor,
-        };
-        unsafe {
-            descriptor.get(|| {
-                let mut fields = ::std::vec::Vec::new();
-                fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<super::metapb::Peer>>(
-                    "peer",
-                    |m: &PeerStats| { &m.peer },
-                    |m: &mut PeerStats| { &mut m.peer },
-                ));
-                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeUint64>(
-                    "down_seconds",
-                    |m: &PeerStats| { &m.down_seconds },
-                    |m: &mut PeerStats| { &mut m.down_seconds },
-                ));
-                ::protobuf::reflect::MessageDescriptor::new::<PeerStats>(
-                    "PeerStats",
-                    fields,
-                    file_descriptor_proto()
-                )
-            })
-        }
-    }
-
-    fn default_instance() -> &'static PeerStats {
-        static mut instance: ::protobuf::lazy::Lazy<PeerStats> = ::protobuf::lazy::Lazy {
-            lock: ::protobuf::lazy::ONCE_INIT,
-            ptr: 0 as *const PeerStats,
-        };
-        unsafe {
-            instance.get(PeerStats::new)
-        }
-    }
-}
-
-impl ::protobuf::Clear for PeerStats {
-    fn clear(&mut self) {
-        self.clear_peer();
-        self.clear_down_seconds();
-        self.unknown_fields.clear();
-    }
-}
-
-impl ::std::fmt::Debug for PeerStats {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        ::protobuf::text_format::fmt(self, f)
-    }
-}
-
-impl ::protobuf::reflect::ProtobufValue for PeerStats {
-    fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
-        ::protobuf::reflect::ProtobufValueRef::Message(self)
-    }
-}
-
-#[derive(PartialEq,Clone,Default)]
 pub struct GetRegionStateResponse {
     // message fields
     pub region_error: ::protobuf::SingularPtrField<super::errorpb::Error>,
     pub region: ::protobuf::SingularPtrField<super::metapb::Region>,
     pub leader: ::protobuf::SingularPtrField<super::metapb::Peer>,
-    pub down_peers: ::protobuf::RepeatedField<PeerStats>,
+    pub down_peers: ::protobuf::RepeatedField<super::metapb::PeerStats>,
     pub pending_peers: ::protobuf::RepeatedField<super::metapb::Peer>,
     pub bytes_written: u64,
     pub bytes_read: u64,
@@ -18318,28 +18105,28 @@ impl GetRegionStateResponse {
         self.leader.as_ref().unwrap_or_else(|| super::metapb::Peer::default_instance())
     }
 
-    // repeated .kvrpcpb.PeerStats down_peers = 4;
+    // repeated .metapb.PeerStats down_peers = 4;
 
     pub fn clear_down_peers(&mut self) {
         self.down_peers.clear();
     }
 
     // Param is passed by value, moved
-    pub fn set_down_peers(&mut self, v: ::protobuf::RepeatedField<PeerStats>) {
+    pub fn set_down_peers(&mut self, v: ::protobuf::RepeatedField<super::metapb::PeerStats>) {
         self.down_peers = v;
     }
 
     // Mutable pointer to the field.
-    pub fn mut_down_peers(&mut self) -> &mut ::protobuf::RepeatedField<PeerStats> {
+    pub fn mut_down_peers(&mut self) -> &mut ::protobuf::RepeatedField<super::metapb::PeerStats> {
         &mut self.down_peers
     }
 
     // Take field
-    pub fn take_down_peers(&mut self) -> ::protobuf::RepeatedField<PeerStats> {
+    pub fn take_down_peers(&mut self) -> ::protobuf::RepeatedField<super::metapb::PeerStats> {
         ::std::mem::replace(&mut self.down_peers, ::protobuf::RepeatedField::new())
     }
 
-    pub fn get_down_peers(&self) -> &[PeerStats] {
+    pub fn get_down_peers(&self) -> &[super::metapb::PeerStats] {
         &self.down_peers
     }
 
@@ -18816,7 +18603,7 @@ impl ::protobuf::Message for GetRegionStateResponse {
                     |m: &GetRegionStateResponse| { &m.leader },
                     |m: &mut GetRegionStateResponse| { &mut m.leader },
                 ));
-                fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<PeerStats>>(
+                fields.push(::protobuf::reflect::accessor::make_repeated_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<super::metapb::PeerStats>>(
                     "down_peers",
                     |m: &GetRegionStateResponse| { &m.down_peers },
                     |m: &mut GetRegionStateResponse| { &mut m.down_peers },
@@ -19481,13 +19268,11 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     e\n\x1aUnsafeDestroyRangeResponse\x121\n\x0cregion_error\x18\x01\x20\x01\
     (\x0b2\x0e.errorpb.ErrorR\x0bregionError\x12\x14\n\x05error\x18\x02\x20\
     \x01(\tR\x05error\"C\n\x15GetRegionStateRequest\x12*\n\x07context\x18\
-    \x01\x20\x01(\x0b2\x10.kvrpcpb.ContextR\x07context\"P\n\tPeerStats\x12\
-    \x20\n\x04peer\x18\x01\x20\x01(\x0b2\x0c.metapb.PeerR\x04peer\x12!\n\x0c\
-    down_seconds\x18\x02\x20\x01(\x04R\x0bdownSeconds\"\x8d\x07\n\x16GetRegi\
-    onStateResponse\x121\n\x0cregion_error\x18\x01\x20\x01(\x0b2\x0e.errorpb\
-    .ErrorR\x0bregionError\x12&\n\x06region\x18\x02\x20\x01(\x0b2\x0e.metapb\
-    .RegionR\x06region\x12$\n\x06leader\x18\x03\x20\x01(\x0b2\x0c.metapb.Pee\
-    rR\x06leader\x121\n\ndown_peers\x18\x04\x20\x03(\x0b2\x12.kvrpcpb.PeerSt\
+    \x01\x20\x01(\x0b2\x10.kvrpcpb.ContextR\x07context\"\x8c\x07\n\x16GetReg\
+    ionStateResponse\x121\n\x0cregion_error\x18\x01\x20\x01(\x0b2\x0e.errorp\
+    b.ErrorR\x0bregionError\x12&\n\x06region\x18\x02\x20\x01(\x0b2\x0e.metap\
+    b.RegionR\x06region\x12$\n\x06leader\x18\x03\x20\x01(\x0b2\x0c.metapb.Pe\
+    erR\x06leader\x120\n\ndown_peers\x18\x04\x20\x03(\x0b2\x11.metapb.PeerSt\
     atsR\tdownPeers\x121\n\rpending_peers\x18\x05\x20\x03(\x0b2\x0c.metapb.P\
     eerR\x0cpendingPeers\x12#\n\rbytes_written\x18\x06\x20\x01(\x04R\x0cbyte\
     sWritten\x12\x1d\n\nbytes_read\x18\x07\x20\x01(\x04R\tbytesRead\x12!\n\
@@ -19512,8 +19297,8 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x02\x12\x0c\n\x08Rollback\x10\x03*%\n\x0eCASRequestType\x12\x07\n\x03Se\
     t\x10\0\x12\n\n\x06Remove\x10\x01*1\n\tCASResult\x12\x0b\n\x07Unknown\
     \x10\0\x12\x0b\n\x07Success\x10\x01\x12\n\n\x06Falied\x10\x02B&\n\x18com\
-    .pingcap.tikv.kvproto\xc8\xe2\x1e\x01\xd0\xe2\x1e\x01\xe0\xe2\x1e\x01J\
-    \x9b\xa6\x01\n\x07\x12\x05\0\0\xfc\x03\x01\n\x08\n\x01\x0c\x12\x03\0\0\
+    .pingcap.tikv.kvproto\xc8\xe2\x1e\x01\xe0\xe2\x1e\x01\xd0\xe2\x1e\x01J\
+    \xe8\xa4\x01\n\x07\x12\x05\0\0\xf7\x03\x01\n\x08\n\x01\x0c\x12\x03\0\0\
     \x12\n\x08\n\x01\x02\x12\x03\x01\x08\x0f\n\t\n\x02\x03\0\x12\x03\x03\x07\
     \x15\n\t\n\x02\x03\x01\x12\x03\x04\x07\x16\n\t\n\x02\x03\x02\x12\x03\x05\
     \x07\x1d\n\x08\n\x01\x08\x12\x03\x07\0(\n\x0b\n\x04\x08\xa9\xec\x03\x12\
@@ -20431,77 +20216,68 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x04D\x02\0\x12\x04\xd6\x03\x04\x18\n\x0f\n\x05\x04D\x02\0\x04\x12\x06\
     \xd6\x03\x04\xd5\x03\x1f\n\r\n\x05\x04D\x02\0\x06\x12\x04\xd6\x03\x04\
     \x0b\n\r\n\x05\x04D\x02\0\x01\x12\x04\xd6\x03\x0c\x13\n\r\n\x05\x04D\x02\
-    \0\x03\x12\x04\xd6\x03\x16\x17\n\x0c\n\x02\x04E\x12\x06\xd9\x03\0\xdc\
-    \x03\x01\n\x0b\n\x03\x04E\x01\x12\x04\xd9\x03\x08\x11\n\x0c\n\x04\x04E\
-    \x02\0\x12\x04\xda\x03\x04\x19\n\x0f\n\x05\x04E\x02\0\x04\x12\x06\xda\
-    \x03\x04\xd9\x03\x13\n\r\n\x05\x04E\x02\0\x06\x12\x04\xda\x03\x04\x0f\n\
-    \r\n\x05\x04E\x02\0\x01\x12\x04\xda\x03\x10\x14\n\r\n\x05\x04E\x02\0\x03\
-    \x12\x04\xda\x03\x17\x18\n\x0c\n\x04\x04E\x02\x01\x12\x04\xdb\x03\x04\
-    \x1c\n\x0f\n\x05\x04E\x02\x01\x04\x12\x06\xdb\x03\x04\xda\x03\x19\n\r\n\
-    \x05\x04E\x02\x01\x05\x12\x04\xdb\x03\x04\n\n\r\n\x05\x04E\x02\x01\x01\
-    \x12\x04\xdb\x03\x0b\x17\n\r\n\x05\x04E\x02\x01\x03\x12\x04\xdb\x03\x1a\
-    \x1b\n\x0c\n\x02\x04F\x12\x06\xde\x03\0\xfc\x03\x01\n\x0b\n\x03\x04F\x01\
-    \x12\x04\xde\x03\x08\x1e\n\x0c\n\x04\x04F\x02\0\x12\x04\xdf\x03\x04#\n\
-    \x0f\n\x05\x04F\x02\0\x04\x12\x06\xdf\x03\x04\xde\x03\x20\n\r\n\x05\x04F\
-    \x02\0\x06\x12\x04\xdf\x03\x04\x11\n\r\n\x05\x04F\x02\0\x01\x12\x04\xdf\
-    \x03\x12\x1e\n\r\n\x05\x04F\x02\0\x03\x12\x04\xdf\x03!\"\n\x0c\n\x04\x04\
-    F\x02\x01\x12\x04\xe1\x03\x04\x1d\n\x0f\n\x05\x04F\x02\x01\x04\x12\x06\
-    \xe1\x03\x04\xdf\x03#\n\r\n\x05\x04F\x02\x01\x06\x12\x04\xe1\x03\x04\x11\
-    \n\r\n\x05\x04F\x02\x01\x01\x12\x04\xe1\x03\x12\x18\n\r\n\x05\x04F\x02\
-    \x01\x03\x12\x04\xe1\x03\x1b\x1c\n2\n\x04\x04F\x02\x02\x12\x04\xe3\x03\
-    \x04\x1b\x1a$\x20Leader\x20Peer\x20sending\x20the\x20heartbeat.\n\n\x0f\
-    \n\x05\x04F\x02\x02\x04\x12\x06\xe3\x03\x04\xe1\x03\x1d\n\r\n\x05\x04F\
-    \x02\x02\x06\x12\x04\xe3\x03\x04\x0f\n\r\n\x05\x04F\x02\x02\x01\x12\x04\
-    \xe3\x03\x10\x16\n\r\n\x05\x04F\x02\x02\x03\x12\x04\xe3\x03\x19\x1a\n;\n\
-    \x04\x04F\x02\x03\x12\x04\xe5\x03\x04&\x1a-\x20Leader\x20considers\x20th\
-    at\x20these\x20peers\x20are\x20down.\n\n\r\n\x05\x04F\x02\x03\x04\x12\
-    \x04\xe5\x03\x04\x0c\n\r\n\x05\x04F\x02\x03\x06\x12\x04\xe5\x03\r\x16\n\
-    \r\n\x05\x04F\x02\x03\x01\x12\x04\xe5\x03\x17!\n\r\n\x05\x04F\x02\x03\
-    \x03\x12\x04\xe5\x03$%\na\n\x04\x04F\x02\x04\x12\x04\xe8\x03\x04+\x1aS\
-    \x20Pending\x20peers\x20are\x20the\x20peers\x20that\x20the\x20leader\x20\
-    can't\x20consider\x20as\n\x20working\x20followers.\n\n\r\n\x05\x04F\x02\
-    \x04\x04\x12\x04\xe8\x03\x04\x0c\n\r\n\x05\x04F\x02\x04\x06\x12\x04\xe8\
-    \x03\r\x18\n\r\n\x05\x04F\x02\x04\x01\x12\x04\xe8\x03\x19&\n\r\n\x05\x04\
-    F\x02\x04\x03\x12\x04\xe8\x03)*\n6\n\x04\x04F\x02\x05\x12\x04\xea\x03\
-    \x04\x1d\x1a(\x20Bytes\x20read/written\x20during\x20this\x20period.\n\n\
-    \x0f\n\x05\x04F\x02\x05\x04\x12\x06\xea\x03\x04\xe8\x03+\n\r\n\x05\x04F\
-    \x02\x05\x05\x12\x04\xea\x03\x04\n\n\r\n\x05\x04F\x02\x05\x01\x12\x04\
-    \xea\x03\x0b\x18\n\r\n\x05\x04F\x02\x05\x03\x12\x04\xea\x03\x1b\x1c\n\
-    \x0c\n\x04\x04F\x02\x06\x12\x04\xeb\x03\x04\x1a\n\x0f\n\x05\x04F\x02\x06\
-    \x04\x12\x06\xeb\x03\x04\xea\x03\x1d\n\r\n\x05\x04F\x02\x06\x05\x12\x04\
-    \xeb\x03\x04\n\n\r\n\x05\x04F\x02\x06\x01\x12\x04\xeb\x03\x0b\x15\n\r\n\
-    \x05\x04F\x02\x06\x03\x12\x04\xeb\x03\x18\x19\n5\n\x04\x04F\x02\x07\x12\
-    \x04\xed\x03\x04\x1c\x1a'\x20Keys\x20read/written\x20during\x20this\x20p\
-    eriod.\n\n\x0f\n\x05\x04F\x02\x07\x04\x12\x06\xed\x03\x04\xeb\x03\x1a\n\
-    \r\n\x05\x04F\x02\x07\x05\x12\x04\xed\x03\x04\n\n\r\n\x05\x04F\x02\x07\
-    \x01\x12\x04\xed\x03\x0b\x17\n\r\n\x05\x04F\x02\x07\x03\x12\x04\xed\x03\
-    \x1a\x1b\n\x0c\n\x04\x04F\x02\x08\x12\x04\xee\x03\x04\x19\n\x0f\n\x05\
-    \x04F\x02\x08\x04\x12\x06\xee\x03\x04\xed\x03\x1c\n\r\n\x05\x04F\x02\x08\
-    \x05\x12\x04\xee\x03\x04\n\n\r\n\x05\x04F\x02\x08\x01\x12\x04\xee\x03\
-    \x0b\x14\n\r\n\x05\x04F\x02\x08\x03\x12\x04\xee\x03\x17\x18\n(\n\x04\x04\
-    F\x02\t\x12\x04\xf0\x03\x04!\x1a\x1a\x20Approximate\x20region\x20size.\n\
-    \n\x0f\n\x05\x04F\x02\t\x04\x12\x06\xf0\x03\x04\xee\x03\x19\n\r\n\x05\
-    \x04F\x02\t\x05\x12\x04\xf0\x03\x04\n\n\r\n\x05\x04F\x02\t\x01\x12\x04\
-    \xf0\x03\x0b\x1b\n\r\n\x05\x04F\x02\t\x03\x12\x04\xf0\x03\x1e\x20\n\x0b\
-    \n\x03\x04F\t\x12\x04\xf1\x03\r\x10\n\x0c\n\x04\x04F\t\0\x12\x04\xf1\x03\
-    \r\x0f\n\r\n\x05\x04F\t\0\x01\x12\x04\xf1\x03\r\x0f\n\r\n\x05\x04F\t\0\
-    \x02\x12\x04\xf1\x03\r\x0f\nh\n\x04\x04F\x02\n\x12\x04\xf5\x03\x04!\x1aZ\
-    \x20Actually\x20reported\x20time\x20interval\nTimeInterval\x20interval\
-    \x20=\x2012;\n\x20Approximate\x20number\x20of\x20keys.\n\n\x0f\n\x05\x04\
-    F\x02\n\x04\x12\x06\xf5\x03\x04\xf1\x03\x10\n\r\n\x05\x04F\x02\n\x05\x12\
-    \x04\xf5\x03\x04\n\n\r\n\x05\x04F\x02\n\x01\x12\x04\xf5\x03\x0b\x1b\n\r\
-    \n\x05\x04F\x02\n\x03\x12\x04\xf5\x03\x1e\x20\n$\n\x04\x04F\x02\x0b\x12\
-    \x04\xf8\x03\x045\x1a\x16\x20report\x20peer\x20progress\n\n\x0f\n\x05\
-    \x04F\x02\x0b\x04\x12\x06\xf8\x03\x04\xf5\x03!\n\r\n\x05\x04F\x02\x0b\
-    \x06\x12\x04\xf8\x03\x04\x20\n\r\n\x05\x04F\x02\x0b\x01\x12\x04\xf8\x03!\
-    /\n\r\n\x05\x04F\x02\x0b\x03\x12\x04\xf8\x0324\n\x0c\n\x04\x04F\x02\x0c\
-    \x12\x04\xf9\x03\x047\n\x0f\n\x05\x04F\x02\x0c\x04\x12\x06\xf9\x03\x04\
-    \xf8\x035\n\r\n\x05\x04F\x02\x0c\x06\x12\x04\xf9\x03\x04\x20\n\r\n\x05\
-    \x04F\x02\x0c\x01\x12\x04\xf9\x03!1\n\r\n\x05\x04F\x02\x0c\x03\x12\x04\
-    \xf9\x0346\n\x0c\n\x04\x04F\x02\r\x12\x04\xfb\x03\x044\n\x0f\n\x05\x04F\
-    \x02\r\x04\x12\x06\xfb\x03\x04\xf9\x037\n\r\n\x05\x04F\x02\r\x06\x12\x04\
-    \xfb\x03\x04\x1b\n\r\n\x05\x04F\x02\r\x01\x12\x04\xfb\x03\x1c.\n\r\n\x05\
-    \x04F\x02\r\x03\x12\x04\xfb\x0313b\x06proto3\
+    \0\x03\x12\x04\xd6\x03\x16\x17\n\x0c\n\x02\x04E\x12\x06\xd9\x03\0\xf7\
+    \x03\x01\n\x0b\n\x03\x04E\x01\x12\x04\xd9\x03\x08\x1e\n\x0c\n\x04\x04E\
+    \x02\0\x12\x04\xda\x03\x04#\n\x0f\n\x05\x04E\x02\0\x04\x12\x06\xda\x03\
+    \x04\xd9\x03\x20\n\r\n\x05\x04E\x02\0\x06\x12\x04\xda\x03\x04\x11\n\r\n\
+    \x05\x04E\x02\0\x01\x12\x04\xda\x03\x12\x1e\n\r\n\x05\x04E\x02\0\x03\x12\
+    \x04\xda\x03!\"\n\x0c\n\x04\x04E\x02\x01\x12\x04\xdc\x03\x04\x1d\n\x0f\n\
+    \x05\x04E\x02\x01\x04\x12\x06\xdc\x03\x04\xda\x03#\n\r\n\x05\x04E\x02\
+    \x01\x06\x12\x04\xdc\x03\x04\x11\n\r\n\x05\x04E\x02\x01\x01\x12\x04\xdc\
+    \x03\x12\x18\n\r\n\x05\x04E\x02\x01\x03\x12\x04\xdc\x03\x1b\x1c\n2\n\x04\
+    \x04E\x02\x02\x12\x04\xde\x03\x04\x1b\x1a$\x20Leader\x20Peer\x20sending\
+    \x20the\x20heartbeat.\n\n\x0f\n\x05\x04E\x02\x02\x04\x12\x06\xde\x03\x04\
+    \xdc\x03\x1d\n\r\n\x05\x04E\x02\x02\x06\x12\x04\xde\x03\x04\x0f\n\r\n\
+    \x05\x04E\x02\x02\x01\x12\x04\xde\x03\x10\x16\n\r\n\x05\x04E\x02\x02\x03\
+    \x12\x04\xde\x03\x19\x1a\n;\n\x04\x04E\x02\x03\x12\x04\xe0\x03\x04-\x1a-\
+    \x20Leader\x20considers\x20that\x20these\x20peers\x20are\x20down.\n\n\r\
+    \n\x05\x04E\x02\x03\x04\x12\x04\xe0\x03\x04\x0c\n\r\n\x05\x04E\x02\x03\
+    \x06\x12\x04\xe0\x03\r\x1d\n\r\n\x05\x04E\x02\x03\x01\x12\x04\xe0\x03\
+    \x1e(\n\r\n\x05\x04E\x02\x03\x03\x12\x04\xe0\x03+,\na\n\x04\x04E\x02\x04\
+    \x12\x04\xe3\x03\x04+\x1aS\x20Pending\x20peers\x20are\x20the\x20peers\
+    \x20that\x20the\x20leader\x20can't\x20consider\x20as\n\x20working\x20fol\
+    lowers.\n\n\r\n\x05\x04E\x02\x04\x04\x12\x04\xe3\x03\x04\x0c\n\r\n\x05\
+    \x04E\x02\x04\x06\x12\x04\xe3\x03\r\x18\n\r\n\x05\x04E\x02\x04\x01\x12\
+    \x04\xe3\x03\x19&\n\r\n\x05\x04E\x02\x04\x03\x12\x04\xe3\x03)*\n6\n\x04\
+    \x04E\x02\x05\x12\x04\xe5\x03\x04\x1d\x1a(\x20Bytes\x20read/written\x20d\
+    uring\x20this\x20period.\n\n\x0f\n\x05\x04E\x02\x05\x04\x12\x06\xe5\x03\
+    \x04\xe3\x03+\n\r\n\x05\x04E\x02\x05\x05\x12\x04\xe5\x03\x04\n\n\r\n\x05\
+    \x04E\x02\x05\x01\x12\x04\xe5\x03\x0b\x18\n\r\n\x05\x04E\x02\x05\x03\x12\
+    \x04\xe5\x03\x1b\x1c\n\x0c\n\x04\x04E\x02\x06\x12\x04\xe6\x03\x04\x1a\n\
+    \x0f\n\x05\x04E\x02\x06\x04\x12\x06\xe6\x03\x04\xe5\x03\x1d\n\r\n\x05\
+    \x04E\x02\x06\x05\x12\x04\xe6\x03\x04\n\n\r\n\x05\x04E\x02\x06\x01\x12\
+    \x04\xe6\x03\x0b\x15\n\r\n\x05\x04E\x02\x06\x03\x12\x04\xe6\x03\x18\x19\
+    \n5\n\x04\x04E\x02\x07\x12\x04\xe8\x03\x04\x1c\x1a'\x20Keys\x20read/writ\
+    ten\x20during\x20this\x20period.\n\n\x0f\n\x05\x04E\x02\x07\x04\x12\x06\
+    \xe8\x03\x04\xe6\x03\x1a\n\r\n\x05\x04E\x02\x07\x05\x12\x04\xe8\x03\x04\
+    \n\n\r\n\x05\x04E\x02\x07\x01\x12\x04\xe8\x03\x0b\x17\n\r\n\x05\x04E\x02\
+    \x07\x03\x12\x04\xe8\x03\x1a\x1b\n\x0c\n\x04\x04E\x02\x08\x12\x04\xe9\
+    \x03\x04\x19\n\x0f\n\x05\x04E\x02\x08\x04\x12\x06\xe9\x03\x04\xe8\x03\
+    \x1c\n\r\n\x05\x04E\x02\x08\x05\x12\x04\xe9\x03\x04\n\n\r\n\x05\x04E\x02\
+    \x08\x01\x12\x04\xe9\x03\x0b\x14\n\r\n\x05\x04E\x02\x08\x03\x12\x04\xe9\
+    \x03\x17\x18\n(\n\x04\x04E\x02\t\x12\x04\xeb\x03\x04!\x1a\x1a\x20Approxi\
+    mate\x20region\x20size.\n\n\x0f\n\x05\x04E\x02\t\x04\x12\x06\xeb\x03\x04\
+    \xe9\x03\x19\n\r\n\x05\x04E\x02\t\x05\x12\x04\xeb\x03\x04\n\n\r\n\x05\
+    \x04E\x02\t\x01\x12\x04\xeb\x03\x0b\x1b\n\r\n\x05\x04E\x02\t\x03\x12\x04\
+    \xeb\x03\x1e\x20\n\x0b\n\x03\x04E\t\x12\x04\xec\x03\r\x10\n\x0c\n\x04\
+    \x04E\t\0\x12\x04\xec\x03\r\x0f\n\r\n\x05\x04E\t\0\x01\x12\x04\xec\x03\r\
+    \x0f\n\r\n\x05\x04E\t\0\x02\x12\x04\xec\x03\r\x0f\nh\n\x04\x04E\x02\n\
+    \x12\x04\xf0\x03\x04!\x1aZ\x20Actually\x20reported\x20time\x20interval\n\
+    TimeInterval\x20interval\x20=\x2012;\n\x20Approximate\x20number\x20of\
+    \x20keys.\n\n\x0f\n\x05\x04E\x02\n\x04\x12\x06\xf0\x03\x04\xec\x03\x10\n\
+    \r\n\x05\x04E\x02\n\x05\x12\x04\xf0\x03\x04\n\n\r\n\x05\x04E\x02\n\x01\
+    \x12\x04\xf0\x03\x0b\x1b\n\r\n\x05\x04E\x02\n\x03\x12\x04\xf0\x03\x1e\
+    \x20\n$\n\x04\x04E\x02\x0b\x12\x04\xf3\x03\x045\x1a\x16\x20report\x20pee\
+    r\x20progress\n\n\x0f\n\x05\x04E\x02\x0b\x04\x12\x06\xf3\x03\x04\xf0\x03\
+    !\n\r\n\x05\x04E\x02\x0b\x06\x12\x04\xf3\x03\x04\x20\n\r\n\x05\x04E\x02\
+    \x0b\x01\x12\x04\xf3\x03!/\n\r\n\x05\x04E\x02\x0b\x03\x12\x04\xf3\x0324\
+    \n\x0c\n\x04\x04E\x02\x0c\x12\x04\xf4\x03\x047\n\x0f\n\x05\x04E\x02\x0c\
+    \x04\x12\x06\xf4\x03\x04\xf3\x035\n\r\n\x05\x04E\x02\x0c\x06\x12\x04\xf4\
+    \x03\x04\x20\n\r\n\x05\x04E\x02\x0c\x01\x12\x04\xf4\x03!1\n\r\n\x05\x04E\
+    \x02\x0c\x03\x12\x04\xf4\x0346\n\x0c\n\x04\x04E\x02\r\x12\x04\xf6\x03\
+    \x044\n\x0f\n\x05\x04E\x02\r\x04\x12\x06\xf6\x03\x04\xf4\x037\n\r\n\x05\
+    \x04E\x02\r\x06\x12\x04\xf6\x03\x04\x1b\n\r\n\x05\x04E\x02\r\x01\x12\x04\
+    \xf6\x03\x1c.\n\r\n\x05\x04E\x02\r\x03\x12\x04\xf6\x0313b\x06proto3\
 ";
 
 static mut file_descriptor_proto_lazy: ::protobuf::lazy::Lazy<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::lazy::Lazy {

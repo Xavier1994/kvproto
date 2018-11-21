@@ -1500,6 +1500,559 @@ impl ::protobuf::reflect::ProtobufValue for Peer {
     }
 }
 
+#[derive(PartialEq,Clone,Default)]
+pub struct RegionLocalState {
+    // message fields
+    pub last_index: u64,
+    pub committed_index: u64,
+    pub applied_index: u64,
+    // special fields
+    unknown_fields: ::protobuf::UnknownFields,
+    cached_size: ::protobuf::CachedSize,
+}
+
+impl RegionLocalState {
+    pub fn new() -> RegionLocalState {
+        ::std::default::Default::default()
+    }
+
+    // uint64 last_index = 1;
+
+    pub fn clear_last_index(&mut self) {
+        self.last_index = 0;
+    }
+
+    // Param is passed by value, moved
+    pub fn set_last_index(&mut self, v: u64) {
+        self.last_index = v;
+    }
+
+    pub fn get_last_index(&self) -> u64 {
+        self.last_index
+    }
+
+    // uint64 committed_index = 2;
+
+    pub fn clear_committed_index(&mut self) {
+        self.committed_index = 0;
+    }
+
+    // Param is passed by value, moved
+    pub fn set_committed_index(&mut self, v: u64) {
+        self.committed_index = v;
+    }
+
+    pub fn get_committed_index(&self) -> u64 {
+        self.committed_index
+    }
+
+    // uint64 applied_index = 3;
+
+    pub fn clear_applied_index(&mut self) {
+        self.applied_index = 0;
+    }
+
+    // Param is passed by value, moved
+    pub fn set_applied_index(&mut self, v: u64) {
+        self.applied_index = v;
+    }
+
+    pub fn get_applied_index(&self) -> u64 {
+        self.applied_index
+    }
+}
+
+impl ::protobuf::Message for RegionLocalState {
+    fn is_initialized(&self) -> bool {
+        true
+    }
+
+    fn merge_from(&mut self, is: &mut ::protobuf::CodedInputStream) -> ::protobuf::ProtobufResult<()> {
+        while !is.eof()? {
+            let (field_number, wire_type) = is.read_tag_unpack()?;
+            match field_number {
+                1 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    let tmp = is.read_uint64()?;
+                    self.last_index = tmp;
+                },
+                2 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    let tmp = is.read_uint64()?;
+                    self.committed_index = tmp;
+                },
+                3 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    let tmp = is.read_uint64()?;
+                    self.applied_index = tmp;
+                },
+                _ => {
+                    ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
+                },
+            };
+        }
+        ::std::result::Result::Ok(())
+    }
+
+    // Compute sizes of nested messages
+    #[allow(unused_variables)]
+    fn compute_size(&self) -> u32 {
+        let mut my_size = 0;
+        if self.last_index != 0 {
+            my_size += ::protobuf::rt::value_size(1, self.last_index, ::protobuf::wire_format::WireTypeVarint);
+        }
+        if self.committed_index != 0 {
+            my_size += ::protobuf::rt::value_size(2, self.committed_index, ::protobuf::wire_format::WireTypeVarint);
+        }
+        if self.applied_index != 0 {
+            my_size += ::protobuf::rt::value_size(3, self.applied_index, ::protobuf::wire_format::WireTypeVarint);
+        }
+        my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
+        self.cached_size.set(my_size);
+        my_size
+    }
+
+    fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream) -> ::protobuf::ProtobufResult<()> {
+        if self.last_index != 0 {
+            os.write_uint64(1, self.last_index)?;
+        }
+        if self.committed_index != 0 {
+            os.write_uint64(2, self.committed_index)?;
+        }
+        if self.applied_index != 0 {
+            os.write_uint64(3, self.applied_index)?;
+        }
+        os.write_unknown_fields(self.get_unknown_fields())?;
+        ::std::result::Result::Ok(())
+    }
+
+    fn get_cached_size(&self) -> u32 {
+        self.cached_size.get()
+    }
+
+    fn get_unknown_fields(&self) -> &::protobuf::UnknownFields {
+        &self.unknown_fields
+    }
+
+    fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
+        &mut self.unknown_fields
+    }
+
+    fn as_any(&self) -> &::std::any::Any {
+        self as &::std::any::Any
+    }
+    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
+        self as &mut ::std::any::Any
+    }
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+        self
+    }
+
+    fn descriptor(&self) -> &'static ::protobuf::reflect::MessageDescriptor {
+        Self::descriptor_static()
+    }
+
+    fn new() -> RegionLocalState {
+        RegionLocalState::new()
+    }
+
+    fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
+        static mut descriptor: ::protobuf::lazy::Lazy<::protobuf::reflect::MessageDescriptor> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const ::protobuf::reflect::MessageDescriptor,
+        };
+        unsafe {
+            descriptor.get(|| {
+                let mut fields = ::std::vec::Vec::new();
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeUint64>(
+                    "last_index",
+                    |m: &RegionLocalState| { &m.last_index },
+                    |m: &mut RegionLocalState| { &mut m.last_index },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeUint64>(
+                    "committed_index",
+                    |m: &RegionLocalState| { &m.committed_index },
+                    |m: &mut RegionLocalState| { &mut m.committed_index },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeUint64>(
+                    "applied_index",
+                    |m: &RegionLocalState| { &m.applied_index },
+                    |m: &mut RegionLocalState| { &mut m.applied_index },
+                ));
+                ::protobuf::reflect::MessageDescriptor::new::<RegionLocalState>(
+                    "RegionLocalState",
+                    fields,
+                    file_descriptor_proto()
+                )
+            })
+        }
+    }
+
+    fn default_instance() -> &'static RegionLocalState {
+        static mut instance: ::protobuf::lazy::Lazy<RegionLocalState> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const RegionLocalState,
+        };
+        unsafe {
+            instance.get(RegionLocalState::new)
+        }
+    }
+}
+
+impl ::protobuf::Clear for RegionLocalState {
+    fn clear(&mut self) {
+        self.clear_last_index();
+        self.clear_committed_index();
+        self.clear_applied_index();
+        self.unknown_fields.clear();
+    }
+}
+
+impl ::std::fmt::Debug for RegionLocalState {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        ::protobuf::text_format::fmt(self, f)
+    }
+}
+
+impl ::protobuf::reflect::ProtobufValue for RegionLocalState {
+    fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
+        ::protobuf::reflect::ProtobufValueRef::Message(self)
+    }
+}
+
+#[derive(PartialEq,Clone,Default)]
+pub struct Progress {
+    // message fields
+    pub matched: u64,
+    pub next_idx: u64,
+    pub paused: bool,
+    pub pending_snapshot: u64,
+    pub is_learner: bool,
+    pub state: ProgressState,
+    // special fields
+    unknown_fields: ::protobuf::UnknownFields,
+    cached_size: ::protobuf::CachedSize,
+}
+
+impl Progress {
+    pub fn new() -> Progress {
+        ::std::default::Default::default()
+    }
+
+    // uint64 matched = 1;
+
+    pub fn clear_matched(&mut self) {
+        self.matched = 0;
+    }
+
+    // Param is passed by value, moved
+    pub fn set_matched(&mut self, v: u64) {
+        self.matched = v;
+    }
+
+    pub fn get_matched(&self) -> u64 {
+        self.matched
+    }
+
+    // uint64 next_idx = 2;
+
+    pub fn clear_next_idx(&mut self) {
+        self.next_idx = 0;
+    }
+
+    // Param is passed by value, moved
+    pub fn set_next_idx(&mut self, v: u64) {
+        self.next_idx = v;
+    }
+
+    pub fn get_next_idx(&self) -> u64 {
+        self.next_idx
+    }
+
+    // bool paused = 3;
+
+    pub fn clear_paused(&mut self) {
+        self.paused = false;
+    }
+
+    // Param is passed by value, moved
+    pub fn set_paused(&mut self, v: bool) {
+        self.paused = v;
+    }
+
+    pub fn get_paused(&self) -> bool {
+        self.paused
+    }
+
+    // uint64 pending_snapshot = 4;
+
+    pub fn clear_pending_snapshot(&mut self) {
+        self.pending_snapshot = 0;
+    }
+
+    // Param is passed by value, moved
+    pub fn set_pending_snapshot(&mut self, v: u64) {
+        self.pending_snapshot = v;
+    }
+
+    pub fn get_pending_snapshot(&self) -> u64 {
+        self.pending_snapshot
+    }
+
+    // bool is_learner = 5;
+
+    pub fn clear_is_learner(&mut self) {
+        self.is_learner = false;
+    }
+
+    // Param is passed by value, moved
+    pub fn set_is_learner(&mut self, v: bool) {
+        self.is_learner = v;
+    }
+
+    pub fn get_is_learner(&self) -> bool {
+        self.is_learner
+    }
+
+    // .metapb.ProgressState state = 6;
+
+    pub fn clear_state(&mut self) {
+        self.state = ProgressState::Probe;
+    }
+
+    // Param is passed by value, moved
+    pub fn set_state(&mut self, v: ProgressState) {
+        self.state = v;
+    }
+
+    pub fn get_state(&self) -> ProgressState {
+        self.state
+    }
+}
+
+impl ::protobuf::Message for Progress {
+    fn is_initialized(&self) -> bool {
+        true
+    }
+
+    fn merge_from(&mut self, is: &mut ::protobuf::CodedInputStream) -> ::protobuf::ProtobufResult<()> {
+        while !is.eof()? {
+            let (field_number, wire_type) = is.read_tag_unpack()?;
+            match field_number {
+                1 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    let tmp = is.read_uint64()?;
+                    self.matched = tmp;
+                },
+                2 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    let tmp = is.read_uint64()?;
+                    self.next_idx = tmp;
+                },
+                3 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    let tmp = is.read_bool()?;
+                    self.paused = tmp;
+                },
+                4 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    let tmp = is.read_uint64()?;
+                    self.pending_snapshot = tmp;
+                },
+                5 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    let tmp = is.read_bool()?;
+                    self.is_learner = tmp;
+                },
+                6 => {
+                    if wire_type == ::protobuf::wire_format::WireTypeVarint {self.state = is.read_enum()?;} else { return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type)); }
+                },
+                _ => {
+                    ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
+                },
+            };
+        }
+        ::std::result::Result::Ok(())
+    }
+
+    // Compute sizes of nested messages
+    #[allow(unused_variables)]
+    fn compute_size(&self) -> u32 {
+        let mut my_size = 0;
+        if self.matched != 0 {
+            my_size += ::protobuf::rt::value_size(1, self.matched, ::protobuf::wire_format::WireTypeVarint);
+        }
+        if self.next_idx != 0 {
+            my_size += ::protobuf::rt::value_size(2, self.next_idx, ::protobuf::wire_format::WireTypeVarint);
+        }
+        if self.paused != false {
+            my_size += 2;
+        }
+        if self.pending_snapshot != 0 {
+            my_size += ::protobuf::rt::value_size(4, self.pending_snapshot, ::protobuf::wire_format::WireTypeVarint);
+        }
+        if self.is_learner != false {
+            my_size += 2;
+        }
+        if self.state != ProgressState::Probe {
+            my_size += ::protobuf::rt::enum_size(6, self.state);
+        }
+        my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
+        self.cached_size.set(my_size);
+        my_size
+    }
+
+    fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream) -> ::protobuf::ProtobufResult<()> {
+        if self.matched != 0 {
+            os.write_uint64(1, self.matched)?;
+        }
+        if self.next_idx != 0 {
+            os.write_uint64(2, self.next_idx)?;
+        }
+        if self.paused != false {
+            os.write_bool(3, self.paused)?;
+        }
+        if self.pending_snapshot != 0 {
+            os.write_uint64(4, self.pending_snapshot)?;
+        }
+        if self.is_learner != false {
+            os.write_bool(5, self.is_learner)?;
+        }
+        if self.state != ProgressState::Probe {
+            os.write_enum(6, self.state.value())?;
+        }
+        os.write_unknown_fields(self.get_unknown_fields())?;
+        ::std::result::Result::Ok(())
+    }
+
+    fn get_cached_size(&self) -> u32 {
+        self.cached_size.get()
+    }
+
+    fn get_unknown_fields(&self) -> &::protobuf::UnknownFields {
+        &self.unknown_fields
+    }
+
+    fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
+        &mut self.unknown_fields
+    }
+
+    fn as_any(&self) -> &::std::any::Any {
+        self as &::std::any::Any
+    }
+    fn as_any_mut(&mut self) -> &mut ::std::any::Any {
+        self as &mut ::std::any::Any
+    }
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<::std::any::Any> {
+        self
+    }
+
+    fn descriptor(&self) -> &'static ::protobuf::reflect::MessageDescriptor {
+        Self::descriptor_static()
+    }
+
+    fn new() -> Progress {
+        Progress::new()
+    }
+
+    fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
+        static mut descriptor: ::protobuf::lazy::Lazy<::protobuf::reflect::MessageDescriptor> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const ::protobuf::reflect::MessageDescriptor,
+        };
+        unsafe {
+            descriptor.get(|| {
+                let mut fields = ::std::vec::Vec::new();
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeUint64>(
+                    "matched",
+                    |m: &Progress| { &m.matched },
+                    |m: &mut Progress| { &mut m.matched },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeUint64>(
+                    "next_idx",
+                    |m: &Progress| { &m.next_idx },
+                    |m: &mut Progress| { &mut m.next_idx },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeBool>(
+                    "paused",
+                    |m: &Progress| { &m.paused },
+                    |m: &mut Progress| { &mut m.paused },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeUint64>(
+                    "pending_snapshot",
+                    |m: &Progress| { &m.pending_snapshot },
+                    |m: &mut Progress| { &mut m.pending_snapshot },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeBool>(
+                    "is_learner",
+                    |m: &Progress| { &m.is_learner },
+                    |m: &mut Progress| { &mut m.is_learner },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeEnum<ProgressState>>(
+                    "state",
+                    |m: &Progress| { &m.state },
+                    |m: &mut Progress| { &mut m.state },
+                ));
+                ::protobuf::reflect::MessageDescriptor::new::<Progress>(
+                    "Progress",
+                    fields,
+                    file_descriptor_proto()
+                )
+            })
+        }
+    }
+
+    fn default_instance() -> &'static Progress {
+        static mut instance: ::protobuf::lazy::Lazy<Progress> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const Progress,
+        };
+        unsafe {
+            instance.get(Progress::new)
+        }
+    }
+}
+
+impl ::protobuf::Clear for Progress {
+    fn clear(&mut self) {
+        self.clear_matched();
+        self.clear_next_idx();
+        self.clear_paused();
+        self.clear_pending_snapshot();
+        self.clear_is_learner();
+        self.clear_state();
+        self.unknown_fields.clear();
+    }
+}
+
+impl ::std::fmt::Debug for Progress {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        ::protobuf::text_format::fmt(self, f)
+    }
+}
+
+impl ::protobuf::reflect::ProtobufValue for Progress {
+    fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
+        ::protobuf::reflect::ProtobufValueRef::Message(self)
+    }
+}
+
 #[derive(Clone,PartialEq,Eq,Debug,Hash)]
 pub enum StoreState {
     Up = 0,
@@ -1558,6 +2111,64 @@ impl ::protobuf::reflect::ProtobufValue for StoreState {
     }
 }
 
+#[derive(Clone,PartialEq,Eq,Debug,Hash)]
+pub enum ProgressState {
+    Probe = 0,
+    Replicate = 1,
+    Snapshot = 2,
+}
+
+impl ::protobuf::ProtobufEnum for ProgressState {
+    fn value(&self) -> i32 {
+        *self as i32
+    }
+
+    fn from_i32(value: i32) -> ::std::option::Option<ProgressState> {
+        match value {
+            0 => ::std::option::Option::Some(ProgressState::Probe),
+            1 => ::std::option::Option::Some(ProgressState::Replicate),
+            2 => ::std::option::Option::Some(ProgressState::Snapshot),
+            _ => ::std::option::Option::None
+        }
+    }
+
+    fn values() -> &'static [Self] {
+        static values: &'static [ProgressState] = &[
+            ProgressState::Probe,
+            ProgressState::Replicate,
+            ProgressState::Snapshot,
+        ];
+        values
+    }
+
+    fn enum_descriptor_static() -> &'static ::protobuf::reflect::EnumDescriptor {
+        static mut descriptor: ::protobuf::lazy::Lazy<::protobuf::reflect::EnumDescriptor> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const ::protobuf::reflect::EnumDescriptor,
+        };
+        unsafe {
+            descriptor.get(|| {
+                ::protobuf::reflect::EnumDescriptor::new("ProgressState", file_descriptor_proto())
+            })
+        }
+    }
+}
+
+impl ::std::marker::Copy for ProgressState {
+}
+
+impl ::std::default::Default for ProgressState {
+    fn default() -> Self {
+        ProgressState::Probe
+    }
+}
+
+impl ::protobuf::reflect::ProtobufValue for ProgressState {
+    fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
+        ::protobuf::reflect::ProtobufValueRef::Enum(self.descriptor())
+    }
+}
+
 static file_descriptor_proto_data: &'static [u8] = b"\
     \n\x0cmetapb.proto\x12\x06metapb\x1a\x14gogoproto/gogo.proto\"?\n\x07Clu\
     ster\x12\x0e\n\x02id\x18\x01\x20\x01(\x04R\x02id\x12$\n\x0emax_peer_coun\
@@ -1576,63 +2187,73 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x05peers\x18\x05\x20\x03(\x0b2\x0c.metapb.PeerR\x05peers\"P\n\x04Peer\
     \x12\x0e\n\x02id\x18\x01\x20\x01(\x04R\x02id\x12\x19\n\x08store_id\x18\
     \x02\x20\x01(\x04R\x07storeId\x12\x1d\n\nis_learner\x18\x03\x20\x01(\x08\
-    R\tisLearner*0\n\nStoreState\x12\x06\n\x02Up\x10\0\x12\x0b\n\x07Offline\
-    \x10\x01\x12\r\n\tTombstone\x10\x02B&\n\x18com.pingcap.tikv.kvproto\xe0\
-    \xe2\x1e\x01\xd0\xe2\x1e\x01\xc8\xe2\x1e\x01J\xbb\x10\n\x06\x12\x04\0\0<\
-    \x01\n\x08\n\x01\x0c\x12\x03\0\0\x12\n\x08\n\x01\x02\x12\x03\x01\x08\x0e\
-    \n\t\n\x02\x03\0\x12\x03\x03\x07\x1d\n\x08\n\x01\x08\x12\x03\x05\0(\n\
-    \x0b\n\x04\x08\xa9\xec\x03\x12\x03\x05\0(\n\x08\n\x01\x08\x12\x03\x06\0$\
-    \n\x0b\n\x04\x08\xac\xec\x03\x12\x03\x06\0$\n\x08\n\x01\x08\x12\x03\x07\
-    \0*\n\x0b\n\x04\x08\xaa\xec\x03\x12\x03\x07\0*\n\x08\n\x01\x08\x12\x03\t\
-    \01\n\t\n\x02\x08\x01\x12\x03\t\01\n\n\n\x02\x04\0\x12\x04\x0b\0\x11\x01\
-    \n\n\n\x03\x04\0\x01\x12\x03\x0b\x08\x0f\n\x0b\n\x04\x04\0\x02\0\x12\x03\
-    \x0c\x04\x12\n\r\n\x05\x04\0\x02\0\x04\x12\x04\x0c\x04\x0b\x11\n\x0c\n\
-    \x05\x04\0\x02\0\x05\x12\x03\x0c\x04\n\n\x0c\n\x05\x04\0\x02\0\x01\x12\
-    \x03\x0c\x0b\r\n\x0c\n\x05\x04\0\x02\0\x03\x12\x03\x0c\x10\x11\n\x82\x01\
-    \n\x04\x04\0\x02\x01\x12\x03\x0f\x04\x1e\x1a\\\x20max\x20peer\x20count\
-    \x20for\x20a\x20region.\n\x20pd\x20will\x20do\x20the\x20auto-balance\x20\
-    if\x20region\x20peer\x20count\x20mismatches.\n\"\x17\x20more\x20attribut\
-    es......\n\n\r\n\x05\x04\0\x02\x01\x04\x12\x04\x0f\x04\x0c\x12\n\x0c\n\
-    \x05\x04\0\x02\x01\x05\x12\x03\x0f\x04\n\n\x0c\n\x05\x04\0\x02\x01\x01\
-    \x12\x03\x0f\x0b\x19\n\x0c\n\x05\x04\0\x02\x01\x03\x12\x03\x0f\x1c\x1d\n\
-    \n\n\x02\x05\0\x12\x04\x13\0\x17\x01\n\n\n\x03\x05\0\x01\x12\x03\x13\x05\
-    \x0f\n\x0b\n\x04\x05\0\x02\0\x12\x03\x14\x04\x0b\n\x0c\n\x05\x05\0\x02\0\
-    \x01\x12\x03\x14\x04\x06\n\x0c\n\x05\x05\0\x02\0\x02\x12\x03\x14\t\n\n\
-    \x0b\n\x04\x05\0\x02\x01\x12\x03\x15\x04\x10\n\x0c\n\x05\x05\0\x02\x01\
-    \x01\x12\x03\x15\x04\x0b\n\x0c\n\x05\x05\0\x02\x01\x02\x12\x03\x15\x0e\
-    \x0f\n\x0b\n\x04\x05\0\x02\x02\x12\x03\x16\x04\x12\n\x0c\n\x05\x05\0\x02\
-    \x02\x01\x12\x03\x16\x04\r\n\x0c\n\x05\x05\0\x02\x02\x02\x12\x03\x16\x10\
-    \x11\nA\n\x02\x04\x01\x12\x04\x1a\0\x1d\x01\x1a5\x20Case\x20insensitive\
-    \x20key/value\x20for\x20replica\x20constraints.\n\n\n\n\x03\x04\x01\x01\
-    \x12\x03\x1a\x08\x12\n\x0b\n\x04\x04\x01\x02\0\x12\x03\x1b\x04\x13\n\r\n\
-    \x05\x04\x01\x02\0\x04\x12\x04\x1b\x04\x1a\x14\n\x0c\n\x05\x04\x01\x02\0\
-    \x05\x12\x03\x1b\x04\n\n\x0c\n\x05\x04\x01\x02\0\x01\x12\x03\x1b\x0b\x0e\
-    \n\x0c\n\x05\x04\x01\x02\0\x03\x12\x03\x1b\x11\x12\n\x0b\n\x04\x04\x01\
-    \x02\x01\x12\x03\x1c\x04\x15\n\r\n\x05\x04\x01\x02\x01\x04\x12\x04\x1c\
-    \x04\x1b\x13\n\x0c\n\x05\x04\x01\x02\x01\x05\x12\x03\x1c\x04\n\n\x0c\n\
-    \x05\x04\x01\x02\x01\x01\x12\x03\x1c\x0b\x10\n\x0c\n\x05\x04\x01\x02\x01\
-    \x03\x12\x03\x1c\x13\x14\n\n\n\x02\x04\x02\x12\x04\x1f\0&\x01\n\n\n\x03\
-    \x04\x02\x01\x12\x03\x1f\x08\r\n\x0b\n\x04\x04\x02\x02\0\x12\x03\x20\x04\
-    \x12\n\r\n\x05\x04\x02\x02\0\x04\x12\x04\x20\x04\x1f\x0f\n\x0c\n\x05\x04\
-    \x02\x02\0\x05\x12\x03\x20\x04\n\n\x0c\n\x05\x04\x02\x02\0\x01\x12\x03\
-    \x20\x0b\r\n\x0c\n\x05\x04\x02\x02\0\x03\x12\x03\x20\x10\x11\n\x0b\n\x04\
-    \x04\x02\x02\x01\x12\x03!\x04\x17\n\r\n\x05\x04\x02\x02\x01\x04\x12\x04!\
-    \x04\x20\x12\n\x0c\n\x05\x04\x02\x02\x01\x05\x12\x03!\x04\n\n\x0c\n\x05\
-    \x04\x02\x02\x01\x01\x12\x03!\x0b\x12\n\x0c\n\x05\x04\x02\x02\x01\x03\
-    \x12\x03!\x15\x16\n\x0b\n\x04\x04\x02\x02\x02\x12\x03\"\x04\x19\n\r\n\
-    \x05\x04\x02\x02\x02\x04\x12\x04\"\x04!\x17\n\x0c\n\x05\x04\x02\x02\x02\
-    \x06\x12\x03\"\x04\x0e\n\x0c\n\x05\x04\x02\x02\x02\x01\x12\x03\"\x0f\x14\
-    \n\x0c\n\x05\x04\x02\x02\x02\x03\x12\x03\"\x17\x18\n\x0b\n\x04\x04\x02\
-    \x02\x03\x12\x03#\x04#\n\x0c\n\x05\x04\x02\x02\x03\x04\x12\x03#\x04\x0c\
-    \n\x0c\n\x05\x04\x02\x02\x03\x06\x12\x03#\r\x17\n\x0c\n\x05\x04\x02\x02\
-    \x03\x01\x12\x03#\x18\x1e\n\x0c\n\x05\x04\x02\x02\x03\x03\x12\x03#!\"\n$\
-    \n\x04\x04\x02\x02\x04\x12\x03$\x04\x17\"\x17\x20more\x20attributes.....\
-    .\n\n\r\n\x05\x04\x02\x02\x04\x04\x12\x04$\x04##\n\x0c\n\x05\x04\x02\x02\
-    \x04\x05\x12\x03$\x04\n\n\x0c\n\x05\x04\x02\x02\x04\x01\x12\x03$\x0b\x12\
-    \n\x0c\n\x05\x04\x02\x02\x04\x03\x12\x03$\x15\x16\n\n\n\x02\x04\x03\x12\
-    \x04(\0-\x01\n\n\n\x03\x04\x03\x01\x12\x03(\x08\x13\nJ\n\x04\x04\x03\x02\
-    \0\x12\x03*\x04\x18\x1a=\x20Conf\x20change\x20version,\x20auto\x20increm\
-    ent\x20when\x20add\x20or\x20remove\x20peer\n\n\r\n\x05\x04\x03\x02\0\x04\
+    R\tisLearner\"\x7f\n\x10RegionLocalState\x12\x1d\n\nlast_index\x18\x01\
+    \x20\x01(\x04R\tlastIndex\x12'\n\x0fcommitted_index\x18\x02\x20\x01(\x04\
+    R\x0ecommittedIndex\x12#\n\rapplied_index\x18\x03\x20\x01(\x04R\x0cappli\
+    edIndex\"\xce\x01\n\x08Progress\x12\x18\n\x07matched\x18\x01\x20\x01(\
+    \x04R\x07matched\x12\x19\n\x08next_idx\x18\x02\x20\x01(\x04R\x07nextIdx\
+    \x12\x16\n\x06paused\x18\x03\x20\x01(\x08R\x06paused\x12)\n\x10pending_s\
+    napshot\x18\x04\x20\x01(\x04R\x0fpendingSnapshot\x12\x1d\n\nis_learner\
+    \x18\x05\x20\x01(\x08R\tisLearner\x12+\n\x05state\x18\x06\x20\x01(\x0e2\
+    \x15.metapb.ProgressStateR\x05state*0\n\nStoreState\x12\x06\n\x02Up\x10\
+    \0\x12\x0b\n\x07Offline\x10\x01\x12\r\n\tTombstone\x10\x02*7\n\rProgress\
+    State\x12\t\n\x05Probe\x10\0\x12\r\n\tReplicate\x10\x01\x12\x0c\n\x08Sna\
+    pshot\x10\x02B&\n\x18com.pingcap.tikv.kvproto\xc8\xe2\x1e\x01\xd0\xe2\
+    \x1e\x01\xe0\xe2\x1e\x01J\xbd\x17\n\x06\x12\x04\0\0S\x01\n\x08\n\x01\x0c\
+    \x12\x03\0\0\x12\n\x08\n\x01\x02\x12\x03\x01\x08\x0e\n\t\n\x02\x03\0\x12\
+    \x03\x03\x07\x1d\n\x08\n\x01\x08\x12\x03\x05\0(\n\x0b\n\x04\x08\xa9\xec\
+    \x03\x12\x03\x05\0(\n\x08\n\x01\x08\x12\x03\x06\0$\n\x0b\n\x04\x08\xac\
+    \xec\x03\x12\x03\x06\0$\n\x08\n\x01\x08\x12\x03\x07\0*\n\x0b\n\x04\x08\
+    \xaa\xec\x03\x12\x03\x07\0*\n\x08\n\x01\x08\x12\x03\t\01\n\t\n\x02\x08\
+    \x01\x12\x03\t\01\n\n\n\x02\x04\0\x12\x04\x0b\0\x11\x01\n\n\n\x03\x04\0\
+    \x01\x12\x03\x0b\x08\x0f\n\x0b\n\x04\x04\0\x02\0\x12\x03\x0c\x04\x12\n\r\
+    \n\x05\x04\0\x02\0\x04\x12\x04\x0c\x04\x0b\x11\n\x0c\n\x05\x04\0\x02\0\
+    \x05\x12\x03\x0c\x04\n\n\x0c\n\x05\x04\0\x02\0\x01\x12\x03\x0c\x0b\r\n\
+    \x0c\n\x05\x04\0\x02\0\x03\x12\x03\x0c\x10\x11\n\x82\x01\n\x04\x04\0\x02\
+    \x01\x12\x03\x0f\x04\x1e\x1a\\\x20max\x20peer\x20count\x20for\x20a\x20re\
+    gion.\n\x20pd\x20will\x20do\x20the\x20auto-balance\x20if\x20region\x20pe\
+    er\x20count\x20mismatches.\n\"\x17\x20more\x20attributes......\n\n\r\n\
+    \x05\x04\0\x02\x01\x04\x12\x04\x0f\x04\x0c\x12\n\x0c\n\x05\x04\0\x02\x01\
+    \x05\x12\x03\x0f\x04\n\n\x0c\n\x05\x04\0\x02\x01\x01\x12\x03\x0f\x0b\x19\
+    \n\x0c\n\x05\x04\0\x02\x01\x03\x12\x03\x0f\x1c\x1d\n\n\n\x02\x05\0\x12\
+    \x04\x13\0\x17\x01\n\n\n\x03\x05\0\x01\x12\x03\x13\x05\x0f\n\x0b\n\x04\
+    \x05\0\x02\0\x12\x03\x14\x04\x0b\n\x0c\n\x05\x05\0\x02\0\x01\x12\x03\x14\
+    \x04\x06\n\x0c\n\x05\x05\0\x02\0\x02\x12\x03\x14\t\n\n\x0b\n\x04\x05\0\
+    \x02\x01\x12\x03\x15\x04\x10\n\x0c\n\x05\x05\0\x02\x01\x01\x12\x03\x15\
+    \x04\x0b\n\x0c\n\x05\x05\0\x02\x01\x02\x12\x03\x15\x0e\x0f\n\x0b\n\x04\
+    \x05\0\x02\x02\x12\x03\x16\x04\x12\n\x0c\n\x05\x05\0\x02\x02\x01\x12\x03\
+    \x16\x04\r\n\x0c\n\x05\x05\0\x02\x02\x02\x12\x03\x16\x10\x11\nA\n\x02\
+    \x04\x01\x12\x04\x1a\0\x1d\x01\x1a5\x20Case\x20insensitive\x20key/value\
+    \x20for\x20replica\x20constraints.\n\n\n\n\x03\x04\x01\x01\x12\x03\x1a\
+    \x08\x12\n\x0b\n\x04\x04\x01\x02\0\x12\x03\x1b\x04\x13\n\r\n\x05\x04\x01\
+    \x02\0\x04\x12\x04\x1b\x04\x1a\x14\n\x0c\n\x05\x04\x01\x02\0\x05\x12\x03\
+    \x1b\x04\n\n\x0c\n\x05\x04\x01\x02\0\x01\x12\x03\x1b\x0b\x0e\n\x0c\n\x05\
+    \x04\x01\x02\0\x03\x12\x03\x1b\x11\x12\n\x0b\n\x04\x04\x01\x02\x01\x12\
+    \x03\x1c\x04\x15\n\r\n\x05\x04\x01\x02\x01\x04\x12\x04\x1c\x04\x1b\x13\n\
+    \x0c\n\x05\x04\x01\x02\x01\x05\x12\x03\x1c\x04\n\n\x0c\n\x05\x04\x01\x02\
+    \x01\x01\x12\x03\x1c\x0b\x10\n\x0c\n\x05\x04\x01\x02\x01\x03\x12\x03\x1c\
+    \x13\x14\n\n\n\x02\x04\x02\x12\x04\x1f\0&\x01\n\n\n\x03\x04\x02\x01\x12\
+    \x03\x1f\x08\r\n\x0b\n\x04\x04\x02\x02\0\x12\x03\x20\x04\x12\n\r\n\x05\
+    \x04\x02\x02\0\x04\x12\x04\x20\x04\x1f\x0f\n\x0c\n\x05\x04\x02\x02\0\x05\
+    \x12\x03\x20\x04\n\n\x0c\n\x05\x04\x02\x02\0\x01\x12\x03\x20\x0b\r\n\x0c\
+    \n\x05\x04\x02\x02\0\x03\x12\x03\x20\x10\x11\n\x0b\n\x04\x04\x02\x02\x01\
+    \x12\x03!\x04\x17\n\r\n\x05\x04\x02\x02\x01\x04\x12\x04!\x04\x20\x12\n\
+    \x0c\n\x05\x04\x02\x02\x01\x05\x12\x03!\x04\n\n\x0c\n\x05\x04\x02\x02\
+    \x01\x01\x12\x03!\x0b\x12\n\x0c\n\x05\x04\x02\x02\x01\x03\x12\x03!\x15\
+    \x16\n\x0b\n\x04\x04\x02\x02\x02\x12\x03\"\x04\x19\n\r\n\x05\x04\x02\x02\
+    \x02\x04\x12\x04\"\x04!\x17\n\x0c\n\x05\x04\x02\x02\x02\x06\x12\x03\"\
+    \x04\x0e\n\x0c\n\x05\x04\x02\x02\x02\x01\x12\x03\"\x0f\x14\n\x0c\n\x05\
+    \x04\x02\x02\x02\x03\x12\x03\"\x17\x18\n\x0b\n\x04\x04\x02\x02\x03\x12\
+    \x03#\x04#\n\x0c\n\x05\x04\x02\x02\x03\x04\x12\x03#\x04\x0c\n\x0c\n\x05\
+    \x04\x02\x02\x03\x06\x12\x03#\r\x17\n\x0c\n\x05\x04\x02\x02\x03\x01\x12\
+    \x03#\x18\x1e\n\x0c\n\x05\x04\x02\x02\x03\x03\x12\x03#!\"\n$\n\x04\x04\
+    \x02\x02\x04\x12\x03$\x04\x17\"\x17\x20more\x20attributes......\n\n\r\n\
+    \x05\x04\x02\x02\x04\x04\x12\x04$\x04##\n\x0c\n\x05\x04\x02\x02\x04\x05\
+    \x12\x03$\x04\n\n\x0c\n\x05\x04\x02\x02\x04\x01\x12\x03$\x0b\x12\n\x0c\n\
+    \x05\x04\x02\x02\x04\x03\x12\x03$\x15\x16\n\n\n\x02\x04\x03\x12\x04(\0-\
+    \x01\n\n\n\x03\x04\x03\x01\x12\x03(\x08\x13\nJ\n\x04\x04\x03\x02\0\x12\
+    \x03*\x04\x18\x1a=\x20Conf\x20change\x20version,\x20auto\x20increment\
+    \x20when\x20add\x20or\x20remove\x20peer\n\n\r\n\x05\x04\x03\x02\0\x04\
     \x12\x04*\x04(\x15\n\x0c\n\x05\x04\x03\x02\0\x05\x12\x03*\x04\n\n\x0c\n\
     \x05\x04\x03\x02\0\x01\x12\x03*\x0b\x13\n\x0c\n\x05\x04\x03\x02\0\x03\
     \x12\x03*\x16\x17\nA\n\x04\x04\x03\x02\x01\x12\x03,\x04\x17\x1a4\x20Regi\
@@ -1669,7 +2290,47 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x05\x02\x02\x12\x03;\x04\x18\n\r\n\x05\x04\x05\x02\x02\x04\x12\x04;\x04\
     :\x18\n\x0c\n\x05\x04\x05\x02\x02\x05\x12\x03;\x04\x08\n\x0c\n\x05\x04\
     \x05\x02\x02\x01\x12\x03;\t\x13\n\x0c\n\x05\x04\x05\x02\x02\x03\x12\x03;\
-    \x16\x17b\x06proto3\
+    \x16\x17\n\n\n\x02\x04\x06\x12\x04>\0B\x01\n\n\n\x03\x04\x06\x01\x12\x03\
+    >\x08\x18\n\x0b\n\x04\x04\x06\x02\0\x12\x03?\x04\x1a\n\r\n\x05\x04\x06\
+    \x02\0\x04\x12\x04?\x04>\x1a\n\x0c\n\x05\x04\x06\x02\0\x05\x12\x03?\x04\
+    \n\n\x0c\n\x05\x04\x06\x02\0\x01\x12\x03?\x0b\x15\n\x0c\n\x05\x04\x06\
+    \x02\0\x03\x12\x03?\x18\x19\n\x0b\n\x04\x04\x06\x02\x01\x12\x03@\x04\x1f\
+    \n\r\n\x05\x04\x06\x02\x01\x04\x12\x04@\x04?\x1a\n\x0c\n\x05\x04\x06\x02\
+    \x01\x05\x12\x03@\x04\n\n\x0c\n\x05\x04\x06\x02\x01\x01\x12\x03@\x0b\x1a\
+    \n\x0c\n\x05\x04\x06\x02\x01\x03\x12\x03@\x1d\x1e\n\x0b\n\x04\x04\x06\
+    \x02\x02\x12\x03A\x04\x1d\n\r\n\x05\x04\x06\x02\x02\x04\x12\x04A\x04@\
+    \x1f\n\x0c\n\x05\x04\x06\x02\x02\x05\x12\x03A\x04\n\n\x0c\n\x05\x04\x06\
+    \x02\x02\x01\x12\x03A\x0b\x18\n\x0c\n\x05\x04\x06\x02\x02\x03\x12\x03A\
+    \x1b\x1c\n\n\n\x02\x05\x01\x12\x04D\0H\x01\n\n\n\x03\x05\x01\x01\x12\x03\
+    D\x05\x12\n\x0b\n\x04\x05\x01\x02\0\x12\x03E\x04\x0e\n\x0c\n\x05\x05\x01\
+    \x02\0\x01\x12\x03E\x04\t\n\x0c\n\x05\x05\x01\x02\0\x02\x12\x03E\x0c\r\n\
+    \x0b\n\x04\x05\x01\x02\x01\x12\x03F\x04\x12\n\x0c\n\x05\x05\x01\x02\x01\
+    \x01\x12\x03F\x04\r\n\x0c\n\x05\x05\x01\x02\x01\x02\x12\x03F\x10\x11\n\
+    \x0b\n\x04\x05\x01\x02\x02\x12\x03G\x04\x11\n\x0c\n\x05\x05\x01\x02\x02\
+    \x01\x12\x03G\x04\x0c\n\x0c\n\x05\x05\x01\x02\x02\x02\x12\x03G\x0f\x10\n\
+    S\n\x02\x04\x07\x12\x04K\0S\x01\x1aG\x20this\x20progress\x20is\x20the\
+    \x20follower's\x20progress\x20which\x20replicate\x20leader's\x20log\n\n\
+    \n\n\x03\x04\x07\x01\x12\x03K\x08\x10\n\x0b\n\x04\x04\x07\x02\0\x12\x03L\
+    \x04\x17\n\r\n\x05\x04\x07\x02\0\x04\x12\x04L\x04K\x12\n\x0c\n\x05\x04\
+    \x07\x02\0\x05\x12\x03L\x04\n\n\x0c\n\x05\x04\x07\x02\0\x01\x12\x03L\x0b\
+    \x12\n\x0c\n\x05\x04\x07\x02\0\x03\x12\x03L\x15\x16\n\x0b\n\x04\x04\x07\
+    \x02\x01\x12\x03M\x04\x18\n\r\n\x05\x04\x07\x02\x01\x04\x12\x04M\x04L\
+    \x17\n\x0c\n\x05\x04\x07\x02\x01\x05\x12\x03M\x04\n\n\x0c\n\x05\x04\x07\
+    \x02\x01\x01\x12\x03M\x0b\x13\n\x0c\n\x05\x04\x07\x02\x01\x03\x12\x03M\
+    \x16\x17\n\x0b\n\x04\x04\x07\x02\x02\x12\x03O\x04\x14\n\r\n\x05\x04\x07\
+    \x02\x02\x04\x12\x04O\x04M\x18\n\x0c\n\x05\x04\x07\x02\x02\x05\x12\x03O\
+    \x04\x08\n\x0c\n\x05\x04\x07\x02\x02\x01\x12\x03O\t\x0f\n\x0c\n\x05\x04\
+    \x07\x02\x02\x03\x12\x03O\x12\x13\n\x0b\n\x04\x04\x07\x02\x03\x12\x03P\
+    \x04\x20\n\r\n\x05\x04\x07\x02\x03\x04\x12\x04P\x04O\x14\n\x0c\n\x05\x04\
+    \x07\x02\x03\x05\x12\x03P\x04\n\n\x0c\n\x05\x04\x07\x02\x03\x01\x12\x03P\
+    \x0b\x1b\n\x0c\n\x05\x04\x07\x02\x03\x03\x12\x03P\x1e\x1f\n\x0b\n\x04\
+    \x04\x07\x02\x04\x12\x03Q\x04\x18\n\r\n\x05\x04\x07\x02\x04\x04\x12\x04Q\
+    \x04P\x20\n\x0c\n\x05\x04\x07\x02\x04\x05\x12\x03Q\x04\x08\n\x0c\n\x05\
+    \x04\x07\x02\x04\x01\x12\x03Q\t\x13\n\x0c\n\x05\x04\x07\x02\x04\x03\x12\
+    \x03Q\x16\x17\n\x0b\n\x04\x04\x07\x02\x05\x12\x03R\x04\x1c\n\r\n\x05\x04\
+    \x07\x02\x05\x04\x12\x04R\x04Q\x18\n\x0c\n\x05\x04\x07\x02\x05\x06\x12\
+    \x03R\x04\x11\n\x0c\n\x05\x04\x07\x02\x05\x01\x12\x03R\x12\x17\n\x0c\n\
+    \x05\x04\x07\x02\x05\x03\x12\x03R\x1a\x1bb\x06proto3\
 ";
 
 static mut file_descriptor_proto_lazy: ::protobuf::lazy::Lazy<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::lazy::Lazy {

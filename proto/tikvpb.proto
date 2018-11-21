@@ -58,4 +58,8 @@ service Tikv {
     // transaction debugger commands.
     rpc MvccGetByKey(kvrpcpb.MvccGetByKeyRequest) returns (kvrpcpb.MvccGetByKeyResponse) {}
     rpc MvccGetByStartTs(kvrpcpb.MvccGetByStartTsRequest) returns (kvrpcpb.MvccGetByStartTsResponse) {}
+
+    // get region state from leader, why we get region state from leader, 
+    // because for some state, eg. last_index, committed_index... get from pd is too slow
+    rpc GetRegionState(kvrpcpb.GetRegionStateRequest) returns (kvrpcpb.GetRegionStateResponse) {}
 }

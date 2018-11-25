@@ -40,7 +40,7 @@ namespace protobuf_metapb_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[6];
+  static const ::google::protobuf::internal::ParseTable schema[9];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -54,12 +54,21 @@ extern ClusterDefaultTypeInternal _Cluster_default_instance_;
 class Peer;
 class PeerDefaultTypeInternal;
 extern PeerDefaultTypeInternal _Peer_default_instance_;
+class PeerStats;
+class PeerStatsDefaultTypeInternal;
+extern PeerStatsDefaultTypeInternal _PeerStats_default_instance_;
+class Progress;
+class ProgressDefaultTypeInternal;
+extern ProgressDefaultTypeInternal _Progress_default_instance_;
 class Region;
 class RegionDefaultTypeInternal;
 extern RegionDefaultTypeInternal _Region_default_instance_;
 class RegionEpoch;
 class RegionEpochDefaultTypeInternal;
 extern RegionEpochDefaultTypeInternal _RegionEpoch_default_instance_;
+class RegionLocalState;
+class RegionLocalStateDefaultTypeInternal;
+extern RegionLocalStateDefaultTypeInternal _RegionLocalState_default_instance_;
 class Store;
 class StoreDefaultTypeInternal;
 extern StoreDefaultTypeInternal _Store_default_instance_;
@@ -71,8 +80,11 @@ namespace google {
 namespace protobuf {
 template<> ::metapb::Cluster* Arena::CreateMaybeMessage<::metapb::Cluster>(Arena*);
 template<> ::metapb::Peer* Arena::CreateMaybeMessage<::metapb::Peer>(Arena*);
+template<> ::metapb::PeerStats* Arena::CreateMaybeMessage<::metapb::PeerStats>(Arena*);
+template<> ::metapb::Progress* Arena::CreateMaybeMessage<::metapb::Progress>(Arena*);
 template<> ::metapb::Region* Arena::CreateMaybeMessage<::metapb::Region>(Arena*);
 template<> ::metapb::RegionEpoch* Arena::CreateMaybeMessage<::metapb::RegionEpoch>(Arena*);
+template<> ::metapb::RegionLocalState* Arena::CreateMaybeMessage<::metapb::RegionLocalState>(Arena*);
 template<> ::metapb::Store* Arena::CreateMaybeMessage<::metapb::Store>(Arena*);
 template<> ::metapb::StoreLabel* Arena::CreateMaybeMessage<::metapb::StoreLabel>(Arena*);
 }  // namespace protobuf
@@ -100,6 +112,28 @@ inline bool StoreState_Parse(
     const ::std::string& name, StoreState* value) {
   return ::google::protobuf::internal::ParseNamedEnum<StoreState>(
     StoreState_descriptor(), name, value);
+}
+enum ProgressState {
+  Probe = 0,
+  Replicate = 1,
+  Snapshot = 2,
+  ProgressState_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
+  ProgressState_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
+};
+bool ProgressState_IsValid(int value);
+const ProgressState ProgressState_MIN = Probe;
+const ProgressState ProgressState_MAX = Snapshot;
+const int ProgressState_ARRAYSIZE = ProgressState_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* ProgressState_descriptor();
+inline const ::std::string& ProgressState_Name(ProgressState value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    ProgressState_descriptor(), value);
+}
+inline bool ProgressState_Parse(
+    const ::std::string& name, ProgressState* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<ProgressState>(
+    ProgressState_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -876,6 +910,377 @@ class Peer : public ::google::protobuf::Message /* @@protoc_insertion_point(clas
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_metapb_2eproto::TableStruct;
 };
+// -------------------------------------------------------------------
+
+class RegionLocalState : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:metapb.RegionLocalState) */ {
+ public:
+  RegionLocalState();
+  virtual ~RegionLocalState();
+
+  RegionLocalState(const RegionLocalState& from);
+
+  inline RegionLocalState& operator=(const RegionLocalState& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  RegionLocalState(RegionLocalState&& from) noexcept
+    : RegionLocalState() {
+    *this = ::std::move(from);
+  }
+
+  inline RegionLocalState& operator=(RegionLocalState&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const RegionLocalState& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const RegionLocalState* internal_default_instance() {
+    return reinterpret_cast<const RegionLocalState*>(
+               &_RegionLocalState_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  void Swap(RegionLocalState* other);
+  friend void swap(RegionLocalState& a, RegionLocalState& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline RegionLocalState* New() const final {
+    return CreateMaybeMessage<RegionLocalState>(NULL);
+  }
+
+  RegionLocalState* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<RegionLocalState>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const RegionLocalState& from);
+  void MergeFrom(const RegionLocalState& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(RegionLocalState* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // uint64 last_index = 1;
+  void clear_last_index();
+  static const int kLastIndexFieldNumber = 1;
+  ::google::protobuf::uint64 last_index() const;
+  void set_last_index(::google::protobuf::uint64 value);
+
+  // uint64 committed_index = 2;
+  void clear_committed_index();
+  static const int kCommittedIndexFieldNumber = 2;
+  ::google::protobuf::uint64 committed_index() const;
+  void set_committed_index(::google::protobuf::uint64 value);
+
+  // uint64 applied_index = 3;
+  void clear_applied_index();
+  static const int kAppliedIndexFieldNumber = 3;
+  ::google::protobuf::uint64 applied_index() const;
+  void set_applied_index(::google::protobuf::uint64 value);
+
+  // @@protoc_insertion_point(class_scope:metapb.RegionLocalState)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::uint64 last_index_;
+  ::google::protobuf::uint64 committed_index_;
+  ::google::protobuf::uint64 applied_index_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_metapb_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class Progress : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:metapb.Progress) */ {
+ public:
+  Progress();
+  virtual ~Progress();
+
+  Progress(const Progress& from);
+
+  inline Progress& operator=(const Progress& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  Progress(Progress&& from) noexcept
+    : Progress() {
+    *this = ::std::move(from);
+  }
+
+  inline Progress& operator=(Progress&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Progress& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Progress* internal_default_instance() {
+    return reinterpret_cast<const Progress*>(
+               &_Progress_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
+
+  void Swap(Progress* other);
+  friend void swap(Progress& a, Progress& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Progress* New() const final {
+    return CreateMaybeMessage<Progress>(NULL);
+  }
+
+  Progress* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<Progress>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const Progress& from);
+  void MergeFrom(const Progress& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Progress* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // uint64 matched = 1;
+  void clear_matched();
+  static const int kMatchedFieldNumber = 1;
+  ::google::protobuf::uint64 matched() const;
+  void set_matched(::google::protobuf::uint64 value);
+
+  // uint64 next_idx = 2;
+  void clear_next_idx();
+  static const int kNextIdxFieldNumber = 2;
+  ::google::protobuf::uint64 next_idx() const;
+  void set_next_idx(::google::protobuf::uint64 value);
+
+  // uint64 pending_snapshot = 4;
+  void clear_pending_snapshot();
+  static const int kPendingSnapshotFieldNumber = 4;
+  ::google::protobuf::uint64 pending_snapshot() const;
+  void set_pending_snapshot(::google::protobuf::uint64 value);
+
+  // bool paused = 3;
+  void clear_paused();
+  static const int kPausedFieldNumber = 3;
+  bool paused() const;
+  void set_paused(bool value);
+
+  // bool is_learner = 5;
+  void clear_is_learner();
+  static const int kIsLearnerFieldNumber = 5;
+  bool is_learner() const;
+  void set_is_learner(bool value);
+
+  // .metapb.ProgressState state = 6;
+  void clear_state();
+  static const int kStateFieldNumber = 6;
+  ::metapb::ProgressState state() const;
+  void set_state(::metapb::ProgressState value);
+
+  // @@protoc_insertion_point(class_scope:metapb.Progress)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::uint64 matched_;
+  ::google::protobuf::uint64 next_idx_;
+  ::google::protobuf::uint64 pending_snapshot_;
+  bool paused_;
+  bool is_learner_;
+  int state_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_metapb_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class PeerStats : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:metapb.PeerStats) */ {
+ public:
+  PeerStats();
+  virtual ~PeerStats();
+
+  PeerStats(const PeerStats& from);
+
+  inline PeerStats& operator=(const PeerStats& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  PeerStats(PeerStats&& from) noexcept
+    : PeerStats() {
+    *this = ::std::move(from);
+  }
+
+  inline PeerStats& operator=(PeerStats&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const PeerStats& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const PeerStats* internal_default_instance() {
+    return reinterpret_cast<const PeerStats*>(
+               &_PeerStats_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  void Swap(PeerStats* other);
+  friend void swap(PeerStats& a, PeerStats& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline PeerStats* New() const final {
+    return CreateMaybeMessage<PeerStats>(NULL);
+  }
+
+  PeerStats* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<PeerStats>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const PeerStats& from);
+  void MergeFrom(const PeerStats& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(PeerStats* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // .metapb.Peer peer = 1;
+  bool has_peer() const;
+  void clear_peer();
+  static const int kPeerFieldNumber = 1;
+  private:
+  const ::metapb::Peer& _internal_peer() const;
+  public:
+  const ::metapb::Peer& peer() const;
+  ::metapb::Peer* release_peer();
+  ::metapb::Peer* mutable_peer();
+  void set_allocated_peer(::metapb::Peer* peer);
+
+  // uint64 down_seconds = 2;
+  void clear_down_seconds();
+  static const int kDownSecondsFieldNumber = 2;
+  ::google::protobuf::uint64 down_seconds() const;
+  void set_down_seconds(::google::protobuf::uint64 value);
+
+  // @@protoc_insertion_point(class_scope:metapb.PeerStats)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::metapb::Peer* peer_;
+  ::google::protobuf::uint64 down_seconds_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_metapb_2eproto::TableStruct;
+};
 // ===================================================================
 
 
@@ -1479,9 +1884,221 @@ inline void Peer::set_is_learner(bool value) {
   // @@protoc_insertion_point(field_set:metapb.Peer.is_learner)
 }
 
+// -------------------------------------------------------------------
+
+// RegionLocalState
+
+// uint64 last_index = 1;
+inline void RegionLocalState::clear_last_index() {
+  last_index_ = GOOGLE_ULONGLONG(0);
+}
+inline ::google::protobuf::uint64 RegionLocalState::last_index() const {
+  // @@protoc_insertion_point(field_get:metapb.RegionLocalState.last_index)
+  return last_index_;
+}
+inline void RegionLocalState::set_last_index(::google::protobuf::uint64 value) {
+  
+  last_index_ = value;
+  // @@protoc_insertion_point(field_set:metapb.RegionLocalState.last_index)
+}
+
+// uint64 committed_index = 2;
+inline void RegionLocalState::clear_committed_index() {
+  committed_index_ = GOOGLE_ULONGLONG(0);
+}
+inline ::google::protobuf::uint64 RegionLocalState::committed_index() const {
+  // @@protoc_insertion_point(field_get:metapb.RegionLocalState.committed_index)
+  return committed_index_;
+}
+inline void RegionLocalState::set_committed_index(::google::protobuf::uint64 value) {
+  
+  committed_index_ = value;
+  // @@protoc_insertion_point(field_set:metapb.RegionLocalState.committed_index)
+}
+
+// uint64 applied_index = 3;
+inline void RegionLocalState::clear_applied_index() {
+  applied_index_ = GOOGLE_ULONGLONG(0);
+}
+inline ::google::protobuf::uint64 RegionLocalState::applied_index() const {
+  // @@protoc_insertion_point(field_get:metapb.RegionLocalState.applied_index)
+  return applied_index_;
+}
+inline void RegionLocalState::set_applied_index(::google::protobuf::uint64 value) {
+  
+  applied_index_ = value;
+  // @@protoc_insertion_point(field_set:metapb.RegionLocalState.applied_index)
+}
+
+// -------------------------------------------------------------------
+
+// Progress
+
+// uint64 matched = 1;
+inline void Progress::clear_matched() {
+  matched_ = GOOGLE_ULONGLONG(0);
+}
+inline ::google::protobuf::uint64 Progress::matched() const {
+  // @@protoc_insertion_point(field_get:metapb.Progress.matched)
+  return matched_;
+}
+inline void Progress::set_matched(::google::protobuf::uint64 value) {
+  
+  matched_ = value;
+  // @@protoc_insertion_point(field_set:metapb.Progress.matched)
+}
+
+// uint64 next_idx = 2;
+inline void Progress::clear_next_idx() {
+  next_idx_ = GOOGLE_ULONGLONG(0);
+}
+inline ::google::protobuf::uint64 Progress::next_idx() const {
+  // @@protoc_insertion_point(field_get:metapb.Progress.next_idx)
+  return next_idx_;
+}
+inline void Progress::set_next_idx(::google::protobuf::uint64 value) {
+  
+  next_idx_ = value;
+  // @@protoc_insertion_point(field_set:metapb.Progress.next_idx)
+}
+
+// bool paused = 3;
+inline void Progress::clear_paused() {
+  paused_ = false;
+}
+inline bool Progress::paused() const {
+  // @@protoc_insertion_point(field_get:metapb.Progress.paused)
+  return paused_;
+}
+inline void Progress::set_paused(bool value) {
+  
+  paused_ = value;
+  // @@protoc_insertion_point(field_set:metapb.Progress.paused)
+}
+
+// uint64 pending_snapshot = 4;
+inline void Progress::clear_pending_snapshot() {
+  pending_snapshot_ = GOOGLE_ULONGLONG(0);
+}
+inline ::google::protobuf::uint64 Progress::pending_snapshot() const {
+  // @@protoc_insertion_point(field_get:metapb.Progress.pending_snapshot)
+  return pending_snapshot_;
+}
+inline void Progress::set_pending_snapshot(::google::protobuf::uint64 value) {
+  
+  pending_snapshot_ = value;
+  // @@protoc_insertion_point(field_set:metapb.Progress.pending_snapshot)
+}
+
+// bool is_learner = 5;
+inline void Progress::clear_is_learner() {
+  is_learner_ = false;
+}
+inline bool Progress::is_learner() const {
+  // @@protoc_insertion_point(field_get:metapb.Progress.is_learner)
+  return is_learner_;
+}
+inline void Progress::set_is_learner(bool value) {
+  
+  is_learner_ = value;
+  // @@protoc_insertion_point(field_set:metapb.Progress.is_learner)
+}
+
+// .metapb.ProgressState state = 6;
+inline void Progress::clear_state() {
+  state_ = 0;
+}
+inline ::metapb::ProgressState Progress::state() const {
+  // @@protoc_insertion_point(field_get:metapb.Progress.state)
+  return static_cast< ::metapb::ProgressState >(state_);
+}
+inline void Progress::set_state(::metapb::ProgressState value) {
+  
+  state_ = value;
+  // @@protoc_insertion_point(field_set:metapb.Progress.state)
+}
+
+// -------------------------------------------------------------------
+
+// PeerStats
+
+// .metapb.Peer peer = 1;
+inline bool PeerStats::has_peer() const {
+  return this != internal_default_instance() && peer_ != NULL;
+}
+inline void PeerStats::clear_peer() {
+  if (GetArenaNoVirtual() == NULL && peer_ != NULL) {
+    delete peer_;
+  }
+  peer_ = NULL;
+}
+inline const ::metapb::Peer& PeerStats::_internal_peer() const {
+  return *peer_;
+}
+inline const ::metapb::Peer& PeerStats::peer() const {
+  const ::metapb::Peer* p = peer_;
+  // @@protoc_insertion_point(field_get:metapb.PeerStats.peer)
+  return p != NULL ? *p : *reinterpret_cast<const ::metapb::Peer*>(
+      &::metapb::_Peer_default_instance_);
+}
+inline ::metapb::Peer* PeerStats::release_peer() {
+  // @@protoc_insertion_point(field_release:metapb.PeerStats.peer)
+  
+  ::metapb::Peer* temp = peer_;
+  peer_ = NULL;
+  return temp;
+}
+inline ::metapb::Peer* PeerStats::mutable_peer() {
+  
+  if (peer_ == NULL) {
+    auto* p = CreateMaybeMessage<::metapb::Peer>(GetArenaNoVirtual());
+    peer_ = p;
+  }
+  // @@protoc_insertion_point(field_mutable:metapb.PeerStats.peer)
+  return peer_;
+}
+inline void PeerStats::set_allocated_peer(::metapb::Peer* peer) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete peer_;
+  }
+  if (peer) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      peer = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, peer, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  peer_ = peer;
+  // @@protoc_insertion_point(field_set_allocated:metapb.PeerStats.peer)
+}
+
+// uint64 down_seconds = 2;
+inline void PeerStats::clear_down_seconds() {
+  down_seconds_ = GOOGLE_ULONGLONG(0);
+}
+inline ::google::protobuf::uint64 PeerStats::down_seconds() const {
+  // @@protoc_insertion_point(field_get:metapb.PeerStats.down_seconds)
+  return down_seconds_;
+}
+inline void PeerStats::set_down_seconds(::google::protobuf::uint64 value) {
+  
+  down_seconds_ = value;
+  // @@protoc_insertion_point(field_set:metapb.PeerStats.down_seconds)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -1504,6 +2121,11 @@ template <> struct is_proto_enum< ::metapb::StoreState> : ::std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::metapb::StoreState>() {
   return ::metapb::StoreState_descriptor();
+}
+template <> struct is_proto_enum< ::metapb::ProgressState> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::metapb::ProgressState>() {
+  return ::metapb::ProgressState_descriptor();
 }
 
 }  // namespace protobuf

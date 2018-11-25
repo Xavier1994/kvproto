@@ -29,6 +29,9 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/map.h>  // IWYU pragma: export
+#include <google/protobuf/map_entry.h>
+#include <google/protobuf/map_field_inl.h>
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 #include "metapb.pb.h"
@@ -42,7 +45,7 @@ namespace protobuf_pdpb_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[54];
+  static const ::google::protobuf::internal::ParseTable schema[55];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -131,9 +134,6 @@ extern MemberDefaultTypeInternal _Member_default_instance_;
 class Merge;
 class MergeDefaultTypeInternal;
 extern MergeDefaultTypeInternal _Merge_default_instance_;
-class PeerStats;
-class PeerStatsDefaultTypeInternal;
-extern PeerStatsDefaultTypeInternal _PeerStats_default_instance_;
 class PutClusterConfigRequest;
 class PutClusterConfigRequestDefaultTypeInternal;
 extern PutClusterConfigRequestDefaultTypeInternal _PutClusterConfigRequest_default_instance_;
@@ -149,6 +149,12 @@ extern PutStoreResponseDefaultTypeInternal _PutStoreResponse_default_instance_;
 class RegionHeartbeatRequest;
 class RegionHeartbeatRequestDefaultTypeInternal;
 extern RegionHeartbeatRequestDefaultTypeInternal _RegionHeartbeatRequest_default_instance_;
+class RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse;
+class RegionHeartbeatRequest_LearnerProgressEntry_DoNotUseDefaultTypeInternal;
+extern RegionHeartbeatRequest_LearnerProgressEntry_DoNotUseDefaultTypeInternal _RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse_default_instance_;
+class RegionHeartbeatRequest_VoterProgressEntry_DoNotUse;
+class RegionHeartbeatRequest_VoterProgressEntry_DoNotUseDefaultTypeInternal;
+extern RegionHeartbeatRequest_VoterProgressEntry_DoNotUseDefaultTypeInternal _RegionHeartbeatRequest_VoterProgressEntry_DoNotUse_default_instance_;
 class RegionHeartbeatResponse;
 class RegionHeartbeatResponseDefaultTypeInternal;
 extern RegionHeartbeatResponseDefaultTypeInternal _RegionHeartbeatResponse_default_instance_;
@@ -242,12 +248,13 @@ template<> ::pdpb::IsBootstrappedRequest* Arena::CreateMaybeMessage<::pdpb::IsBo
 template<> ::pdpb::IsBootstrappedResponse* Arena::CreateMaybeMessage<::pdpb::IsBootstrappedResponse>(Arena*);
 template<> ::pdpb::Member* Arena::CreateMaybeMessage<::pdpb::Member>(Arena*);
 template<> ::pdpb::Merge* Arena::CreateMaybeMessage<::pdpb::Merge>(Arena*);
-template<> ::pdpb::PeerStats* Arena::CreateMaybeMessage<::pdpb::PeerStats>(Arena*);
 template<> ::pdpb::PutClusterConfigRequest* Arena::CreateMaybeMessage<::pdpb::PutClusterConfigRequest>(Arena*);
 template<> ::pdpb::PutClusterConfigResponse* Arena::CreateMaybeMessage<::pdpb::PutClusterConfigResponse>(Arena*);
 template<> ::pdpb::PutStoreRequest* Arena::CreateMaybeMessage<::pdpb::PutStoreRequest>(Arena*);
 template<> ::pdpb::PutStoreResponse* Arena::CreateMaybeMessage<::pdpb::PutStoreResponse>(Arena*);
 template<> ::pdpb::RegionHeartbeatRequest* Arena::CreateMaybeMessage<::pdpb::RegionHeartbeatRequest>(Arena*);
+template<> ::pdpb::RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse* Arena::CreateMaybeMessage<::pdpb::RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse>(Arena*);
+template<> ::pdpb::RegionHeartbeatRequest_VoterProgressEntry_DoNotUse* Arena::CreateMaybeMessage<::pdpb::RegionHeartbeatRequest_VoterProgressEntry_DoNotUse>(Arena*);
 template<> ::pdpb::RegionHeartbeatResponse* Arena::CreateMaybeMessage<::pdpb::RegionHeartbeatResponse>(Arena*);
 template<> ::pdpb::ReportBatchSplitRequest* Arena::CreateMaybeMessage<::pdpb::ReportBatchSplitRequest>(Arena*);
 template<> ::pdpb::ReportBatchSplitResponse* Arena::CreateMaybeMessage<::pdpb::ReportBatchSplitResponse>(Arena*);
@@ -3672,120 +3679,46 @@ class GetMembersResponse : public ::google::protobuf::Message /* @@protoc_insert
 };
 // -------------------------------------------------------------------
 
-class PeerStats : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:pdpb.PeerStats) */ {
- public:
-  PeerStats();
-  virtual ~PeerStats();
-
-  PeerStats(const PeerStats& from);
-
-  inline PeerStats& operator=(const PeerStats& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  #if LANG_CXX11
-  PeerStats(PeerStats&& from) noexcept
-    : PeerStats() {
-    *this = ::std::move(from);
-  }
-
-  inline PeerStats& operator=(PeerStats&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-  #endif
-  static const ::google::protobuf::Descriptor* descriptor();
-  static const PeerStats& default_instance();
-
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const PeerStats* internal_default_instance() {
-    return reinterpret_cast<const PeerStats*>(
-               &_PeerStats_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    28;
-
-  void Swap(PeerStats* other);
-  friend void swap(PeerStats& a, PeerStats& b) {
-    a.Swap(&b);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline PeerStats* New() const final {
-    return CreateMaybeMessage<PeerStats>(NULL);
-  }
-
-  PeerStats* New(::google::protobuf::Arena* arena) const final {
-    return CreateMaybeMessage<PeerStats>(arena);
-  }
-  void CopyFrom(const ::google::protobuf::Message& from) final;
-  void MergeFrom(const ::google::protobuf::Message& from) final;
-  void CopyFrom(const PeerStats& from);
-  void MergeFrom(const PeerStats& from);
-  void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* input) final;
-  void SerializeWithCachedSizes(
-      ::google::protobuf::io::CodedOutputStream* output) const final;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* target) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(PeerStats* other);
-  private:
-  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
-    return NULL;
-  }
-  inline void* MaybeArenaPtr() const {
-    return NULL;
-  }
-  public:
-
-  ::google::protobuf::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  // .metapb.Peer peer = 1;
-  bool has_peer() const;
-  void clear_peer();
-  static const int kPeerFieldNumber = 1;
-  private:
-  const ::metapb::Peer& _internal_peer() const;
-  public:
-  const ::metapb::Peer& peer() const;
-  ::metapb::Peer* release_peer();
-  ::metapb::Peer* mutable_peer();
-  void set_allocated_peer(::metapb::Peer* peer);
-
-  // uint64 down_seconds = 2;
-  void clear_down_seconds();
-  static const int kDownSecondsFieldNumber = 2;
-  ::google::protobuf::uint64 down_seconds() const;
-  void set_down_seconds(::google::protobuf::uint64 value);
-
-  // @@protoc_insertion_point(class_scope:pdpb.PeerStats)
- private:
-
-  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::metapb::Peer* peer_;
-  ::google::protobuf::uint64 down_seconds_;
-  mutable ::google::protobuf::internal::CachedSize _cached_size_;
-  friend struct ::protobuf_pdpb_2eproto::TableStruct;
+class RegionHeartbeatRequest_VoterProgressEntry_DoNotUse : public ::google::protobuf::internal::MapEntry<RegionHeartbeatRequest_VoterProgressEntry_DoNotUse, 
+    ::google::protobuf::uint64, ::metapb::Progress,
+    ::google::protobuf::internal::WireFormatLite::TYPE_UINT64,
+    ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE,
+    0 > {
+public:
+  typedef ::google::protobuf::internal::MapEntry<RegionHeartbeatRequest_VoterProgressEntry_DoNotUse, 
+    ::google::protobuf::uint64, ::metapb::Progress,
+    ::google::protobuf::internal::WireFormatLite::TYPE_UINT64,
+    ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE,
+    0 > SuperType;
+  RegionHeartbeatRequest_VoterProgressEntry_DoNotUse();
+  RegionHeartbeatRequest_VoterProgressEntry_DoNotUse(::google::protobuf::Arena* arena);
+  void MergeFrom(const RegionHeartbeatRequest_VoterProgressEntry_DoNotUse& other);
+  static const RegionHeartbeatRequest_VoterProgressEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const RegionHeartbeatRequest_VoterProgressEntry_DoNotUse*>(&_RegionHeartbeatRequest_VoterProgressEntry_DoNotUse_default_instance_); }
+  void MergeFrom(const ::google::protobuf::Message& other) final;
+  ::google::protobuf::Metadata GetMetadata() const;
 };
+
+// -------------------------------------------------------------------
+
+class RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse : public ::google::protobuf::internal::MapEntry<RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse, 
+    ::google::protobuf::uint64, ::metapb::Progress,
+    ::google::protobuf::internal::WireFormatLite::TYPE_UINT64,
+    ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE,
+    0 > {
+public:
+  typedef ::google::protobuf::internal::MapEntry<RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse, 
+    ::google::protobuf::uint64, ::metapb::Progress,
+    ::google::protobuf::internal::WireFormatLite::TYPE_UINT64,
+    ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE,
+    0 > SuperType;
+  RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse();
+  RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse(::google::protobuf::Arena* arena);
+  void MergeFrom(const RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse& other);
+  static const RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse*>(&_RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse_default_instance_); }
+  void MergeFrom(const ::google::protobuf::Message& other) final;
+  ::google::protobuf::Metadata GetMetadata() const;
+};
+
 // -------------------------------------------------------------------
 
 class RegionHeartbeatRequest : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:pdpb.RegionHeartbeatRequest) */ {
@@ -3823,7 +3756,7 @@ class RegionHeartbeatRequest : public ::google::protobuf::Message /* @@protoc_in
                &_RegionHeartbeatRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    29;
+    30;
 
   void Swap(RegionHeartbeatRequest* other);
   friend void swap(RegionHeartbeatRequest& a, RegionHeartbeatRequest& b) {
@@ -3873,18 +3806,19 @@ class RegionHeartbeatRequest : public ::google::protobuf::Message /* @@protoc_in
 
   // nested types ----------------------------------------------------
 
+
   // accessors -------------------------------------------------------
 
-  // repeated .pdpb.PeerStats down_peers = 4;
+  // repeated .metapb.PeerStats down_peers = 4;
   int down_peers_size() const;
   void clear_down_peers();
   static const int kDownPeersFieldNumber = 4;
-  ::pdpb::PeerStats* mutable_down_peers(int index);
-  ::google::protobuf::RepeatedPtrField< ::pdpb::PeerStats >*
+  ::metapb::PeerStats* mutable_down_peers(int index);
+  ::google::protobuf::RepeatedPtrField< ::metapb::PeerStats >*
       mutable_down_peers();
-  const ::pdpb::PeerStats& down_peers(int index) const;
-  ::pdpb::PeerStats* add_down_peers();
-  const ::google::protobuf::RepeatedPtrField< ::pdpb::PeerStats >&
+  const ::metapb::PeerStats& down_peers(int index) const;
+  ::metapb::PeerStats* add_down_peers();
+  const ::google::protobuf::RepeatedPtrField< ::metapb::PeerStats >&
       down_peers() const;
 
   // repeated .metapb.Peer pending_peers = 5;
@@ -3898,6 +3832,24 @@ class RegionHeartbeatRequest : public ::google::protobuf::Message /* @@protoc_in
   ::metapb::Peer* add_pending_peers();
   const ::google::protobuf::RepeatedPtrField< ::metapb::Peer >&
       pending_peers() const;
+
+  // map<uint64, .metapb.Progress> voter_progress = 14;
+  int voter_progress_size() const;
+  void clear_voter_progress();
+  static const int kVoterProgressFieldNumber = 14;
+  const ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >&
+      voter_progress() const;
+  ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >*
+      mutable_voter_progress();
+
+  // map<uint64, .metapb.Progress> learner_progress = 15;
+  int learner_progress_size() const;
+  void clear_learner_progress();
+  static const int kLearnerProgressFieldNumber = 15;
+  const ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >&
+      learner_progress() const;
+  ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >*
+      mutable_learner_progress();
 
   // .pdpb.RequestHeader header = 1;
   bool has_header() const;
@@ -3947,6 +3899,18 @@ class RegionHeartbeatRequest : public ::google::protobuf::Message /* @@protoc_in
   ::pdpb::TimeInterval* mutable_interval();
   void set_allocated_interval(::pdpb::TimeInterval* interval);
 
+  // .metapb.RegionLocalState region_local_state = 16;
+  bool has_region_local_state() const;
+  void clear_region_local_state();
+  static const int kRegionLocalStateFieldNumber = 16;
+  private:
+  const ::metapb::RegionLocalState& _internal_region_local_state() const;
+  public:
+  const ::metapb::RegionLocalState& region_local_state() const;
+  ::metapb::RegionLocalState* release_region_local_state();
+  ::metapb::RegionLocalState* mutable_region_local_state();
+  void set_allocated_region_local_state(::metapb::RegionLocalState* region_local_state);
+
   // uint64 bytes_written = 6;
   void clear_bytes_written();
   static const int kBytesWrittenFieldNumber = 6;
@@ -3987,12 +3951,25 @@ class RegionHeartbeatRequest : public ::google::protobuf::Message /* @@protoc_in
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::RepeatedPtrField< ::pdpb::PeerStats > down_peers_;
+  ::google::protobuf::RepeatedPtrField< ::metapb::PeerStats > down_peers_;
   ::google::protobuf::RepeatedPtrField< ::metapb::Peer > pending_peers_;
+  ::google::protobuf::internal::MapField<
+      RegionHeartbeatRequest_VoterProgressEntry_DoNotUse,
+      ::google::protobuf::uint64, ::metapb::Progress,
+      ::google::protobuf::internal::WireFormatLite::TYPE_UINT64,
+      ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE,
+      0 > voter_progress_;
+  ::google::protobuf::internal::MapField<
+      RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse,
+      ::google::protobuf::uint64, ::metapb::Progress,
+      ::google::protobuf::internal::WireFormatLite::TYPE_UINT64,
+      ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE,
+      0 > learner_progress_;
   ::pdpb::RequestHeader* header_;
   ::metapb::Region* region_;
   ::metapb::Peer* leader_;
   ::pdpb::TimeInterval* interval_;
+  ::metapb::RegionLocalState* region_local_state_;
   ::google::protobuf::uint64 bytes_written_;
   ::google::protobuf::uint64 bytes_read_;
   ::google::protobuf::uint64 keys_written_;
@@ -4039,7 +4016,7 @@ class ChangePeer : public ::google::protobuf::Message /* @@protoc_insertion_poin
                &_ChangePeer_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    30;
+    31;
 
   void Swap(ChangePeer* other);
   friend void swap(ChangePeer& a, ChangePeer& b) {
@@ -4155,7 +4132,7 @@ class TransferLeader : public ::google::protobuf::Message /* @@protoc_insertion_
                &_TransferLeader_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    31;
+    32;
 
   void Swap(TransferLeader* other);
   friend void swap(TransferLeader& a, TransferLeader& b) {
@@ -4264,7 +4241,7 @@ class Merge : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
                &_Merge_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    32;
+    33;
 
   void Swap(Merge* other);
   friend void swap(Merge& a, Merge& b) {
@@ -4373,7 +4350,7 @@ class SplitRegion : public ::google::protobuf::Message /* @@protoc_insertion_poi
                &_SplitRegion_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    33;
+    34;
 
   void Swap(SplitRegion* other);
   friend void swap(SplitRegion& a, SplitRegion& b) {
@@ -4476,7 +4453,7 @@ class RegionHeartbeatResponse : public ::google::protobuf::Message /* @@protoc_i
                &_RegionHeartbeatResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    34;
+    35;
 
   void Swap(RegionHeartbeatResponse* other);
   friend void swap(RegionHeartbeatResponse& a, RegionHeartbeatResponse& b) {
@@ -4670,7 +4647,7 @@ class AskSplitRequest : public ::google::protobuf::Message /* @@protoc_insertion
                &_AskSplitRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    35;
+    36;
 
   void Swap(AskSplitRequest* other);
   friend void swap(AskSplitRequest& a, AskSplitRequest& b) {
@@ -4792,7 +4769,7 @@ class AskSplitResponse : public ::google::protobuf::Message /* @@protoc_insertio
                &_AskSplitResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    36;
+    37;
 
   void Swap(AskSplitResponse* other);
   friend void swap(AskSplitResponse& a, AskSplitResponse& b) {
@@ -4922,7 +4899,7 @@ class ReportSplitRequest : public ::google::protobuf::Message /* @@protoc_insert
                &_ReportSplitRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    37;
+    38;
 
   void Swap(ReportSplitRequest* other);
   friend void swap(ReportSplitRequest& a, ReportSplitRequest& b) {
@@ -5057,7 +5034,7 @@ class ReportSplitResponse : public ::google::protobuf::Message /* @@protoc_inser
                &_ReportSplitResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    38;
+    39;
 
   void Swap(ReportSplitResponse* other);
   friend void swap(ReportSplitResponse& a, ReportSplitResponse& b) {
@@ -5166,7 +5143,7 @@ class AskBatchSplitRequest : public ::google::protobuf::Message /* @@protoc_inse
                &_AskBatchSplitRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    39;
+    40;
 
   void Swap(AskBatchSplitRequest* other);
   friend void swap(AskBatchSplitRequest& a, AskBatchSplitRequest& b) {
@@ -5295,7 +5272,7 @@ class SplitID : public ::google::protobuf::Message /* @@protoc_insertion_point(c
                &_SplitID_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    40;
+    41;
 
   void Swap(SplitID* other);
   friend void swap(SplitID& a, SplitID& b) {
@@ -5412,7 +5389,7 @@ class AskBatchSplitResponse : public ::google::protobuf::Message /* @@protoc_ins
                &_AskBatchSplitResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    41;
+    42;
 
   void Swap(AskBatchSplitResponse* other);
   friend void swap(AskBatchSplitResponse& a, AskBatchSplitResponse& b) {
@@ -5534,7 +5511,7 @@ class ReportBatchSplitRequest : public ::google::protobuf::Message /* @@protoc_i
                &_ReportBatchSplitRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    42;
+    43;
 
   void Swap(ReportBatchSplitRequest* other);
   friend void swap(ReportBatchSplitRequest& a, ReportBatchSplitRequest& b) {
@@ -5656,7 +5633,7 @@ class ReportBatchSplitResponse : public ::google::protobuf::Message /* @@protoc_
                &_ReportBatchSplitResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    43;
+    44;
 
   void Swap(ReportBatchSplitResponse* other);
   friend void swap(ReportBatchSplitResponse& a, ReportBatchSplitResponse& b) {
@@ -5765,7 +5742,7 @@ class TimeInterval : public ::google::protobuf::Message /* @@protoc_insertion_po
                &_TimeInterval_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    44;
+    45;
 
   void Swap(TimeInterval* other);
   friend void swap(TimeInterval& a, TimeInterval& b) {
@@ -5875,7 +5852,7 @@ class StoreStats : public ::google::protobuf::Message /* @@protoc_insertion_poin
                &_StoreStats_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    45;
+    46;
 
   void Swap(StoreStats* other);
   friend void swap(StoreStats& a, StoreStats& b) {
@@ -6082,7 +6059,7 @@ class StoreHeartbeatRequest : public ::google::protobuf::Message /* @@protoc_ins
                &_StoreHeartbeatRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    46;
+    47;
 
   void Swap(StoreHeartbeatRequest* other);
   friend void swap(StoreHeartbeatRequest& a, StoreHeartbeatRequest& b) {
@@ -6204,7 +6181,7 @@ class StoreHeartbeatResponse : public ::google::protobuf::Message /* @@protoc_in
                &_StoreHeartbeatResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    47;
+    48;
 
   void Swap(StoreHeartbeatResponse* other);
   friend void swap(StoreHeartbeatResponse& a, StoreHeartbeatResponse& b) {
@@ -6313,7 +6290,7 @@ class ScatterRegionRequest : public ::google::protobuf::Message /* @@protoc_inse
                &_ScatterRegionRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    48;
+    49;
 
   void Swap(ScatterRegionRequest* other);
   friend void swap(ScatterRegionRequest& a, ScatterRegionRequest& b) {
@@ -6455,7 +6432,7 @@ class ScatterRegionResponse : public ::google::protobuf::Message /* @@protoc_ins
                &_ScatterRegionResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    49;
+    50;
 
   void Swap(ScatterRegionResponse* other);
   friend void swap(ScatterRegionResponse& a, ScatterRegionResponse& b) {
@@ -6564,7 +6541,7 @@ class GetGCSafePointRequest : public ::google::protobuf::Message /* @@protoc_ins
                &_GetGCSafePointRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    50;
+    51;
 
   void Swap(GetGCSafePointRequest* other);
   friend void swap(GetGCSafePointRequest& a, GetGCSafePointRequest& b) {
@@ -6673,7 +6650,7 @@ class GetGCSafePointResponse : public ::google::protobuf::Message /* @@protoc_in
                &_GetGCSafePointResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    51;
+    52;
 
   void Swap(GetGCSafePointResponse* other);
   friend void swap(GetGCSafePointResponse& a, GetGCSafePointResponse& b) {
@@ -6789,7 +6766,7 @@ class UpdateGCSafePointRequest : public ::google::protobuf::Message /* @@protoc_
                &_UpdateGCSafePointRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    52;
+    53;
 
   void Swap(UpdateGCSafePointRequest* other);
   friend void swap(UpdateGCSafePointRequest& a, UpdateGCSafePointRequest& b) {
@@ -6905,7 +6882,7 @@ class UpdateGCSafePointResponse : public ::google::protobuf::Message /* @@protoc
                &_UpdateGCSafePointResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    53;
+    54;
 
   void Swap(UpdateGCSafePointResponse* other);
   friend void swap(UpdateGCSafePointResponse& a, UpdateGCSafePointResponse& b) {
@@ -9483,69 +9460,7 @@ inline void GetMembersResponse::set_allocated_etcd_leader(::pdpb::Member* etcd_l
 
 // -------------------------------------------------------------------
 
-// PeerStats
-
-// .metapb.Peer peer = 1;
-inline bool PeerStats::has_peer() const {
-  return this != internal_default_instance() && peer_ != NULL;
-}
-inline const ::metapb::Peer& PeerStats::_internal_peer() const {
-  return *peer_;
-}
-inline const ::metapb::Peer& PeerStats::peer() const {
-  const ::metapb::Peer* p = peer_;
-  // @@protoc_insertion_point(field_get:pdpb.PeerStats.peer)
-  return p != NULL ? *p : *reinterpret_cast<const ::metapb::Peer*>(
-      &::metapb::_Peer_default_instance_);
-}
-inline ::metapb::Peer* PeerStats::release_peer() {
-  // @@protoc_insertion_point(field_release:pdpb.PeerStats.peer)
-  
-  ::metapb::Peer* temp = peer_;
-  peer_ = NULL;
-  return temp;
-}
-inline ::metapb::Peer* PeerStats::mutable_peer() {
-  
-  if (peer_ == NULL) {
-    auto* p = CreateMaybeMessage<::metapb::Peer>(GetArenaNoVirtual());
-    peer_ = p;
-  }
-  // @@protoc_insertion_point(field_mutable:pdpb.PeerStats.peer)
-  return peer_;
-}
-inline void PeerStats::set_allocated_peer(::metapb::Peer* peer) {
-  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
-  if (message_arena == NULL) {
-    delete reinterpret_cast< ::google::protobuf::MessageLite*>(peer_);
-  }
-  if (peer) {
-    ::google::protobuf::Arena* submessage_arena = NULL;
-    if (message_arena != submessage_arena) {
-      peer = ::google::protobuf::internal::GetOwnedMessage(
-          message_arena, peer, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  peer_ = peer;
-  // @@protoc_insertion_point(field_set_allocated:pdpb.PeerStats.peer)
-}
-
-// uint64 down_seconds = 2;
-inline void PeerStats::clear_down_seconds() {
-  down_seconds_ = GOOGLE_ULONGLONG(0);
-}
-inline ::google::protobuf::uint64 PeerStats::down_seconds() const {
-  // @@protoc_insertion_point(field_get:pdpb.PeerStats.down_seconds)
-  return down_seconds_;
-}
-inline void PeerStats::set_down_seconds(::google::protobuf::uint64 value) {
-  
-  down_seconds_ = value;
-  // @@protoc_insertion_point(field_set:pdpb.PeerStats.down_seconds)
-}
+// -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
 
@@ -9701,31 +9616,28 @@ inline void RegionHeartbeatRequest::set_allocated_leader(::metapb::Peer* leader)
   // @@protoc_insertion_point(field_set_allocated:pdpb.RegionHeartbeatRequest.leader)
 }
 
-// repeated .pdpb.PeerStats down_peers = 4;
+// repeated .metapb.PeerStats down_peers = 4;
 inline int RegionHeartbeatRequest::down_peers_size() const {
   return down_peers_.size();
 }
-inline void RegionHeartbeatRequest::clear_down_peers() {
-  down_peers_.Clear();
-}
-inline ::pdpb::PeerStats* RegionHeartbeatRequest::mutable_down_peers(int index) {
+inline ::metapb::PeerStats* RegionHeartbeatRequest::mutable_down_peers(int index) {
   // @@protoc_insertion_point(field_mutable:pdpb.RegionHeartbeatRequest.down_peers)
   return down_peers_.Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField< ::pdpb::PeerStats >*
+inline ::google::protobuf::RepeatedPtrField< ::metapb::PeerStats >*
 RegionHeartbeatRequest::mutable_down_peers() {
   // @@protoc_insertion_point(field_mutable_list:pdpb.RegionHeartbeatRequest.down_peers)
   return &down_peers_;
 }
-inline const ::pdpb::PeerStats& RegionHeartbeatRequest::down_peers(int index) const {
+inline const ::metapb::PeerStats& RegionHeartbeatRequest::down_peers(int index) const {
   // @@protoc_insertion_point(field_get:pdpb.RegionHeartbeatRequest.down_peers)
   return down_peers_.Get(index);
 }
-inline ::pdpb::PeerStats* RegionHeartbeatRequest::add_down_peers() {
+inline ::metapb::PeerStats* RegionHeartbeatRequest::add_down_peers() {
   // @@protoc_insertion_point(field_add:pdpb.RegionHeartbeatRequest.down_peers)
   return down_peers_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::pdpb::PeerStats >&
+inline const ::google::protobuf::RepeatedPtrField< ::metapb::PeerStats >&
 RegionHeartbeatRequest::down_peers() const {
   // @@protoc_insertion_point(field_list:pdpb.RegionHeartbeatRequest.down_peers)
   return down_peers_;
@@ -9894,6 +9806,84 @@ inline void RegionHeartbeatRequest::set_approximate_keys(::google::protobuf::uin
   
   approximate_keys_ = value;
   // @@protoc_insertion_point(field_set:pdpb.RegionHeartbeatRequest.approximate_keys)
+}
+
+// map<uint64, .metapb.Progress> voter_progress = 14;
+inline int RegionHeartbeatRequest::voter_progress_size() const {
+  return voter_progress_.size();
+}
+inline const ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >&
+RegionHeartbeatRequest::voter_progress() const {
+  // @@protoc_insertion_point(field_map:pdpb.RegionHeartbeatRequest.voter_progress)
+  return voter_progress_.GetMap();
+}
+inline ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >*
+RegionHeartbeatRequest::mutable_voter_progress() {
+  // @@protoc_insertion_point(field_mutable_map:pdpb.RegionHeartbeatRequest.voter_progress)
+  return voter_progress_.MutableMap();
+}
+
+// map<uint64, .metapb.Progress> learner_progress = 15;
+inline int RegionHeartbeatRequest::learner_progress_size() const {
+  return learner_progress_.size();
+}
+inline const ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >&
+RegionHeartbeatRequest::learner_progress() const {
+  // @@protoc_insertion_point(field_map:pdpb.RegionHeartbeatRequest.learner_progress)
+  return learner_progress_.GetMap();
+}
+inline ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >*
+RegionHeartbeatRequest::mutable_learner_progress() {
+  // @@protoc_insertion_point(field_mutable_map:pdpb.RegionHeartbeatRequest.learner_progress)
+  return learner_progress_.MutableMap();
+}
+
+// .metapb.RegionLocalState region_local_state = 16;
+inline bool RegionHeartbeatRequest::has_region_local_state() const {
+  return this != internal_default_instance() && region_local_state_ != NULL;
+}
+inline const ::metapb::RegionLocalState& RegionHeartbeatRequest::_internal_region_local_state() const {
+  return *region_local_state_;
+}
+inline const ::metapb::RegionLocalState& RegionHeartbeatRequest::region_local_state() const {
+  const ::metapb::RegionLocalState* p = region_local_state_;
+  // @@protoc_insertion_point(field_get:pdpb.RegionHeartbeatRequest.region_local_state)
+  return p != NULL ? *p : *reinterpret_cast<const ::metapb::RegionLocalState*>(
+      &::metapb::_RegionLocalState_default_instance_);
+}
+inline ::metapb::RegionLocalState* RegionHeartbeatRequest::release_region_local_state() {
+  // @@protoc_insertion_point(field_release:pdpb.RegionHeartbeatRequest.region_local_state)
+  
+  ::metapb::RegionLocalState* temp = region_local_state_;
+  region_local_state_ = NULL;
+  return temp;
+}
+inline ::metapb::RegionLocalState* RegionHeartbeatRequest::mutable_region_local_state() {
+  
+  if (region_local_state_ == NULL) {
+    auto* p = CreateMaybeMessage<::metapb::RegionLocalState>(GetArenaNoVirtual());
+    region_local_state_ = p;
+  }
+  // @@protoc_insertion_point(field_mutable:pdpb.RegionHeartbeatRequest.region_local_state)
+  return region_local_state_;
+}
+inline void RegionHeartbeatRequest::set_allocated_region_local_state(::metapb::RegionLocalState* region_local_state) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete reinterpret_cast< ::google::protobuf::MessageLite*>(region_local_state_);
+  }
+  if (region_local_state) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      region_local_state = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, region_local_state, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  region_local_state_ = region_local_state;
+  // @@protoc_insertion_point(field_set_allocated:pdpb.RegionHeartbeatRequest.region_local_state)
 }
 
 // -------------------------------------------------------------------
@@ -12246,6 +12236,8 @@ inline void UpdateGCSafePointResponse::set_new_safe_point(::google::protobuf::ui
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -33,6 +33,8 @@ extern PROTOBUF_INTERNAL_EXPORT_protobuf_kvrpcpb_2eproto ::google::protobuf::int
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_kvrpcpb_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_ScanInfo;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_kvrpcpb_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_TxnInfo;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_kvrpcpb_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_WriteConflict;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_kvrpcpb_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_GetRegionStateResponse_LearnerProgressEntry_DoNotUse;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_kvrpcpb_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_GetRegionStateResponse_VoterProgressEntry_DoNotUse;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_kvrpcpb_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_KvPair;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_kvrpcpb_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_ScanDetail;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_kvrpcpb_2eproto ::google::protobuf::internal::SCCInfo<2> scc_info_Context;
@@ -41,7 +43,10 @@ extern PROTOBUF_INTERNAL_EXPORT_protobuf_kvrpcpb_2eproto ::google::protobuf::int
 }  // namespace protobuf_kvrpcpb_2eproto
 namespace protobuf_metapb_2eproto {
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_metapb_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_Peer;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_metapb_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_Progress;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_metapb_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_RegionEpoch;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_metapb_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_RegionLocalState;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_metapb_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_PeerStats;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_metapb_2eproto ::google::protobuf::internal::SCCInfo<2> scc_info_Region;
 }  // namespace protobuf_metapb_2eproto
 namespace kvrpcpb {
@@ -385,6 +390,26 @@ class UnsafeDestroyRangeResponseDefaultTypeInternal {
   ::google::protobuf::internal::ExplicitlyConstructed<UnsafeDestroyRangeResponse>
       _instance;
 } _UnsafeDestroyRangeResponse_default_instance_;
+class GetRegionStateRequestDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<GetRegionStateRequest>
+      _instance;
+} _GetRegionStateRequest_default_instance_;
+class GetRegionStateResponse_VoterProgressEntry_DoNotUseDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<GetRegionStateResponse_VoterProgressEntry_DoNotUse>
+      _instance;
+} _GetRegionStateResponse_VoterProgressEntry_DoNotUse_default_instance_;
+class GetRegionStateResponse_LearnerProgressEntry_DoNotUseDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<GetRegionStateResponse_LearnerProgressEntry_DoNotUse>
+      _instance;
+} _GetRegionStateResponse_LearnerProgressEntry_DoNotUse_default_instance_;
+class GetRegionStateResponseDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<GetRegionStateResponse>
+      _instance;
+} _GetRegionStateResponse_default_instance_;
 }  // namespace kvrpcpb
 namespace protobuf_kvrpcpb_2eproto {
 static void InitDefaultsLockInfo() {
@@ -1423,6 +1448,70 @@ static void InitDefaultsUnsafeDestroyRangeResponse() {
     {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsUnsafeDestroyRangeResponse}, {
       &protobuf_errorpb_2eproto::scc_info_Error.base,}};
 
+static void InitDefaultsGetRegionStateRequest() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::kvrpcpb::_GetRegionStateRequest_default_instance_;
+    new (ptr) ::kvrpcpb::GetRegionStateRequest();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::kvrpcpb::GetRegionStateRequest::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<1> scc_info_GetRegionStateRequest =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsGetRegionStateRequest}, {
+      &protobuf_kvrpcpb_2eproto::scc_info_Context.base,}};
+
+static void InitDefaultsGetRegionStateResponse_VoterProgressEntry_DoNotUse() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::kvrpcpb::_GetRegionStateResponse_VoterProgressEntry_DoNotUse_default_instance_;
+    new (ptr) ::kvrpcpb::GetRegionStateResponse_VoterProgressEntry_DoNotUse();
+  }
+  ::kvrpcpb::GetRegionStateResponse_VoterProgressEntry_DoNotUse::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<1> scc_info_GetRegionStateResponse_VoterProgressEntry_DoNotUse =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsGetRegionStateResponse_VoterProgressEntry_DoNotUse}, {
+      &protobuf_metapb_2eproto::scc_info_Progress.base,}};
+
+static void InitDefaultsGetRegionStateResponse_LearnerProgressEntry_DoNotUse() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::kvrpcpb::_GetRegionStateResponse_LearnerProgressEntry_DoNotUse_default_instance_;
+    new (ptr) ::kvrpcpb::GetRegionStateResponse_LearnerProgressEntry_DoNotUse();
+  }
+  ::kvrpcpb::GetRegionStateResponse_LearnerProgressEntry_DoNotUse::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<1> scc_info_GetRegionStateResponse_LearnerProgressEntry_DoNotUse =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsGetRegionStateResponse_LearnerProgressEntry_DoNotUse}, {
+      &protobuf_metapb_2eproto::scc_info_Progress.base,}};
+
+static void InitDefaultsGetRegionStateResponse() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::kvrpcpb::_GetRegionStateResponse_default_instance_;
+    new (ptr) ::kvrpcpb::GetRegionStateResponse();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::kvrpcpb::GetRegionStateResponse::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<7> scc_info_GetRegionStateResponse =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 7, InitDefaultsGetRegionStateResponse}, {
+      &protobuf_errorpb_2eproto::scc_info_Error.base,
+      &protobuf_metapb_2eproto::scc_info_Region.base,
+      &protobuf_metapb_2eproto::scc_info_Peer.base,
+      &protobuf_metapb_2eproto::scc_info_PeerStats.base,
+      &protobuf_kvrpcpb_2eproto::scc_info_GetRegionStateResponse_VoterProgressEntry_DoNotUse.base,
+      &protobuf_kvrpcpb_2eproto::scc_info_GetRegionStateResponse_LearnerProgressEntry_DoNotUse.base,
+      &protobuf_metapb_2eproto::scc_info_RegionLocalState.base,}};
+
 void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_LockInfo.base);
   ::google::protobuf::internal::InitSCC(&scc_info_KeyError.base);
@@ -1492,9 +1581,13 @@ void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_SplitRegionResponse.base);
   ::google::protobuf::internal::InitSCC(&scc_info_UnsafeDestroyRangeRequest.base);
   ::google::protobuf::internal::InitSCC(&scc_info_UnsafeDestroyRangeResponse.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_GetRegionStateRequest.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_GetRegionStateResponse_VoterProgressEntry_DoNotUse.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_GetRegionStateResponse_LearnerProgressEntry_DoNotUse.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_GetRegionStateResponse.base);
 }
 
-::google::protobuf::Metadata file_level_metadata[68];
+::google::protobuf::Metadata file_level_metadata[72];
 const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[6];
 
 const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
@@ -2047,6 +2140,49 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::kvrpcpb::UnsafeDestroyRangeResponse, region_error_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::kvrpcpb::UnsafeDestroyRangeResponse, error_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::kvrpcpb::GetRegionStateRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::kvrpcpb::GetRegionStateRequest, context_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::kvrpcpb::GetRegionStateResponse_VoterProgressEntry_DoNotUse, _has_bits_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::kvrpcpb::GetRegionStateResponse_VoterProgressEntry_DoNotUse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::kvrpcpb::GetRegionStateResponse_VoterProgressEntry_DoNotUse, key_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::kvrpcpb::GetRegionStateResponse_VoterProgressEntry_DoNotUse, value_),
+  0,
+  1,
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::kvrpcpb::GetRegionStateResponse_LearnerProgressEntry_DoNotUse, _has_bits_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::kvrpcpb::GetRegionStateResponse_LearnerProgressEntry_DoNotUse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::kvrpcpb::GetRegionStateResponse_LearnerProgressEntry_DoNotUse, key_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::kvrpcpb::GetRegionStateResponse_LearnerProgressEntry_DoNotUse, value_),
+  0,
+  1,
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::kvrpcpb::GetRegionStateResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::kvrpcpb::GetRegionStateResponse, region_error_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::kvrpcpb::GetRegionStateResponse, region_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::kvrpcpb::GetRegionStateResponse, leader_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::kvrpcpb::GetRegionStateResponse, down_peers_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::kvrpcpb::GetRegionStateResponse, pending_peers_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::kvrpcpb::GetRegionStateResponse, bytes_written_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::kvrpcpb::GetRegionStateResponse, bytes_read_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::kvrpcpb::GetRegionStateResponse, keys_written_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::kvrpcpb::GetRegionStateResponse, keys_read_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::kvrpcpb::GetRegionStateResponse, approximate_size_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::kvrpcpb::GetRegionStateResponse, approximate_keys_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::kvrpcpb::GetRegionStateResponse, voter_progress_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::kvrpcpb::GetRegionStateResponse, learner_progress_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::kvrpcpb::GetRegionStateResponse, region_local_state_),
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::kvrpcpb::LockInfo)},
@@ -2117,6 +2253,10 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROT
   { 526, -1, sizeof(::kvrpcpb::SplitRegionResponse)},
   { 534, -1, sizeof(::kvrpcpb::UnsafeDestroyRangeRequest)},
   { 542, -1, sizeof(::kvrpcpb::UnsafeDestroyRangeResponse)},
+  { 549, -1, sizeof(::kvrpcpb::GetRegionStateRequest)},
+  { 555, 562, sizeof(::kvrpcpb::GetRegionStateResponse_VoterProgressEntry_DoNotUse)},
+  { 564, 571, sizeof(::kvrpcpb::GetRegionStateResponse_LearnerProgressEntry_DoNotUse)},
+  { 573, -1, sizeof(::kvrpcpb::GetRegionStateResponse)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -2188,6 +2328,10 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&::kvrpcpb::_SplitRegionResponse_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::kvrpcpb::_UnsafeDestroyRangeRequest_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::kvrpcpb::_UnsafeDestroyRangeResponse_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::kvrpcpb::_GetRegionStateRequest_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::kvrpcpb::_GetRegionStateResponse_VoterProgressEntry_DoNotUse_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::kvrpcpb::_GetRegionStateResponse_LearnerProgressEntry_DoNotUse_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::kvrpcpb::_GetRegionStateResponse_default_instance_),
 };
 
 void protobuf_AssignDescriptors() {
@@ -2205,7 +2349,7 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_PROTOBUF_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 68);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 72);
 }
 
 void AddDescriptorsImpl() {
@@ -2379,19 +2523,38 @@ void AddDescriptorsImpl() {
       "est\022!\n\007context\030\001 \001(\0132\020.kvrpcpb.Context\022\021"
       "\n\tstart_key\030\002 \001(\014\022\017\n\007end_key\030\003 \001(\014\"Q\n\032Un"
       "safeDestroyRangeResponse\022$\n\014region_error"
-      "\030\001 \001(\0132\016.errorpb.Error\022\r\n\005error\030\002 \001(\t*+\n"
-      "\nCommandPri\022\n\n\006Normal\020\000\022\007\n\003Low\020\001\022\010\n\004High"
-      "\020\002* \n\016IsolationLevel\022\006\n\002SI\020\000\022\006\n\002RC\020\001*M\n\010"
-      "ReadMode\022\021\n\rRAFT_LOG_READ\020\000\022\016\n\nREAD_INDE"
-      "X\020\001\022\016\n\nLEASE_READ\020\002\022\016\n\nSTALE_READ\020\003*.\n\002O"
-      "p\022\007\n\003Put\020\000\022\007\n\003Del\020\001\022\010\n\004Lock\020\002\022\014\n\010Rollbac"
-      "k\020\003*%\n\016CASRequestType\022\007\n\003Set\020\000\022\n\n\006Remove"
-      "\020\001*1\n\tCASResult\022\013\n\007Unknown\020\000\022\013\n\007Success\020"
-      "\001\022\n\n\006Falied\020\002B&\n\030com.pingcap.tikv.kvprot"
-      "o\310\342\036\001\340\342\036\001\320\342\036\001b\006proto3"
+      "\030\001 \001(\0132\016.errorpb.Error\022\r\n\005error\030\002 \001(\t\":\n"
+      "\025GetRegionStateRequest\022!\n\007context\030\001 \001(\0132"
+      "\020.kvrpcpb.Context\"\272\005\n\026GetRegionStateResp"
+      "onse\022$\n\014region_error\030\001 \001(\0132\016.errorpb.Err"
+      "or\022\036\n\006region\030\002 \001(\0132\016.metapb.Region\022\034\n\006le"
+      "ader\030\003 \001(\0132\014.metapb.Peer\022%\n\ndown_peers\030\004"
+      " \003(\0132\021.metapb.PeerStats\022#\n\rpending_peers"
+      "\030\005 \003(\0132\014.metapb.Peer\022\025\n\rbytes_written\030\006 "
+      "\001(\004\022\022\n\nbytes_read\030\007 \001(\004\022\024\n\014keys_written\030"
+      "\010 \001(\004\022\021\n\tkeys_read\030\t \001(\004\022\030\n\020approximate_"
+      "size\030\n \001(\004\022\030\n\020approximate_keys\030\r \001(\004\022J\n\016"
+      "voter_progress\030\016 \003(\01322.kvrpcpb.GetRegion"
+      "StateResponse.VoterProgressEntry\022N\n\020lear"
+      "ner_progress\030\017 \003(\01324.kvrpcpb.GetRegionSt"
+      "ateResponse.LearnerProgressEntry\0224\n\022regi"
+      "on_local_state\030\020 \001(\0132\030.metapb.RegionLoca"
+      "lState\032F\n\022VoterProgressEntry\022\013\n\003key\030\001 \001("
+      "\004\022\037\n\005value\030\002 \001(\0132\020.metapb.Progress:\0028\001\032H"
+      "\n\024LearnerProgressEntry\022\013\n\003key\030\001 \001(\004\022\037\n\005v"
+      "alue\030\002 \001(\0132\020.metapb.Progress:\0028\001J\004\010\013\020\014*+"
+      "\n\nCommandPri\022\n\n\006Normal\020\000\022\007\n\003Low\020\001\022\010\n\004Hig"
+      "h\020\002* \n\016IsolationLevel\022\006\n\002SI\020\000\022\006\n\002RC\020\001*M\n"
+      "\010ReadMode\022\021\n\rRAFT_LOG_READ\020\000\022\016\n\nREAD_IND"
+      "EX\020\001\022\016\n\nLEASE_READ\020\002\022\016\n\nSTALE_READ\020\003*.\n\002"
+      "Op\022\007\n\003Put\020\000\022\007\n\003Del\020\001\022\010\n\004Lock\020\002\022\014\n\010Rollba"
+      "ck\020\003*%\n\016CASRequestType\022\007\n\003Set\020\000\022\n\n\006Remov"
+      "e\020\001*1\n\tCASResult\022\013\n\007Unknown\020\000\022\013\n\007Success"
+      "\020\001\022\n\n\006Falied\020\002B&\n\030com.pingcap.tikv.kvpro"
+      "to\310\342\036\001\340\342\036\001\320\342\036\001b\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 7101);
+      descriptor, 7862);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "kvrpcpb.proto", &protobuf_RegisterTypes);
   ::protobuf_metapb_2eproto::AddDescriptors();
@@ -24973,6 +25136,1245 @@ void UnsafeDestroyRangeResponse::InternalSwap(UnsafeDestroyRangeResponse* other)
 }
 
 
+// ===================================================================
+
+void GetRegionStateRequest::InitAsDefaultInstance() {
+  ::kvrpcpb::_GetRegionStateRequest_default_instance_._instance.get_mutable()->context_ = const_cast< ::kvrpcpb::Context*>(
+      ::kvrpcpb::Context::internal_default_instance());
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int GetRegionStateRequest::kContextFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+GetRegionStateRequest::GetRegionStateRequest()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_kvrpcpb_2eproto::scc_info_GetRegionStateRequest.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:kvrpcpb.GetRegionStateRequest)
+}
+GetRegionStateRequest::GetRegionStateRequest(const GetRegionStateRequest& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from.has_context()) {
+    context_ = new ::kvrpcpb::Context(*from.context_);
+  } else {
+    context_ = NULL;
+  }
+  // @@protoc_insertion_point(copy_constructor:kvrpcpb.GetRegionStateRequest)
+}
+
+void GetRegionStateRequest::SharedCtor() {
+  context_ = NULL;
+}
+
+GetRegionStateRequest::~GetRegionStateRequest() {
+  // @@protoc_insertion_point(destructor:kvrpcpb.GetRegionStateRequest)
+  SharedDtor();
+}
+
+void GetRegionStateRequest::SharedDtor() {
+  if (this != internal_default_instance()) delete context_;
+}
+
+void GetRegionStateRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ::google::protobuf::Descriptor* GetRegionStateRequest::descriptor() {
+  ::protobuf_kvrpcpb_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_kvrpcpb_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const GetRegionStateRequest& GetRegionStateRequest::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_kvrpcpb_2eproto::scc_info_GetRegionStateRequest.base);
+  return *internal_default_instance();
+}
+
+
+void GetRegionStateRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:kvrpcpb.GetRegionStateRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaNoVirtual() == NULL && context_ != NULL) {
+    delete context_;
+  }
+  context_ = NULL;
+  _internal_metadata_.Clear();
+}
+
+bool GetRegionStateRequest::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:kvrpcpb.GetRegionStateRequest)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // .kvrpcpb.Context context = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_context()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:kvrpcpb.GetRegionStateRequest)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:kvrpcpb.GetRegionStateRequest)
+  return false;
+#undef DO_
+}
+
+void GetRegionStateRequest::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:kvrpcpb.GetRegionStateRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .kvrpcpb.Context context = 1;
+  if (this->has_context()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1, this->_internal_context(), output);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:kvrpcpb.GetRegionStateRequest)
+}
+
+::google::protobuf::uint8* GetRegionStateRequest::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:kvrpcpb.GetRegionStateRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .kvrpcpb.Context context = 1;
+  if (this->has_context()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        1, this->_internal_context(), deterministic, target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:kvrpcpb.GetRegionStateRequest)
+  return target;
+}
+
+size_t GetRegionStateRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:kvrpcpb.GetRegionStateRequest)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  // .kvrpcpb.Context context = 1;
+  if (this->has_context()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSize(
+        *context_);
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void GetRegionStateRequest::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:kvrpcpb.GetRegionStateRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const GetRegionStateRequest* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const GetRegionStateRequest>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:kvrpcpb.GetRegionStateRequest)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:kvrpcpb.GetRegionStateRequest)
+    MergeFrom(*source);
+  }
+}
+
+void GetRegionStateRequest::MergeFrom(const GetRegionStateRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:kvrpcpb.GetRegionStateRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_context()) {
+    mutable_context()->::kvrpcpb::Context::MergeFrom(from.context());
+  }
+}
+
+void GetRegionStateRequest::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:kvrpcpb.GetRegionStateRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void GetRegionStateRequest::CopyFrom(const GetRegionStateRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:kvrpcpb.GetRegionStateRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetRegionStateRequest::IsInitialized() const {
+  return true;
+}
+
+void GetRegionStateRequest::Swap(GetRegionStateRequest* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void GetRegionStateRequest::InternalSwap(GetRegionStateRequest* other) {
+  using std::swap;
+  swap(context_, other->context_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::google::protobuf::Metadata GetRegionStateRequest::GetMetadata() const {
+  protobuf_kvrpcpb_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_kvrpcpb_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+
+// ===================================================================
+
+GetRegionStateResponse_VoterProgressEntry_DoNotUse::GetRegionStateResponse_VoterProgressEntry_DoNotUse() {}
+GetRegionStateResponse_VoterProgressEntry_DoNotUse::GetRegionStateResponse_VoterProgressEntry_DoNotUse(::google::protobuf::Arena* arena) : SuperType(arena) {}
+void GetRegionStateResponse_VoterProgressEntry_DoNotUse::MergeFrom(const GetRegionStateResponse_VoterProgressEntry_DoNotUse& other) {
+  MergeFromInternal(other);
+}
+::google::protobuf::Metadata GetRegionStateResponse_VoterProgressEntry_DoNotUse::GetMetadata() const {
+  ::protobuf_kvrpcpb_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_kvrpcpb_2eproto::file_level_metadata[69];
+}
+void GetRegionStateResponse_VoterProgressEntry_DoNotUse::MergeFrom(
+    const ::google::protobuf::Message& other) {
+  ::google::protobuf::Message::MergeFrom(other);
+}
+
+
+// ===================================================================
+
+GetRegionStateResponse_LearnerProgressEntry_DoNotUse::GetRegionStateResponse_LearnerProgressEntry_DoNotUse() {}
+GetRegionStateResponse_LearnerProgressEntry_DoNotUse::GetRegionStateResponse_LearnerProgressEntry_DoNotUse(::google::protobuf::Arena* arena) : SuperType(arena) {}
+void GetRegionStateResponse_LearnerProgressEntry_DoNotUse::MergeFrom(const GetRegionStateResponse_LearnerProgressEntry_DoNotUse& other) {
+  MergeFromInternal(other);
+}
+::google::protobuf::Metadata GetRegionStateResponse_LearnerProgressEntry_DoNotUse::GetMetadata() const {
+  ::protobuf_kvrpcpb_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_kvrpcpb_2eproto::file_level_metadata[70];
+}
+void GetRegionStateResponse_LearnerProgressEntry_DoNotUse::MergeFrom(
+    const ::google::protobuf::Message& other) {
+  ::google::protobuf::Message::MergeFrom(other);
+}
+
+
+// ===================================================================
+
+void GetRegionStateResponse::InitAsDefaultInstance() {
+  ::kvrpcpb::_GetRegionStateResponse_default_instance_._instance.get_mutable()->region_error_ = const_cast< ::errorpb::Error*>(
+      ::errorpb::Error::internal_default_instance());
+  ::kvrpcpb::_GetRegionStateResponse_default_instance_._instance.get_mutable()->region_ = const_cast< ::metapb::Region*>(
+      ::metapb::Region::internal_default_instance());
+  ::kvrpcpb::_GetRegionStateResponse_default_instance_._instance.get_mutable()->leader_ = const_cast< ::metapb::Peer*>(
+      ::metapb::Peer::internal_default_instance());
+  ::kvrpcpb::_GetRegionStateResponse_default_instance_._instance.get_mutable()->region_local_state_ = const_cast< ::metapb::RegionLocalState*>(
+      ::metapb::RegionLocalState::internal_default_instance());
+}
+void GetRegionStateResponse::clear_region_error() {
+  if (GetArenaNoVirtual() == NULL && region_error_ != NULL) {
+    delete region_error_;
+  }
+  region_error_ = NULL;
+}
+void GetRegionStateResponse::clear_region() {
+  if (GetArenaNoVirtual() == NULL && region_ != NULL) {
+    delete region_;
+  }
+  region_ = NULL;
+}
+void GetRegionStateResponse::clear_leader() {
+  if (GetArenaNoVirtual() == NULL && leader_ != NULL) {
+    delete leader_;
+  }
+  leader_ = NULL;
+}
+void GetRegionStateResponse::clear_down_peers() {
+  down_peers_.Clear();
+}
+void GetRegionStateResponse::clear_pending_peers() {
+  pending_peers_.Clear();
+}
+void GetRegionStateResponse::clear_voter_progress() {
+  voter_progress_.Clear();
+}
+void GetRegionStateResponse::clear_learner_progress() {
+  learner_progress_.Clear();
+}
+void GetRegionStateResponse::clear_region_local_state() {
+  if (GetArenaNoVirtual() == NULL && region_local_state_ != NULL) {
+    delete region_local_state_;
+  }
+  region_local_state_ = NULL;
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int GetRegionStateResponse::kRegionErrorFieldNumber;
+const int GetRegionStateResponse::kRegionFieldNumber;
+const int GetRegionStateResponse::kLeaderFieldNumber;
+const int GetRegionStateResponse::kDownPeersFieldNumber;
+const int GetRegionStateResponse::kPendingPeersFieldNumber;
+const int GetRegionStateResponse::kBytesWrittenFieldNumber;
+const int GetRegionStateResponse::kBytesReadFieldNumber;
+const int GetRegionStateResponse::kKeysWrittenFieldNumber;
+const int GetRegionStateResponse::kKeysReadFieldNumber;
+const int GetRegionStateResponse::kApproximateSizeFieldNumber;
+const int GetRegionStateResponse::kApproximateKeysFieldNumber;
+const int GetRegionStateResponse::kVoterProgressFieldNumber;
+const int GetRegionStateResponse::kLearnerProgressFieldNumber;
+const int GetRegionStateResponse::kRegionLocalStateFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+GetRegionStateResponse::GetRegionStateResponse()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_kvrpcpb_2eproto::scc_info_GetRegionStateResponse.base);
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:kvrpcpb.GetRegionStateResponse)
+}
+GetRegionStateResponse::GetRegionStateResponse(const GetRegionStateResponse& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      down_peers_(from.down_peers_),
+      pending_peers_(from.pending_peers_) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  voter_progress_.MergeFrom(from.voter_progress_);
+  learner_progress_.MergeFrom(from.learner_progress_);
+  if (from.has_region_error()) {
+    region_error_ = new ::errorpb::Error(*from.region_error_);
+  } else {
+    region_error_ = NULL;
+  }
+  if (from.has_region()) {
+    region_ = new ::metapb::Region(*from.region_);
+  } else {
+    region_ = NULL;
+  }
+  if (from.has_leader()) {
+    leader_ = new ::metapb::Peer(*from.leader_);
+  } else {
+    leader_ = NULL;
+  }
+  if (from.has_region_local_state()) {
+    region_local_state_ = new ::metapb::RegionLocalState(*from.region_local_state_);
+  } else {
+    region_local_state_ = NULL;
+  }
+  ::memcpy(&bytes_written_, &from.bytes_written_,
+    static_cast<size_t>(reinterpret_cast<char*>(&approximate_keys_) -
+    reinterpret_cast<char*>(&bytes_written_)) + sizeof(approximate_keys_));
+  // @@protoc_insertion_point(copy_constructor:kvrpcpb.GetRegionStateResponse)
+}
+
+void GetRegionStateResponse::SharedCtor() {
+  ::memset(&region_error_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&approximate_keys_) -
+      reinterpret_cast<char*>(&region_error_)) + sizeof(approximate_keys_));
+}
+
+GetRegionStateResponse::~GetRegionStateResponse() {
+  // @@protoc_insertion_point(destructor:kvrpcpb.GetRegionStateResponse)
+  SharedDtor();
+}
+
+void GetRegionStateResponse::SharedDtor() {
+  if (this != internal_default_instance()) delete region_error_;
+  if (this != internal_default_instance()) delete region_;
+  if (this != internal_default_instance()) delete leader_;
+  if (this != internal_default_instance()) delete region_local_state_;
+}
+
+void GetRegionStateResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ::google::protobuf::Descriptor* GetRegionStateResponse::descriptor() {
+  ::protobuf_kvrpcpb_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_kvrpcpb_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const GetRegionStateResponse& GetRegionStateResponse::default_instance() {
+  ::google::protobuf::internal::InitSCC(&protobuf_kvrpcpb_2eproto::scc_info_GetRegionStateResponse.base);
+  return *internal_default_instance();
+}
+
+
+void GetRegionStateResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:kvrpcpb.GetRegionStateResponse)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  down_peers_.Clear();
+  pending_peers_.Clear();
+  voter_progress_.Clear();
+  learner_progress_.Clear();
+  if (GetArenaNoVirtual() == NULL && region_error_ != NULL) {
+    delete region_error_;
+  }
+  region_error_ = NULL;
+  if (GetArenaNoVirtual() == NULL && region_ != NULL) {
+    delete region_;
+  }
+  region_ = NULL;
+  if (GetArenaNoVirtual() == NULL && leader_ != NULL) {
+    delete leader_;
+  }
+  leader_ = NULL;
+  if (GetArenaNoVirtual() == NULL && region_local_state_ != NULL) {
+    delete region_local_state_;
+  }
+  region_local_state_ = NULL;
+  ::memset(&bytes_written_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&approximate_keys_) -
+      reinterpret_cast<char*>(&bytes_written_)) + sizeof(approximate_keys_));
+  _internal_metadata_.Clear();
+}
+
+bool GetRegionStateResponse::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:kvrpcpb.GetRegionStateResponse)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(16383u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // .errorpb.Error region_error = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_region_error()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .metapb.Region region = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_region()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .metapb.Peer leader = 3;
+      case 3: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(26u /* 26 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_leader()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // repeated .metapb.PeerStats down_peers = 4;
+      case 4: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(34u /* 34 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+                input, add_down_peers()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // repeated .metapb.Peer pending_peers = 5;
+      case 5: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(42u /* 42 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+                input, add_pending_peers()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // uint64 bytes_written = 6;
+      case 6: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(48u /* 48 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
+                 input, &bytes_written_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // uint64 bytes_read = 7;
+      case 7: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(56u /* 56 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
+                 input, &bytes_read_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // uint64 keys_written = 8;
+      case 8: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(64u /* 64 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
+                 input, &keys_written_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // uint64 keys_read = 9;
+      case 9: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(72u /* 72 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
+                 input, &keys_read_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // uint64 approximate_size = 10;
+      case 10: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(80u /* 80 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
+                 input, &approximate_size_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // uint64 approximate_keys = 13;
+      case 13: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(104u /* 104 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
+                 input, &approximate_keys_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // map<uint64, .metapb.Progress> voter_progress = 14;
+      case 14: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(114u /* 114 & 0xFF */)) {
+          GetRegionStateResponse_VoterProgressEntry_DoNotUse::Parser< ::google::protobuf::internal::MapField<
+              GetRegionStateResponse_VoterProgressEntry_DoNotUse,
+              ::google::protobuf::uint64, ::metapb::Progress,
+              ::google::protobuf::internal::WireFormatLite::TYPE_UINT64,
+              ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE,
+              0 >,
+            ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress > > parser(&voter_progress_);
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+              input, &parser));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // map<uint64, .metapb.Progress> learner_progress = 15;
+      case 15: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(122u /* 122 & 0xFF */)) {
+          GetRegionStateResponse_LearnerProgressEntry_DoNotUse::Parser< ::google::protobuf::internal::MapField<
+              GetRegionStateResponse_LearnerProgressEntry_DoNotUse,
+              ::google::protobuf::uint64, ::metapb::Progress,
+              ::google::protobuf::internal::WireFormatLite::TYPE_UINT64,
+              ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE,
+              0 >,
+            ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress > > parser(&learner_progress_);
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+              input, &parser));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .metapb.RegionLocalState region_local_state = 16;
+      case 16: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(130u /* 130 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_region_local_state()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:kvrpcpb.GetRegionStateResponse)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:kvrpcpb.GetRegionStateResponse)
+  return false;
+#undef DO_
+}
+
+void GetRegionStateResponse::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:kvrpcpb.GetRegionStateResponse)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .errorpb.Error region_error = 1;
+  if (this->has_region_error()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1, this->_internal_region_error(), output);
+  }
+
+  // .metapb.Region region = 2;
+  if (this->has_region()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      2, this->_internal_region(), output);
+  }
+
+  // .metapb.Peer leader = 3;
+  if (this->has_leader()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      3, this->_internal_leader(), output);
+  }
+
+  // repeated .metapb.PeerStats down_peers = 4;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->down_peers_size()); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      4,
+      this->down_peers(static_cast<int>(i)),
+      output);
+  }
+
+  // repeated .metapb.Peer pending_peers = 5;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->pending_peers_size()); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      5,
+      this->pending_peers(static_cast<int>(i)),
+      output);
+  }
+
+  // uint64 bytes_written = 6;
+  if (this->bytes_written() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt64(6, this->bytes_written(), output);
+  }
+
+  // uint64 bytes_read = 7;
+  if (this->bytes_read() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt64(7, this->bytes_read(), output);
+  }
+
+  // uint64 keys_written = 8;
+  if (this->keys_written() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt64(8, this->keys_written(), output);
+  }
+
+  // uint64 keys_read = 9;
+  if (this->keys_read() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt64(9, this->keys_read(), output);
+  }
+
+  // uint64 approximate_size = 10;
+  if (this->approximate_size() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt64(10, this->approximate_size(), output);
+  }
+
+  // uint64 approximate_keys = 13;
+  if (this->approximate_keys() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt64(13, this->approximate_keys(), output);
+  }
+
+  // map<uint64, .metapb.Progress> voter_progress = 14;
+  if (!this->voter_progress().empty()) {
+    typedef ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_pointer
+        ConstPtr;
+    typedef ::google::protobuf::internal::SortItem< ::google::protobuf::uint64, ConstPtr > SortItem;
+    typedef ::google::protobuf::internal::CompareByFirstField<SortItem> Less;
+
+    if (output->IsSerializationDeterministic() &&
+        this->voter_progress().size() > 1) {
+      ::std::unique_ptr<SortItem[]> items(
+          new SortItem[this->voter_progress().size()]);
+      typedef ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::size_type size_type;
+      size_type n = 0;
+      for (::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_iterator
+          it = this->voter_progress().begin();
+          it != this->voter_progress().end(); ++it, ++n) {
+        items[static_cast<ptrdiff_t>(n)] = SortItem(&*it);
+      }
+      ::std::sort(&items[0], &items[static_cast<ptrdiff_t>(n)], Less());
+      ::std::unique_ptr<GetRegionStateResponse_VoterProgressEntry_DoNotUse> entry;
+      for (size_type i = 0; i < n; i++) {
+        entry.reset(voter_progress_.NewEntryWrapper(
+            items[static_cast<ptrdiff_t>(i)].second->first, items[static_cast<ptrdiff_t>(i)].second->second));
+        ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+            14, *entry, output);
+      }
+    } else {
+      ::std::unique_ptr<GetRegionStateResponse_VoterProgressEntry_DoNotUse> entry;
+      for (::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_iterator
+          it = this->voter_progress().begin();
+          it != this->voter_progress().end(); ++it) {
+        entry.reset(voter_progress_.NewEntryWrapper(
+            it->first, it->second));
+        ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+            14, *entry, output);
+      }
+    }
+  }
+
+  // map<uint64, .metapb.Progress> learner_progress = 15;
+  if (!this->learner_progress().empty()) {
+    typedef ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_pointer
+        ConstPtr;
+    typedef ::google::protobuf::internal::SortItem< ::google::protobuf::uint64, ConstPtr > SortItem;
+    typedef ::google::protobuf::internal::CompareByFirstField<SortItem> Less;
+
+    if (output->IsSerializationDeterministic() &&
+        this->learner_progress().size() > 1) {
+      ::std::unique_ptr<SortItem[]> items(
+          new SortItem[this->learner_progress().size()]);
+      typedef ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::size_type size_type;
+      size_type n = 0;
+      for (::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_iterator
+          it = this->learner_progress().begin();
+          it != this->learner_progress().end(); ++it, ++n) {
+        items[static_cast<ptrdiff_t>(n)] = SortItem(&*it);
+      }
+      ::std::sort(&items[0], &items[static_cast<ptrdiff_t>(n)], Less());
+      ::std::unique_ptr<GetRegionStateResponse_LearnerProgressEntry_DoNotUse> entry;
+      for (size_type i = 0; i < n; i++) {
+        entry.reset(learner_progress_.NewEntryWrapper(
+            items[static_cast<ptrdiff_t>(i)].second->first, items[static_cast<ptrdiff_t>(i)].second->second));
+        ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+            15, *entry, output);
+      }
+    } else {
+      ::std::unique_ptr<GetRegionStateResponse_LearnerProgressEntry_DoNotUse> entry;
+      for (::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_iterator
+          it = this->learner_progress().begin();
+          it != this->learner_progress().end(); ++it) {
+        entry.reset(learner_progress_.NewEntryWrapper(
+            it->first, it->second));
+        ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+            15, *entry, output);
+      }
+    }
+  }
+
+  // .metapb.RegionLocalState region_local_state = 16;
+  if (this->has_region_local_state()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      16, this->_internal_region_local_state(), output);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:kvrpcpb.GetRegionStateResponse)
+}
+
+::google::protobuf::uint8* GetRegionStateResponse::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:kvrpcpb.GetRegionStateResponse)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .errorpb.Error region_error = 1;
+  if (this->has_region_error()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        1, this->_internal_region_error(), deterministic, target);
+  }
+
+  // .metapb.Region region = 2;
+  if (this->has_region()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        2, this->_internal_region(), deterministic, target);
+  }
+
+  // .metapb.Peer leader = 3;
+  if (this->has_leader()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        3, this->_internal_leader(), deterministic, target);
+  }
+
+  // repeated .metapb.PeerStats down_peers = 4;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->down_peers_size()); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        4, this->down_peers(static_cast<int>(i)), deterministic, target);
+  }
+
+  // repeated .metapb.Peer pending_peers = 5;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->pending_peers_size()); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        5, this->pending_peers(static_cast<int>(i)), deterministic, target);
+  }
+
+  // uint64 bytes_written = 6;
+  if (this->bytes_written() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(6, this->bytes_written(), target);
+  }
+
+  // uint64 bytes_read = 7;
+  if (this->bytes_read() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(7, this->bytes_read(), target);
+  }
+
+  // uint64 keys_written = 8;
+  if (this->keys_written() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(8, this->keys_written(), target);
+  }
+
+  // uint64 keys_read = 9;
+  if (this->keys_read() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(9, this->keys_read(), target);
+  }
+
+  // uint64 approximate_size = 10;
+  if (this->approximate_size() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(10, this->approximate_size(), target);
+  }
+
+  // uint64 approximate_keys = 13;
+  if (this->approximate_keys() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(13, this->approximate_keys(), target);
+  }
+
+  // map<uint64, .metapb.Progress> voter_progress = 14;
+  if (!this->voter_progress().empty()) {
+    typedef ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_pointer
+        ConstPtr;
+    typedef ::google::protobuf::internal::SortItem< ::google::protobuf::uint64, ConstPtr > SortItem;
+    typedef ::google::protobuf::internal::CompareByFirstField<SortItem> Less;
+
+    if (deterministic &&
+        this->voter_progress().size() > 1) {
+      ::std::unique_ptr<SortItem[]> items(
+          new SortItem[this->voter_progress().size()]);
+      typedef ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::size_type size_type;
+      size_type n = 0;
+      for (::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_iterator
+          it = this->voter_progress().begin();
+          it != this->voter_progress().end(); ++it, ++n) {
+        items[static_cast<ptrdiff_t>(n)] = SortItem(&*it);
+      }
+      ::std::sort(&items[0], &items[static_cast<ptrdiff_t>(n)], Less());
+      ::std::unique_ptr<GetRegionStateResponse_VoterProgressEntry_DoNotUse> entry;
+      for (size_type i = 0; i < n; i++) {
+        entry.reset(voter_progress_.NewEntryWrapper(
+            items[static_cast<ptrdiff_t>(i)].second->first, items[static_cast<ptrdiff_t>(i)].second->second));
+        target = ::google::protobuf::internal::WireFormatLite::
+                   InternalWriteMessageNoVirtualToArray(
+                       14, *entry, deterministic, target);
+;
+      }
+    } else {
+      ::std::unique_ptr<GetRegionStateResponse_VoterProgressEntry_DoNotUse> entry;
+      for (::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_iterator
+          it = this->voter_progress().begin();
+          it != this->voter_progress().end(); ++it) {
+        entry.reset(voter_progress_.NewEntryWrapper(
+            it->first, it->second));
+        target = ::google::protobuf::internal::WireFormatLite::
+                   InternalWriteMessageNoVirtualToArray(
+                       14, *entry, deterministic, target);
+;
+      }
+    }
+  }
+
+  // map<uint64, .metapb.Progress> learner_progress = 15;
+  if (!this->learner_progress().empty()) {
+    typedef ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_pointer
+        ConstPtr;
+    typedef ::google::protobuf::internal::SortItem< ::google::protobuf::uint64, ConstPtr > SortItem;
+    typedef ::google::protobuf::internal::CompareByFirstField<SortItem> Less;
+
+    if (deterministic &&
+        this->learner_progress().size() > 1) {
+      ::std::unique_ptr<SortItem[]> items(
+          new SortItem[this->learner_progress().size()]);
+      typedef ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::size_type size_type;
+      size_type n = 0;
+      for (::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_iterator
+          it = this->learner_progress().begin();
+          it != this->learner_progress().end(); ++it, ++n) {
+        items[static_cast<ptrdiff_t>(n)] = SortItem(&*it);
+      }
+      ::std::sort(&items[0], &items[static_cast<ptrdiff_t>(n)], Less());
+      ::std::unique_ptr<GetRegionStateResponse_LearnerProgressEntry_DoNotUse> entry;
+      for (size_type i = 0; i < n; i++) {
+        entry.reset(learner_progress_.NewEntryWrapper(
+            items[static_cast<ptrdiff_t>(i)].second->first, items[static_cast<ptrdiff_t>(i)].second->second));
+        target = ::google::protobuf::internal::WireFormatLite::
+                   InternalWriteMessageNoVirtualToArray(
+                       15, *entry, deterministic, target);
+;
+      }
+    } else {
+      ::std::unique_ptr<GetRegionStateResponse_LearnerProgressEntry_DoNotUse> entry;
+      for (::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_iterator
+          it = this->learner_progress().begin();
+          it != this->learner_progress().end(); ++it) {
+        entry.reset(learner_progress_.NewEntryWrapper(
+            it->first, it->second));
+        target = ::google::protobuf::internal::WireFormatLite::
+                   InternalWriteMessageNoVirtualToArray(
+                       15, *entry, deterministic, target);
+;
+      }
+    }
+  }
+
+  // .metapb.RegionLocalState region_local_state = 16;
+  if (this->has_region_local_state()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        16, this->_internal_region_local_state(), deterministic, target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:kvrpcpb.GetRegionStateResponse)
+  return target;
+}
+
+size_t GetRegionStateResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:kvrpcpb.GetRegionStateResponse)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  // repeated .metapb.PeerStats down_peers = 4;
+  {
+    unsigned int count = static_cast<unsigned int>(this->down_peers_size());
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          this->down_peers(static_cast<int>(i)));
+    }
+  }
+
+  // repeated .metapb.Peer pending_peers = 5;
+  {
+    unsigned int count = static_cast<unsigned int>(this->pending_peers_size());
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          this->pending_peers(static_cast<int>(i)));
+    }
+  }
+
+  // map<uint64, .metapb.Progress> voter_progress = 14;
+  total_size += 1 *
+      ::google::protobuf::internal::FromIntSize(this->voter_progress_size());
+  {
+    ::std::unique_ptr<GetRegionStateResponse_VoterProgressEntry_DoNotUse> entry;
+    for (::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_iterator
+        it = this->voter_progress().begin();
+        it != this->voter_progress().end(); ++it) {
+      entry.reset(voter_progress_.NewEntryWrapper(it->first, it->second));
+      total_size += ::google::protobuf::internal::WireFormatLite::
+          MessageSizeNoVirtual(*entry);
+    }
+  }
+
+  // map<uint64, .metapb.Progress> learner_progress = 15;
+  total_size += 1 *
+      ::google::protobuf::internal::FromIntSize(this->learner_progress_size());
+  {
+    ::std::unique_ptr<GetRegionStateResponse_LearnerProgressEntry_DoNotUse> entry;
+    for (::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_iterator
+        it = this->learner_progress().begin();
+        it != this->learner_progress().end(); ++it) {
+      entry.reset(learner_progress_.NewEntryWrapper(it->first, it->second));
+      total_size += ::google::protobuf::internal::WireFormatLite::
+          MessageSizeNoVirtual(*entry);
+    }
+  }
+
+  // .errorpb.Error region_error = 1;
+  if (this->has_region_error()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSize(
+        *region_error_);
+  }
+
+  // .metapb.Region region = 2;
+  if (this->has_region()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSize(
+        *region_);
+  }
+
+  // .metapb.Peer leader = 3;
+  if (this->has_leader()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSize(
+        *leader_);
+  }
+
+  // .metapb.RegionLocalState region_local_state = 16;
+  if (this->has_region_local_state()) {
+    total_size += 2 +
+      ::google::protobuf::internal::WireFormatLite::MessageSize(
+        *region_local_state_);
+  }
+
+  // uint64 bytes_written = 6;
+  if (this->bytes_written() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt64Size(
+        this->bytes_written());
+  }
+
+  // uint64 bytes_read = 7;
+  if (this->bytes_read() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt64Size(
+        this->bytes_read());
+  }
+
+  // uint64 keys_written = 8;
+  if (this->keys_written() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt64Size(
+        this->keys_written());
+  }
+
+  // uint64 keys_read = 9;
+  if (this->keys_read() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt64Size(
+        this->keys_read());
+  }
+
+  // uint64 approximate_size = 10;
+  if (this->approximate_size() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt64Size(
+        this->approximate_size());
+  }
+
+  // uint64 approximate_keys = 13;
+  if (this->approximate_keys() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt64Size(
+        this->approximate_keys());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void GetRegionStateResponse::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:kvrpcpb.GetRegionStateResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  const GetRegionStateResponse* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const GetRegionStateResponse>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:kvrpcpb.GetRegionStateResponse)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:kvrpcpb.GetRegionStateResponse)
+    MergeFrom(*source);
+  }
+}
+
+void GetRegionStateResponse::MergeFrom(const GetRegionStateResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:kvrpcpb.GetRegionStateResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  down_peers_.MergeFrom(from.down_peers_);
+  pending_peers_.MergeFrom(from.pending_peers_);
+  voter_progress_.MergeFrom(from.voter_progress_);
+  learner_progress_.MergeFrom(from.learner_progress_);
+  if (from.has_region_error()) {
+    mutable_region_error()->::errorpb::Error::MergeFrom(from.region_error());
+  }
+  if (from.has_region()) {
+    mutable_region()->::metapb::Region::MergeFrom(from.region());
+  }
+  if (from.has_leader()) {
+    mutable_leader()->::metapb::Peer::MergeFrom(from.leader());
+  }
+  if (from.has_region_local_state()) {
+    mutable_region_local_state()->::metapb::RegionLocalState::MergeFrom(from.region_local_state());
+  }
+  if (from.bytes_written() != 0) {
+    set_bytes_written(from.bytes_written());
+  }
+  if (from.bytes_read() != 0) {
+    set_bytes_read(from.bytes_read());
+  }
+  if (from.keys_written() != 0) {
+    set_keys_written(from.keys_written());
+  }
+  if (from.keys_read() != 0) {
+    set_keys_read(from.keys_read());
+  }
+  if (from.approximate_size() != 0) {
+    set_approximate_size(from.approximate_size());
+  }
+  if (from.approximate_keys() != 0) {
+    set_approximate_keys(from.approximate_keys());
+  }
+}
+
+void GetRegionStateResponse::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:kvrpcpb.GetRegionStateResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void GetRegionStateResponse::CopyFrom(const GetRegionStateResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:kvrpcpb.GetRegionStateResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetRegionStateResponse::IsInitialized() const {
+  return true;
+}
+
+void GetRegionStateResponse::Swap(GetRegionStateResponse* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void GetRegionStateResponse::InternalSwap(GetRegionStateResponse* other) {
+  using std::swap;
+  CastToBase(&down_peers_)->InternalSwap(CastToBase(&other->down_peers_));
+  CastToBase(&pending_peers_)->InternalSwap(CastToBase(&other->pending_peers_));
+  voter_progress_.Swap(&other->voter_progress_);
+  learner_progress_.Swap(&other->learner_progress_);
+  swap(region_error_, other->region_error_);
+  swap(region_, other->region_);
+  swap(leader_, other->leader_);
+  swap(region_local_state_, other->region_local_state_);
+  swap(bytes_written_, other->bytes_written_);
+  swap(bytes_read_, other->bytes_read_);
+  swap(keys_written_, other->keys_written_);
+  swap(keys_read_, other->keys_read_);
+  swap(approximate_size_, other->approximate_size_);
+  swap(approximate_keys_, other->approximate_keys_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+}
+
+::google::protobuf::Metadata GetRegionStateResponse::GetMetadata() const {
+  protobuf_kvrpcpb_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_kvrpcpb_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace kvrpcpb
 namespace google {
@@ -25180,6 +26582,18 @@ template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::kvrpcpb::UnsafeDestroyRangeReque
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::kvrpcpb::UnsafeDestroyRangeResponse* Arena::CreateMaybeMessage< ::kvrpcpb::UnsafeDestroyRangeResponse >(Arena* arena) {
   return Arena::CreateInternal< ::kvrpcpb::UnsafeDestroyRangeResponse >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::kvrpcpb::GetRegionStateRequest* Arena::CreateMaybeMessage< ::kvrpcpb::GetRegionStateRequest >(Arena* arena) {
+  return Arena::CreateInternal< ::kvrpcpb::GetRegionStateRequest >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::kvrpcpb::GetRegionStateResponse_VoterProgressEntry_DoNotUse* Arena::CreateMaybeMessage< ::kvrpcpb::GetRegionStateResponse_VoterProgressEntry_DoNotUse >(Arena* arena) {
+  return Arena::CreateInternal< ::kvrpcpb::GetRegionStateResponse_VoterProgressEntry_DoNotUse >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::kvrpcpb::GetRegionStateResponse_LearnerProgressEntry_DoNotUse* Arena::CreateMaybeMessage< ::kvrpcpb::GetRegionStateResponse_LearnerProgressEntry_DoNotUse >(Arena* arena) {
+  return Arena::CreateInternal< ::kvrpcpb::GetRegionStateResponse_LearnerProgressEntry_DoNotUse >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::kvrpcpb::GetRegionStateResponse* Arena::CreateMaybeMessage< ::kvrpcpb::GetRegionStateResponse >(Arena* arena) {
+  return Arena::CreateInternal< ::kvrpcpb::GetRegionStateResponse >(arena);
 }
 }  // namespace protobuf
 }  // namespace google

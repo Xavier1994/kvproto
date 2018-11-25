@@ -29,6 +29,9 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/map.h>  // IWYU pragma: export
+#include <google/protobuf/map_entry.h>
+#include <google/protobuf/map_field_inl.h>
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 #include "metapb.pb.h"
@@ -42,7 +45,7 @@ namespace protobuf_kvrpcpb_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[68];
+  static const ::google::protobuf::internal::ParseTable schema[72];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -92,6 +95,18 @@ extern GCRequestDefaultTypeInternal _GCRequest_default_instance_;
 class GCResponse;
 class GCResponseDefaultTypeInternal;
 extern GCResponseDefaultTypeInternal _GCResponse_default_instance_;
+class GetRegionStateRequest;
+class GetRegionStateRequestDefaultTypeInternal;
+extern GetRegionStateRequestDefaultTypeInternal _GetRegionStateRequest_default_instance_;
+class GetRegionStateResponse;
+class GetRegionStateResponseDefaultTypeInternal;
+extern GetRegionStateResponseDefaultTypeInternal _GetRegionStateResponse_default_instance_;
+class GetRegionStateResponse_LearnerProgressEntry_DoNotUse;
+class GetRegionStateResponse_LearnerProgressEntry_DoNotUseDefaultTypeInternal;
+extern GetRegionStateResponse_LearnerProgressEntry_DoNotUseDefaultTypeInternal _GetRegionStateResponse_LearnerProgressEntry_DoNotUse_default_instance_;
+class GetRegionStateResponse_VoterProgressEntry_DoNotUse;
+class GetRegionStateResponse_VoterProgressEntry_DoNotUseDefaultTypeInternal;
+extern GetRegionStateResponse_VoterProgressEntry_DoNotUseDefaultTypeInternal _GetRegionStateResponse_VoterProgressEntry_DoNotUse_default_instance_;
 class GetRequest;
 class GetRequestDefaultTypeInternal;
 extern GetRequestDefaultTypeInternal _GetRequest_default_instance_;
@@ -271,6 +286,10 @@ template<> ::kvrpcpb::DeleteRangeResponse* Arena::CreateMaybeMessage<::kvrpcpb::
 template<> ::kvrpcpb::ExecDetails* Arena::CreateMaybeMessage<::kvrpcpb::ExecDetails>(Arena*);
 template<> ::kvrpcpb::GCRequest* Arena::CreateMaybeMessage<::kvrpcpb::GCRequest>(Arena*);
 template<> ::kvrpcpb::GCResponse* Arena::CreateMaybeMessage<::kvrpcpb::GCResponse>(Arena*);
+template<> ::kvrpcpb::GetRegionStateRequest* Arena::CreateMaybeMessage<::kvrpcpb::GetRegionStateRequest>(Arena*);
+template<> ::kvrpcpb::GetRegionStateResponse* Arena::CreateMaybeMessage<::kvrpcpb::GetRegionStateResponse>(Arena*);
+template<> ::kvrpcpb::GetRegionStateResponse_LearnerProgressEntry_DoNotUse* Arena::CreateMaybeMessage<::kvrpcpb::GetRegionStateResponse_LearnerProgressEntry_DoNotUse>(Arena*);
+template<> ::kvrpcpb::GetRegionStateResponse_VoterProgressEntry_DoNotUse* Arena::CreateMaybeMessage<::kvrpcpb::GetRegionStateResponse_VoterProgressEntry_DoNotUse>(Arena*);
 template<> ::kvrpcpb::GetRequest* Arena::CreateMaybeMessage<::kvrpcpb::GetRequest>(Arena*);
 template<> ::kvrpcpb::GetResponse* Arena::CreateMaybeMessage<::kvrpcpb::GetResponse>(Arena*);
 template<> ::kvrpcpb::HandleTime* Arena::CreateMaybeMessage<::kvrpcpb::HandleTime>(Arena*);
@@ -9558,6 +9577,404 @@ class UnsafeDestroyRangeResponse : public ::google::protobuf::Message /* @@proto
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::protobuf_kvrpcpb_2eproto::TableStruct;
 };
+// -------------------------------------------------------------------
+
+class GetRegionStateRequest : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:kvrpcpb.GetRegionStateRequest) */ {
+ public:
+  GetRegionStateRequest();
+  virtual ~GetRegionStateRequest();
+
+  GetRegionStateRequest(const GetRegionStateRequest& from);
+
+  inline GetRegionStateRequest& operator=(const GetRegionStateRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  GetRegionStateRequest(GetRegionStateRequest&& from) noexcept
+    : GetRegionStateRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline GetRegionStateRequest& operator=(GetRegionStateRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const GetRegionStateRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const GetRegionStateRequest* internal_default_instance() {
+    return reinterpret_cast<const GetRegionStateRequest*>(
+               &_GetRegionStateRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    68;
+
+  void Swap(GetRegionStateRequest* other);
+  friend void swap(GetRegionStateRequest& a, GetRegionStateRequest& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline GetRegionStateRequest* New() const final {
+    return CreateMaybeMessage<GetRegionStateRequest>(NULL);
+  }
+
+  GetRegionStateRequest* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<GetRegionStateRequest>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const GetRegionStateRequest& from);
+  void MergeFrom(const GetRegionStateRequest& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetRegionStateRequest* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // .kvrpcpb.Context context = 1;
+  bool has_context() const;
+  void clear_context();
+  static const int kContextFieldNumber = 1;
+  private:
+  const ::kvrpcpb::Context& _internal_context() const;
+  public:
+  const ::kvrpcpb::Context& context() const;
+  ::kvrpcpb::Context* release_context();
+  ::kvrpcpb::Context* mutable_context();
+  void set_allocated_context(::kvrpcpb::Context* context);
+
+  // @@protoc_insertion_point(class_scope:kvrpcpb.GetRegionStateRequest)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::kvrpcpb::Context* context_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_kvrpcpb_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class GetRegionStateResponse_VoterProgressEntry_DoNotUse : public ::google::protobuf::internal::MapEntry<GetRegionStateResponse_VoterProgressEntry_DoNotUse, 
+    ::google::protobuf::uint64, ::metapb::Progress,
+    ::google::protobuf::internal::WireFormatLite::TYPE_UINT64,
+    ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE,
+    0 > {
+public:
+  typedef ::google::protobuf::internal::MapEntry<GetRegionStateResponse_VoterProgressEntry_DoNotUse, 
+    ::google::protobuf::uint64, ::metapb::Progress,
+    ::google::protobuf::internal::WireFormatLite::TYPE_UINT64,
+    ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE,
+    0 > SuperType;
+  GetRegionStateResponse_VoterProgressEntry_DoNotUse();
+  GetRegionStateResponse_VoterProgressEntry_DoNotUse(::google::protobuf::Arena* arena);
+  void MergeFrom(const GetRegionStateResponse_VoterProgressEntry_DoNotUse& other);
+  static const GetRegionStateResponse_VoterProgressEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const GetRegionStateResponse_VoterProgressEntry_DoNotUse*>(&_GetRegionStateResponse_VoterProgressEntry_DoNotUse_default_instance_); }
+  void MergeFrom(const ::google::protobuf::Message& other) final;
+  ::google::protobuf::Metadata GetMetadata() const;
+};
+
+// -------------------------------------------------------------------
+
+class GetRegionStateResponse_LearnerProgressEntry_DoNotUse : public ::google::protobuf::internal::MapEntry<GetRegionStateResponse_LearnerProgressEntry_DoNotUse, 
+    ::google::protobuf::uint64, ::metapb::Progress,
+    ::google::protobuf::internal::WireFormatLite::TYPE_UINT64,
+    ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE,
+    0 > {
+public:
+  typedef ::google::protobuf::internal::MapEntry<GetRegionStateResponse_LearnerProgressEntry_DoNotUse, 
+    ::google::protobuf::uint64, ::metapb::Progress,
+    ::google::protobuf::internal::WireFormatLite::TYPE_UINT64,
+    ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE,
+    0 > SuperType;
+  GetRegionStateResponse_LearnerProgressEntry_DoNotUse();
+  GetRegionStateResponse_LearnerProgressEntry_DoNotUse(::google::protobuf::Arena* arena);
+  void MergeFrom(const GetRegionStateResponse_LearnerProgressEntry_DoNotUse& other);
+  static const GetRegionStateResponse_LearnerProgressEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const GetRegionStateResponse_LearnerProgressEntry_DoNotUse*>(&_GetRegionStateResponse_LearnerProgressEntry_DoNotUse_default_instance_); }
+  void MergeFrom(const ::google::protobuf::Message& other) final;
+  ::google::protobuf::Metadata GetMetadata() const;
+};
+
+// -------------------------------------------------------------------
+
+class GetRegionStateResponse : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:kvrpcpb.GetRegionStateResponse) */ {
+ public:
+  GetRegionStateResponse();
+  virtual ~GetRegionStateResponse();
+
+  GetRegionStateResponse(const GetRegionStateResponse& from);
+
+  inline GetRegionStateResponse& operator=(const GetRegionStateResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  GetRegionStateResponse(GetRegionStateResponse&& from) noexcept
+    : GetRegionStateResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline GetRegionStateResponse& operator=(GetRegionStateResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const GetRegionStateResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const GetRegionStateResponse* internal_default_instance() {
+    return reinterpret_cast<const GetRegionStateResponse*>(
+               &_GetRegionStateResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    71;
+
+  void Swap(GetRegionStateResponse* other);
+  friend void swap(GetRegionStateResponse& a, GetRegionStateResponse& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline GetRegionStateResponse* New() const final {
+    return CreateMaybeMessage<GetRegionStateResponse>(NULL);
+  }
+
+  GetRegionStateResponse* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<GetRegionStateResponse>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const GetRegionStateResponse& from);
+  void MergeFrom(const GetRegionStateResponse& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetRegionStateResponse* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+
+  // accessors -------------------------------------------------------
+
+  // repeated .metapb.PeerStats down_peers = 4;
+  int down_peers_size() const;
+  void clear_down_peers();
+  static const int kDownPeersFieldNumber = 4;
+  ::metapb::PeerStats* mutable_down_peers(int index);
+  ::google::protobuf::RepeatedPtrField< ::metapb::PeerStats >*
+      mutable_down_peers();
+  const ::metapb::PeerStats& down_peers(int index) const;
+  ::metapb::PeerStats* add_down_peers();
+  const ::google::protobuf::RepeatedPtrField< ::metapb::PeerStats >&
+      down_peers() const;
+
+  // repeated .metapb.Peer pending_peers = 5;
+  int pending_peers_size() const;
+  void clear_pending_peers();
+  static const int kPendingPeersFieldNumber = 5;
+  ::metapb::Peer* mutable_pending_peers(int index);
+  ::google::protobuf::RepeatedPtrField< ::metapb::Peer >*
+      mutable_pending_peers();
+  const ::metapb::Peer& pending_peers(int index) const;
+  ::metapb::Peer* add_pending_peers();
+  const ::google::protobuf::RepeatedPtrField< ::metapb::Peer >&
+      pending_peers() const;
+
+  // map<uint64, .metapb.Progress> voter_progress = 14;
+  int voter_progress_size() const;
+  void clear_voter_progress();
+  static const int kVoterProgressFieldNumber = 14;
+  const ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >&
+      voter_progress() const;
+  ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >*
+      mutable_voter_progress();
+
+  // map<uint64, .metapb.Progress> learner_progress = 15;
+  int learner_progress_size() const;
+  void clear_learner_progress();
+  static const int kLearnerProgressFieldNumber = 15;
+  const ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >&
+      learner_progress() const;
+  ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >*
+      mutable_learner_progress();
+
+  // .errorpb.Error region_error = 1;
+  bool has_region_error() const;
+  void clear_region_error();
+  static const int kRegionErrorFieldNumber = 1;
+  private:
+  const ::errorpb::Error& _internal_region_error() const;
+  public:
+  const ::errorpb::Error& region_error() const;
+  ::errorpb::Error* release_region_error();
+  ::errorpb::Error* mutable_region_error();
+  void set_allocated_region_error(::errorpb::Error* region_error);
+
+  // .metapb.Region region = 2;
+  bool has_region() const;
+  void clear_region();
+  static const int kRegionFieldNumber = 2;
+  private:
+  const ::metapb::Region& _internal_region() const;
+  public:
+  const ::metapb::Region& region() const;
+  ::metapb::Region* release_region();
+  ::metapb::Region* mutable_region();
+  void set_allocated_region(::metapb::Region* region);
+
+  // .metapb.Peer leader = 3;
+  bool has_leader() const;
+  void clear_leader();
+  static const int kLeaderFieldNumber = 3;
+  private:
+  const ::metapb::Peer& _internal_leader() const;
+  public:
+  const ::metapb::Peer& leader() const;
+  ::metapb::Peer* release_leader();
+  ::metapb::Peer* mutable_leader();
+  void set_allocated_leader(::metapb::Peer* leader);
+
+  // .metapb.RegionLocalState region_local_state = 16;
+  bool has_region_local_state() const;
+  void clear_region_local_state();
+  static const int kRegionLocalStateFieldNumber = 16;
+  private:
+  const ::metapb::RegionLocalState& _internal_region_local_state() const;
+  public:
+  const ::metapb::RegionLocalState& region_local_state() const;
+  ::metapb::RegionLocalState* release_region_local_state();
+  ::metapb::RegionLocalState* mutable_region_local_state();
+  void set_allocated_region_local_state(::metapb::RegionLocalState* region_local_state);
+
+  // uint64 bytes_written = 6;
+  void clear_bytes_written();
+  static const int kBytesWrittenFieldNumber = 6;
+  ::google::protobuf::uint64 bytes_written() const;
+  void set_bytes_written(::google::protobuf::uint64 value);
+
+  // uint64 bytes_read = 7;
+  void clear_bytes_read();
+  static const int kBytesReadFieldNumber = 7;
+  ::google::protobuf::uint64 bytes_read() const;
+  void set_bytes_read(::google::protobuf::uint64 value);
+
+  // uint64 keys_written = 8;
+  void clear_keys_written();
+  static const int kKeysWrittenFieldNumber = 8;
+  ::google::protobuf::uint64 keys_written() const;
+  void set_keys_written(::google::protobuf::uint64 value);
+
+  // uint64 keys_read = 9;
+  void clear_keys_read();
+  static const int kKeysReadFieldNumber = 9;
+  ::google::protobuf::uint64 keys_read() const;
+  void set_keys_read(::google::protobuf::uint64 value);
+
+  // uint64 approximate_size = 10;
+  void clear_approximate_size();
+  static const int kApproximateSizeFieldNumber = 10;
+  ::google::protobuf::uint64 approximate_size() const;
+  void set_approximate_size(::google::protobuf::uint64 value);
+
+  // uint64 approximate_keys = 13;
+  void clear_approximate_keys();
+  static const int kApproximateKeysFieldNumber = 13;
+  ::google::protobuf::uint64 approximate_keys() const;
+  void set_approximate_keys(::google::protobuf::uint64 value);
+
+  // @@protoc_insertion_point(class_scope:kvrpcpb.GetRegionStateResponse)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField< ::metapb::PeerStats > down_peers_;
+  ::google::protobuf::RepeatedPtrField< ::metapb::Peer > pending_peers_;
+  ::google::protobuf::internal::MapField<
+      GetRegionStateResponse_VoterProgressEntry_DoNotUse,
+      ::google::protobuf::uint64, ::metapb::Progress,
+      ::google::protobuf::internal::WireFormatLite::TYPE_UINT64,
+      ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE,
+      0 > voter_progress_;
+  ::google::protobuf::internal::MapField<
+      GetRegionStateResponse_LearnerProgressEntry_DoNotUse,
+      ::google::protobuf::uint64, ::metapb::Progress,
+      ::google::protobuf::internal::WireFormatLite::TYPE_UINT64,
+      ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE,
+      0 > learner_progress_;
+  ::errorpb::Error* region_error_;
+  ::metapb::Region* region_;
+  ::metapb::Peer* leader_;
+  ::metapb::RegionLocalState* region_local_state_;
+  ::google::protobuf::uint64 bytes_written_;
+  ::google::protobuf::uint64 bytes_read_;
+  ::google::protobuf::uint64 keys_written_;
+  ::google::protobuf::uint64 keys_read_;
+  ::google::protobuf::uint64 approximate_size_;
+  ::google::protobuf::uint64 approximate_keys_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_kvrpcpb_2eproto::TableStruct;
+};
 // ===================================================================
 
 
@@ -18459,9 +18876,443 @@ inline void UnsafeDestroyRangeResponse::set_allocated_error(::std::string* error
   // @@protoc_insertion_point(field_set_allocated:kvrpcpb.UnsafeDestroyRangeResponse.error)
 }
 
+// -------------------------------------------------------------------
+
+// GetRegionStateRequest
+
+// .kvrpcpb.Context context = 1;
+inline bool GetRegionStateRequest::has_context() const {
+  return this != internal_default_instance() && context_ != NULL;
+}
+inline void GetRegionStateRequest::clear_context() {
+  if (GetArenaNoVirtual() == NULL && context_ != NULL) {
+    delete context_;
+  }
+  context_ = NULL;
+}
+inline const ::kvrpcpb::Context& GetRegionStateRequest::_internal_context() const {
+  return *context_;
+}
+inline const ::kvrpcpb::Context& GetRegionStateRequest::context() const {
+  const ::kvrpcpb::Context* p = context_;
+  // @@protoc_insertion_point(field_get:kvrpcpb.GetRegionStateRequest.context)
+  return p != NULL ? *p : *reinterpret_cast<const ::kvrpcpb::Context*>(
+      &::kvrpcpb::_Context_default_instance_);
+}
+inline ::kvrpcpb::Context* GetRegionStateRequest::release_context() {
+  // @@protoc_insertion_point(field_release:kvrpcpb.GetRegionStateRequest.context)
+  
+  ::kvrpcpb::Context* temp = context_;
+  context_ = NULL;
+  return temp;
+}
+inline ::kvrpcpb::Context* GetRegionStateRequest::mutable_context() {
+  
+  if (context_ == NULL) {
+    auto* p = CreateMaybeMessage<::kvrpcpb::Context>(GetArenaNoVirtual());
+    context_ = p;
+  }
+  // @@protoc_insertion_point(field_mutable:kvrpcpb.GetRegionStateRequest.context)
+  return context_;
+}
+inline void GetRegionStateRequest::set_allocated_context(::kvrpcpb::Context* context) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete context_;
+  }
+  if (context) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      context = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, context, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  context_ = context;
+  // @@protoc_insertion_point(field_set_allocated:kvrpcpb.GetRegionStateRequest.context)
+}
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// GetRegionStateResponse
+
+// .errorpb.Error region_error = 1;
+inline bool GetRegionStateResponse::has_region_error() const {
+  return this != internal_default_instance() && region_error_ != NULL;
+}
+inline const ::errorpb::Error& GetRegionStateResponse::_internal_region_error() const {
+  return *region_error_;
+}
+inline const ::errorpb::Error& GetRegionStateResponse::region_error() const {
+  const ::errorpb::Error* p = region_error_;
+  // @@protoc_insertion_point(field_get:kvrpcpb.GetRegionStateResponse.region_error)
+  return p != NULL ? *p : *reinterpret_cast<const ::errorpb::Error*>(
+      &::errorpb::_Error_default_instance_);
+}
+inline ::errorpb::Error* GetRegionStateResponse::release_region_error() {
+  // @@protoc_insertion_point(field_release:kvrpcpb.GetRegionStateResponse.region_error)
+  
+  ::errorpb::Error* temp = region_error_;
+  region_error_ = NULL;
+  return temp;
+}
+inline ::errorpb::Error* GetRegionStateResponse::mutable_region_error() {
+  
+  if (region_error_ == NULL) {
+    auto* p = CreateMaybeMessage<::errorpb::Error>(GetArenaNoVirtual());
+    region_error_ = p;
+  }
+  // @@protoc_insertion_point(field_mutable:kvrpcpb.GetRegionStateResponse.region_error)
+  return region_error_;
+}
+inline void GetRegionStateResponse::set_allocated_region_error(::errorpb::Error* region_error) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete reinterpret_cast< ::google::protobuf::MessageLite*>(region_error_);
+  }
+  if (region_error) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      region_error = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, region_error, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  region_error_ = region_error;
+  // @@protoc_insertion_point(field_set_allocated:kvrpcpb.GetRegionStateResponse.region_error)
+}
+
+// .metapb.Region region = 2;
+inline bool GetRegionStateResponse::has_region() const {
+  return this != internal_default_instance() && region_ != NULL;
+}
+inline const ::metapb::Region& GetRegionStateResponse::_internal_region() const {
+  return *region_;
+}
+inline const ::metapb::Region& GetRegionStateResponse::region() const {
+  const ::metapb::Region* p = region_;
+  // @@protoc_insertion_point(field_get:kvrpcpb.GetRegionStateResponse.region)
+  return p != NULL ? *p : *reinterpret_cast<const ::metapb::Region*>(
+      &::metapb::_Region_default_instance_);
+}
+inline ::metapb::Region* GetRegionStateResponse::release_region() {
+  // @@protoc_insertion_point(field_release:kvrpcpb.GetRegionStateResponse.region)
+  
+  ::metapb::Region* temp = region_;
+  region_ = NULL;
+  return temp;
+}
+inline ::metapb::Region* GetRegionStateResponse::mutable_region() {
+  
+  if (region_ == NULL) {
+    auto* p = CreateMaybeMessage<::metapb::Region>(GetArenaNoVirtual());
+    region_ = p;
+  }
+  // @@protoc_insertion_point(field_mutable:kvrpcpb.GetRegionStateResponse.region)
+  return region_;
+}
+inline void GetRegionStateResponse::set_allocated_region(::metapb::Region* region) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete reinterpret_cast< ::google::protobuf::MessageLite*>(region_);
+  }
+  if (region) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      region = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, region, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  region_ = region;
+  // @@protoc_insertion_point(field_set_allocated:kvrpcpb.GetRegionStateResponse.region)
+}
+
+// .metapb.Peer leader = 3;
+inline bool GetRegionStateResponse::has_leader() const {
+  return this != internal_default_instance() && leader_ != NULL;
+}
+inline const ::metapb::Peer& GetRegionStateResponse::_internal_leader() const {
+  return *leader_;
+}
+inline const ::metapb::Peer& GetRegionStateResponse::leader() const {
+  const ::metapb::Peer* p = leader_;
+  // @@protoc_insertion_point(field_get:kvrpcpb.GetRegionStateResponse.leader)
+  return p != NULL ? *p : *reinterpret_cast<const ::metapb::Peer*>(
+      &::metapb::_Peer_default_instance_);
+}
+inline ::metapb::Peer* GetRegionStateResponse::release_leader() {
+  // @@protoc_insertion_point(field_release:kvrpcpb.GetRegionStateResponse.leader)
+  
+  ::metapb::Peer* temp = leader_;
+  leader_ = NULL;
+  return temp;
+}
+inline ::metapb::Peer* GetRegionStateResponse::mutable_leader() {
+  
+  if (leader_ == NULL) {
+    auto* p = CreateMaybeMessage<::metapb::Peer>(GetArenaNoVirtual());
+    leader_ = p;
+  }
+  // @@protoc_insertion_point(field_mutable:kvrpcpb.GetRegionStateResponse.leader)
+  return leader_;
+}
+inline void GetRegionStateResponse::set_allocated_leader(::metapb::Peer* leader) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete reinterpret_cast< ::google::protobuf::MessageLite*>(leader_);
+  }
+  if (leader) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      leader = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, leader, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  leader_ = leader;
+  // @@protoc_insertion_point(field_set_allocated:kvrpcpb.GetRegionStateResponse.leader)
+}
+
+// repeated .metapb.PeerStats down_peers = 4;
+inline int GetRegionStateResponse::down_peers_size() const {
+  return down_peers_.size();
+}
+inline ::metapb::PeerStats* GetRegionStateResponse::mutable_down_peers(int index) {
+  // @@protoc_insertion_point(field_mutable:kvrpcpb.GetRegionStateResponse.down_peers)
+  return down_peers_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::metapb::PeerStats >*
+GetRegionStateResponse::mutable_down_peers() {
+  // @@protoc_insertion_point(field_mutable_list:kvrpcpb.GetRegionStateResponse.down_peers)
+  return &down_peers_;
+}
+inline const ::metapb::PeerStats& GetRegionStateResponse::down_peers(int index) const {
+  // @@protoc_insertion_point(field_get:kvrpcpb.GetRegionStateResponse.down_peers)
+  return down_peers_.Get(index);
+}
+inline ::metapb::PeerStats* GetRegionStateResponse::add_down_peers() {
+  // @@protoc_insertion_point(field_add:kvrpcpb.GetRegionStateResponse.down_peers)
+  return down_peers_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::metapb::PeerStats >&
+GetRegionStateResponse::down_peers() const {
+  // @@protoc_insertion_point(field_list:kvrpcpb.GetRegionStateResponse.down_peers)
+  return down_peers_;
+}
+
+// repeated .metapb.Peer pending_peers = 5;
+inline int GetRegionStateResponse::pending_peers_size() const {
+  return pending_peers_.size();
+}
+inline ::metapb::Peer* GetRegionStateResponse::mutable_pending_peers(int index) {
+  // @@protoc_insertion_point(field_mutable:kvrpcpb.GetRegionStateResponse.pending_peers)
+  return pending_peers_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::metapb::Peer >*
+GetRegionStateResponse::mutable_pending_peers() {
+  // @@protoc_insertion_point(field_mutable_list:kvrpcpb.GetRegionStateResponse.pending_peers)
+  return &pending_peers_;
+}
+inline const ::metapb::Peer& GetRegionStateResponse::pending_peers(int index) const {
+  // @@protoc_insertion_point(field_get:kvrpcpb.GetRegionStateResponse.pending_peers)
+  return pending_peers_.Get(index);
+}
+inline ::metapb::Peer* GetRegionStateResponse::add_pending_peers() {
+  // @@protoc_insertion_point(field_add:kvrpcpb.GetRegionStateResponse.pending_peers)
+  return pending_peers_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::metapb::Peer >&
+GetRegionStateResponse::pending_peers() const {
+  // @@protoc_insertion_point(field_list:kvrpcpb.GetRegionStateResponse.pending_peers)
+  return pending_peers_;
+}
+
+// uint64 bytes_written = 6;
+inline void GetRegionStateResponse::clear_bytes_written() {
+  bytes_written_ = GOOGLE_ULONGLONG(0);
+}
+inline ::google::protobuf::uint64 GetRegionStateResponse::bytes_written() const {
+  // @@protoc_insertion_point(field_get:kvrpcpb.GetRegionStateResponse.bytes_written)
+  return bytes_written_;
+}
+inline void GetRegionStateResponse::set_bytes_written(::google::protobuf::uint64 value) {
+  
+  bytes_written_ = value;
+  // @@protoc_insertion_point(field_set:kvrpcpb.GetRegionStateResponse.bytes_written)
+}
+
+// uint64 bytes_read = 7;
+inline void GetRegionStateResponse::clear_bytes_read() {
+  bytes_read_ = GOOGLE_ULONGLONG(0);
+}
+inline ::google::protobuf::uint64 GetRegionStateResponse::bytes_read() const {
+  // @@protoc_insertion_point(field_get:kvrpcpb.GetRegionStateResponse.bytes_read)
+  return bytes_read_;
+}
+inline void GetRegionStateResponse::set_bytes_read(::google::protobuf::uint64 value) {
+  
+  bytes_read_ = value;
+  // @@protoc_insertion_point(field_set:kvrpcpb.GetRegionStateResponse.bytes_read)
+}
+
+// uint64 keys_written = 8;
+inline void GetRegionStateResponse::clear_keys_written() {
+  keys_written_ = GOOGLE_ULONGLONG(0);
+}
+inline ::google::protobuf::uint64 GetRegionStateResponse::keys_written() const {
+  // @@protoc_insertion_point(field_get:kvrpcpb.GetRegionStateResponse.keys_written)
+  return keys_written_;
+}
+inline void GetRegionStateResponse::set_keys_written(::google::protobuf::uint64 value) {
+  
+  keys_written_ = value;
+  // @@protoc_insertion_point(field_set:kvrpcpb.GetRegionStateResponse.keys_written)
+}
+
+// uint64 keys_read = 9;
+inline void GetRegionStateResponse::clear_keys_read() {
+  keys_read_ = GOOGLE_ULONGLONG(0);
+}
+inline ::google::protobuf::uint64 GetRegionStateResponse::keys_read() const {
+  // @@protoc_insertion_point(field_get:kvrpcpb.GetRegionStateResponse.keys_read)
+  return keys_read_;
+}
+inline void GetRegionStateResponse::set_keys_read(::google::protobuf::uint64 value) {
+  
+  keys_read_ = value;
+  // @@protoc_insertion_point(field_set:kvrpcpb.GetRegionStateResponse.keys_read)
+}
+
+// uint64 approximate_size = 10;
+inline void GetRegionStateResponse::clear_approximate_size() {
+  approximate_size_ = GOOGLE_ULONGLONG(0);
+}
+inline ::google::protobuf::uint64 GetRegionStateResponse::approximate_size() const {
+  // @@protoc_insertion_point(field_get:kvrpcpb.GetRegionStateResponse.approximate_size)
+  return approximate_size_;
+}
+inline void GetRegionStateResponse::set_approximate_size(::google::protobuf::uint64 value) {
+  
+  approximate_size_ = value;
+  // @@protoc_insertion_point(field_set:kvrpcpb.GetRegionStateResponse.approximate_size)
+}
+
+// uint64 approximate_keys = 13;
+inline void GetRegionStateResponse::clear_approximate_keys() {
+  approximate_keys_ = GOOGLE_ULONGLONG(0);
+}
+inline ::google::protobuf::uint64 GetRegionStateResponse::approximate_keys() const {
+  // @@protoc_insertion_point(field_get:kvrpcpb.GetRegionStateResponse.approximate_keys)
+  return approximate_keys_;
+}
+inline void GetRegionStateResponse::set_approximate_keys(::google::protobuf::uint64 value) {
+  
+  approximate_keys_ = value;
+  // @@protoc_insertion_point(field_set:kvrpcpb.GetRegionStateResponse.approximate_keys)
+}
+
+// map<uint64, .metapb.Progress> voter_progress = 14;
+inline int GetRegionStateResponse::voter_progress_size() const {
+  return voter_progress_.size();
+}
+inline const ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >&
+GetRegionStateResponse::voter_progress() const {
+  // @@protoc_insertion_point(field_map:kvrpcpb.GetRegionStateResponse.voter_progress)
+  return voter_progress_.GetMap();
+}
+inline ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >*
+GetRegionStateResponse::mutable_voter_progress() {
+  // @@protoc_insertion_point(field_mutable_map:kvrpcpb.GetRegionStateResponse.voter_progress)
+  return voter_progress_.MutableMap();
+}
+
+// map<uint64, .metapb.Progress> learner_progress = 15;
+inline int GetRegionStateResponse::learner_progress_size() const {
+  return learner_progress_.size();
+}
+inline const ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >&
+GetRegionStateResponse::learner_progress() const {
+  // @@protoc_insertion_point(field_map:kvrpcpb.GetRegionStateResponse.learner_progress)
+  return learner_progress_.GetMap();
+}
+inline ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >*
+GetRegionStateResponse::mutable_learner_progress() {
+  // @@protoc_insertion_point(field_mutable_map:kvrpcpb.GetRegionStateResponse.learner_progress)
+  return learner_progress_.MutableMap();
+}
+
+// .metapb.RegionLocalState region_local_state = 16;
+inline bool GetRegionStateResponse::has_region_local_state() const {
+  return this != internal_default_instance() && region_local_state_ != NULL;
+}
+inline const ::metapb::RegionLocalState& GetRegionStateResponse::_internal_region_local_state() const {
+  return *region_local_state_;
+}
+inline const ::metapb::RegionLocalState& GetRegionStateResponse::region_local_state() const {
+  const ::metapb::RegionLocalState* p = region_local_state_;
+  // @@protoc_insertion_point(field_get:kvrpcpb.GetRegionStateResponse.region_local_state)
+  return p != NULL ? *p : *reinterpret_cast<const ::metapb::RegionLocalState*>(
+      &::metapb::_RegionLocalState_default_instance_);
+}
+inline ::metapb::RegionLocalState* GetRegionStateResponse::release_region_local_state() {
+  // @@protoc_insertion_point(field_release:kvrpcpb.GetRegionStateResponse.region_local_state)
+  
+  ::metapb::RegionLocalState* temp = region_local_state_;
+  region_local_state_ = NULL;
+  return temp;
+}
+inline ::metapb::RegionLocalState* GetRegionStateResponse::mutable_region_local_state() {
+  
+  if (region_local_state_ == NULL) {
+    auto* p = CreateMaybeMessage<::metapb::RegionLocalState>(GetArenaNoVirtual());
+    region_local_state_ = p;
+  }
+  // @@protoc_insertion_point(field_mutable:kvrpcpb.GetRegionStateResponse.region_local_state)
+  return region_local_state_;
+}
+inline void GetRegionStateResponse::set_allocated_region_local_state(::metapb::RegionLocalState* region_local_state) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete reinterpret_cast< ::google::protobuf::MessageLite*>(region_local_state_);
+  }
+  if (region_local_state) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      region_local_state = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, region_local_state, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  region_local_state_ = region_local_state;
+  // @@protoc_insertion_point(field_set_allocated:kvrpcpb.GetRegionStateResponse.region_local_state)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

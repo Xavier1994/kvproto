@@ -48,6 +48,7 @@ static const char* Tikv_method_names[] = {
   "/tikvpb.Tikv/SplitRegion",
   "/tikvpb.Tikv/MvccGetByKey",
   "/tikvpb.Tikv/MvccGetByStartTs",
+  "/tikvpb.Tikv/GetRegionState",
 };
 
 std::unique_ptr< Tikv::Stub> Tikv::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -87,6 +88,7 @@ Tikv::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
   , rpcmethod_SplitRegion_(Tikv_method_names[27], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_MvccGetByKey_(Tikv_method_names[28], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_MvccGetByStartTs_(Tikv_method_names[29], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetRegionState_(Tikv_method_names[30], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status Tikv::Stub::KvGet(::grpc::ClientContext* context, const ::kvrpcpb::GetRequest& request, ::kvrpcpb::GetResponse* response) {
@@ -557,6 +559,22 @@ void Tikv::Stub::experimental_async::MvccGetByStartTs(::grpc::ClientContext* con
   return ::grpc::internal::ClientAsyncResponseReaderFactory< ::kvrpcpb::MvccGetByStartTsResponse>::Create(channel_.get(), cq, rpcmethod_MvccGetByStartTs_, context, request, false);
 }
 
+::grpc::Status Tikv::Stub::GetRegionState(::grpc::ClientContext* context, const ::kvrpcpb::GetRegionStateRequest& request, ::kvrpcpb::GetRegionStateResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetRegionState_, context, request, response);
+}
+
+void Tikv::Stub::experimental_async::GetRegionState(::grpc::ClientContext* context, const ::kvrpcpb::GetRegionStateRequest* request, ::kvrpcpb::GetRegionStateResponse* response, std::function<void(::grpc::Status)> f) {
+  return ::grpc::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetRegionState_, context, request, response, std::move(f));
+}
+
+::grpc::ClientAsyncResponseReader< ::kvrpcpb::GetRegionStateResponse>* Tikv::Stub::AsyncGetRegionStateRaw(::grpc::ClientContext* context, const ::kvrpcpb::GetRegionStateRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderFactory< ::kvrpcpb::GetRegionStateResponse>::Create(channel_.get(), cq, rpcmethod_GetRegionState_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::kvrpcpb::GetRegionStateResponse>* Tikv::Stub::PrepareAsyncGetRegionStateRaw(::grpc::ClientContext* context, const ::kvrpcpb::GetRegionStateRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderFactory< ::kvrpcpb::GetRegionStateResponse>::Create(channel_.get(), cq, rpcmethod_GetRegionState_, context, request, false);
+}
+
 Tikv::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Tikv_method_names[0],
@@ -708,6 +726,11 @@ Tikv::Service::Service() {
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< Tikv::Service, ::kvrpcpb::MvccGetByStartTsRequest, ::kvrpcpb::MvccGetByStartTsResponse>(
           std::mem_fn(&Tikv::Service::MvccGetByStartTs), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Tikv_method_names[30],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Tikv::Service, ::kvrpcpb::GetRegionStateRequest, ::kvrpcpb::GetRegionStateResponse>(
+          std::mem_fn(&Tikv::Service::GetRegionState), this)));
 }
 
 Tikv::Service::~Service() {
@@ -917,6 +940,13 @@ Tikv::Service::~Service() {
 }
 
 ::grpc::Status Tikv::Service::MvccGetByStartTs(::grpc::ServerContext* context, const ::kvrpcpb::MvccGetByStartTsRequest* request, ::kvrpcpb::MvccGetByStartTsResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Tikv::Service::GetRegionState(::grpc::ServerContext* context, const ::kvrpcpb::GetRegionStateRequest* request, ::kvrpcpb::GetRegionStateResponse* response) {
   (void) context;
   (void) request;
   (void) response;

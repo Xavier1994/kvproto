@@ -22,7 +22,10 @@
 namespace protobuf_metapb_2eproto {
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_metapb_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_Cluster;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_metapb_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_Peer;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_metapb_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_Progress;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_metapb_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_RegionEpoch;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_metapb_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_RegionLocalState;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_metapb_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_PeerStats;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_metapb_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_Store;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_metapb_2eproto ::google::protobuf::internal::SCCInfo<2> scc_info_Region;
 }  // namespace protobuf_metapb_2eproto
@@ -36,7 +39,8 @@ extern PROTOBUF_INTERNAL_EXPORT_protobuf_pdpb_2eproto ::google::protobuf::intern
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_pdpb_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_Timestamp;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_pdpb_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_ChangePeer;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_pdpb_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_Merge;
-extern PROTOBUF_INTERNAL_EXPORT_protobuf_pdpb_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_PeerStats;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_pdpb_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse;
+extern PROTOBUF_INTERNAL_EXPORT_protobuf_pdpb_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_RegionHeartbeatRequest_VoterProgressEntry_DoNotUse;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_pdpb_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_ResponseHeader;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_pdpb_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_StoreStats;
 extern PROTOBUF_INTERNAL_EXPORT_protobuf_pdpb_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_TransferLeader;
@@ -182,11 +186,16 @@ class GetMembersResponseDefaultTypeInternal {
   ::google::protobuf::internal::ExplicitlyConstructed<GetMembersResponse>
       _instance;
 } _GetMembersResponse_default_instance_;
-class PeerStatsDefaultTypeInternal {
+class RegionHeartbeatRequest_VoterProgressEntry_DoNotUseDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<PeerStats>
+  ::google::protobuf::internal::ExplicitlyConstructed<RegionHeartbeatRequest_VoterProgressEntry_DoNotUse>
       _instance;
-} _PeerStats_default_instance_;
+} _RegionHeartbeatRequest_VoterProgressEntry_DoNotUse_default_instance_;
+class RegionHeartbeatRequest_LearnerProgressEntry_DoNotUseDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse>
+      _instance;
+} _RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse_default_instance_;
 class RegionHeartbeatRequestDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<RegionHeartbeatRequest>
@@ -741,20 +750,33 @@ static void InitDefaultsGetMembersResponse() {
       &protobuf_pdpb_2eproto::scc_info_ResponseHeader.base,
       &protobuf_pdpb_2eproto::scc_info_Member.base,}};
 
-static void InitDefaultsPeerStats() {
+static void InitDefaultsRegionHeartbeatRequest_VoterProgressEntry_DoNotUse() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::pdpb::_PeerStats_default_instance_;
-    new (ptr) ::pdpb::PeerStats();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+    void* ptr = &::pdpb::_RegionHeartbeatRequest_VoterProgressEntry_DoNotUse_default_instance_;
+    new (ptr) ::pdpb::RegionHeartbeatRequest_VoterProgressEntry_DoNotUse();
   }
-  ::pdpb::PeerStats::InitAsDefaultInstance();
+  ::pdpb::RegionHeartbeatRequest_VoterProgressEntry_DoNotUse::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<1> scc_info_PeerStats =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsPeerStats}, {
-      &protobuf_metapb_2eproto::scc_info_Peer.base,}};
+::google::protobuf::internal::SCCInfo<1> scc_info_RegionHeartbeatRequest_VoterProgressEntry_DoNotUse =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsRegionHeartbeatRequest_VoterProgressEntry_DoNotUse}, {
+      &protobuf_metapb_2eproto::scc_info_Progress.base,}};
+
+static void InitDefaultsRegionHeartbeatRequest_LearnerProgressEntry_DoNotUse() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::pdpb::_RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse_default_instance_;
+    new (ptr) ::pdpb::RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse();
+  }
+  ::pdpb::RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<1> scc_info_RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsRegionHeartbeatRequest_LearnerProgressEntry_DoNotUse}, {
+      &protobuf_metapb_2eproto::scc_info_Progress.base,}};
 
 static void InitDefaultsRegionHeartbeatRequest() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -767,13 +789,16 @@ static void InitDefaultsRegionHeartbeatRequest() {
   ::pdpb::RegionHeartbeatRequest::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<5> scc_info_RegionHeartbeatRequest =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 5, InitDefaultsRegionHeartbeatRequest}, {
+::google::protobuf::internal::SCCInfo<8> scc_info_RegionHeartbeatRequest =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 8, InitDefaultsRegionHeartbeatRequest}, {
       &protobuf_pdpb_2eproto::scc_info_RequestHeader.base,
       &protobuf_metapb_2eproto::scc_info_Region.base,
       &protobuf_metapb_2eproto::scc_info_Peer.base,
-      &protobuf_pdpb_2eproto::scc_info_PeerStats.base,
-      &protobuf_pdpb_2eproto::scc_info_TimeInterval.base,}};
+      &protobuf_metapb_2eproto::scc_info_PeerStats.base,
+      &protobuf_pdpb_2eproto::scc_info_TimeInterval.base,
+      &protobuf_pdpb_2eproto::scc_info_RegionHeartbeatRequest_VoterProgressEntry_DoNotUse.base,
+      &protobuf_pdpb_2eproto::scc_info_RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse.base,
+      &protobuf_metapb_2eproto::scc_info_RegionLocalState.base,}};
 
 static void InitDefaultsChangePeer() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -1175,7 +1200,8 @@ void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_Member.base);
   ::google::protobuf::internal::InitSCC(&scc_info_GetMembersRequest.base);
   ::google::protobuf::internal::InitSCC(&scc_info_GetMembersResponse.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_PeerStats.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_RegionHeartbeatRequest_VoterProgressEntry_DoNotUse.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse.base);
   ::google::protobuf::internal::InitSCC(&scc_info_RegionHeartbeatRequest.base);
   ::google::protobuf::internal::InitSCC(&scc_info_ChangePeer.base);
   ::google::protobuf::internal::InitSCC(&scc_info_TransferLeader.base);
@@ -1203,7 +1229,7 @@ void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_UpdateGCSafePointResponse.base);
 }
 
-::google::protobuf::Metadata file_level_metadata[54];
+::google::protobuf::Metadata file_level_metadata[55];
 const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[2];
 
 const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
@@ -1402,13 +1428,24 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pdpb::GetMembersResponse, members_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pdpb::GetMembersResponse, leader_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pdpb::GetMembersResponse, etcd_leader_),
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pdpb::PeerStats, _internal_metadata_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pdpb::RegionHeartbeatRequest_VoterProgressEntry_DoNotUse, _has_bits_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pdpb::RegionHeartbeatRequest_VoterProgressEntry_DoNotUse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pdpb::PeerStats, peer_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pdpb::PeerStats, down_seconds_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pdpb::RegionHeartbeatRequest_VoterProgressEntry_DoNotUse, key_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pdpb::RegionHeartbeatRequest_VoterProgressEntry_DoNotUse, value_),
+  0,
+  1,
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pdpb::RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse, _has_bits_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pdpb::RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pdpb::RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse, key_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pdpb::RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse, value_),
+  0,
+  1,
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pdpb::RegionHeartbeatRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1426,6 +1463,9 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pdpb::RegionHeartbeatRequest, approximate_size_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pdpb::RegionHeartbeatRequest, interval_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pdpb::RegionHeartbeatRequest, approximate_keys_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pdpb::RegionHeartbeatRequest, voter_progress_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pdpb::RegionHeartbeatRequest, learner_progress_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pdpb::RegionHeartbeatRequest, region_local_state_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::pdpb::ChangePeer, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -1640,32 +1680,33 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROT
   { 170, -1, sizeof(::pdpb::Member)},
   { 180, -1, sizeof(::pdpb::GetMembersRequest)},
   { 186, -1, sizeof(::pdpb::GetMembersResponse)},
-  { 195, -1, sizeof(::pdpb::PeerStats)},
-  { 202, -1, sizeof(::pdpb::RegionHeartbeatRequest)},
-  { 219, -1, sizeof(::pdpb::ChangePeer)},
-  { 226, -1, sizeof(::pdpb::TransferLeader)},
-  { 232, -1, sizeof(::pdpb::Merge)},
-  { 238, -1, sizeof(::pdpb::SplitRegion)},
-  { 244, -1, sizeof(::pdpb::RegionHeartbeatResponse)},
-  { 257, -1, sizeof(::pdpb::AskSplitRequest)},
-  { 264, -1, sizeof(::pdpb::AskSplitResponse)},
-  { 272, -1, sizeof(::pdpb::ReportSplitRequest)},
-  { 280, -1, sizeof(::pdpb::ReportSplitResponse)},
-  { 286, -1, sizeof(::pdpb::AskBatchSplitRequest)},
-  { 294, -1, sizeof(::pdpb::SplitID)},
-  { 301, -1, sizeof(::pdpb::AskBatchSplitResponse)},
-  { 308, -1, sizeof(::pdpb::ReportBatchSplitRequest)},
-  { 315, -1, sizeof(::pdpb::ReportBatchSplitResponse)},
-  { 321, -1, sizeof(::pdpb::TimeInterval)},
-  { 328, -1, sizeof(::pdpb::StoreStats)},
-  { 348, -1, sizeof(::pdpb::StoreHeartbeatRequest)},
-  { 355, -1, sizeof(::pdpb::StoreHeartbeatResponse)},
-  { 361, -1, sizeof(::pdpb::ScatterRegionRequest)},
-  { 370, -1, sizeof(::pdpb::ScatterRegionResponse)},
-  { 376, -1, sizeof(::pdpb::GetGCSafePointRequest)},
-  { 382, -1, sizeof(::pdpb::GetGCSafePointResponse)},
-  { 389, -1, sizeof(::pdpb::UpdateGCSafePointRequest)},
-  { 396, -1, sizeof(::pdpb::UpdateGCSafePointResponse)},
+  { 195, 202, sizeof(::pdpb::RegionHeartbeatRequest_VoterProgressEntry_DoNotUse)},
+  { 204, 211, sizeof(::pdpb::RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse)},
+  { 213, -1, sizeof(::pdpb::RegionHeartbeatRequest)},
+  { 233, -1, sizeof(::pdpb::ChangePeer)},
+  { 240, -1, sizeof(::pdpb::TransferLeader)},
+  { 246, -1, sizeof(::pdpb::Merge)},
+  { 252, -1, sizeof(::pdpb::SplitRegion)},
+  { 258, -1, sizeof(::pdpb::RegionHeartbeatResponse)},
+  { 271, -1, sizeof(::pdpb::AskSplitRequest)},
+  { 278, -1, sizeof(::pdpb::AskSplitResponse)},
+  { 286, -1, sizeof(::pdpb::ReportSplitRequest)},
+  { 294, -1, sizeof(::pdpb::ReportSplitResponse)},
+  { 300, -1, sizeof(::pdpb::AskBatchSplitRequest)},
+  { 308, -1, sizeof(::pdpb::SplitID)},
+  { 315, -1, sizeof(::pdpb::AskBatchSplitResponse)},
+  { 322, -1, sizeof(::pdpb::ReportBatchSplitRequest)},
+  { 329, -1, sizeof(::pdpb::ReportBatchSplitResponse)},
+  { 335, -1, sizeof(::pdpb::TimeInterval)},
+  { 342, -1, sizeof(::pdpb::StoreStats)},
+  { 362, -1, sizeof(::pdpb::StoreHeartbeatRequest)},
+  { 369, -1, sizeof(::pdpb::StoreHeartbeatResponse)},
+  { 375, -1, sizeof(::pdpb::ScatterRegionRequest)},
+  { 384, -1, sizeof(::pdpb::ScatterRegionResponse)},
+  { 390, -1, sizeof(::pdpb::GetGCSafePointRequest)},
+  { 396, -1, sizeof(::pdpb::GetGCSafePointResponse)},
+  { 403, -1, sizeof(::pdpb::UpdateGCSafePointRequest)},
+  { 410, -1, sizeof(::pdpb::UpdateGCSafePointResponse)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -1697,7 +1738,8 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&::pdpb::_Member_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::pdpb::_GetMembersRequest_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::pdpb::_GetMembersResponse_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::pdpb::_PeerStats_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::pdpb::_RegionHeartbeatRequest_VoterProgressEntry_DoNotUse_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::pdpb::_RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::pdpb::_RegionHeartbeatRequest_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::pdpb::_ChangePeer_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::pdpb::_TransferLeader_default_instance_),
@@ -1740,7 +1782,7 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_PROTOBUF_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 54);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 55);
 }
 
 void AddDescriptorsImpl() {
@@ -1803,127 +1845,135 @@ void AddDescriptorsImpl() {
       "r\030\001 \001(\0132\024.pdpb.ResponseHeader\022\035\n\007members"
       "\030\002 \003(\0132\014.pdpb.Member\022\034\n\006leader\030\003 \001(\0132\014.p"
       "dpb.Member\022!\n\013etcd_leader\030\004 \001(\0132\014.pdpb.M"
-      "ember\"=\n\tPeerStats\022\032\n\004peer\030\001 \001(\0132\014.metap"
-      "b.Peer\022\024\n\014down_seconds\030\002 \001(\004\"\371\002\n\026RegionH"
-      "eartbeatRequest\022#\n\006header\030\001 \001(\0132\023.pdpb.R"
-      "equestHeader\022\036\n\006region\030\002 \001(\0132\016.metapb.Re"
-      "gion\022\034\n\006leader\030\003 \001(\0132\014.metapb.Peer\022#\n\ndo"
-      "wn_peers\030\004 \003(\0132\017.pdpb.PeerStats\022#\n\rpendi"
-      "ng_peers\030\005 \003(\0132\014.metapb.Peer\022\025\n\rbytes_wr"
-      "itten\030\006 \001(\004\022\022\n\nbytes_read\030\007 \001(\004\022\024\n\014keys_"
-      "written\030\010 \001(\004\022\021\n\tkeys_read\030\t \001(\004\022\030\n\020appr"
-      "oximate_size\030\n \001(\004\022$\n\010interval\030\014 \001(\0132\022.p"
-      "dpb.TimeInterval\022\030\n\020approximate_keys\030\r \001"
-      "(\004J\004\010\013\020\014\"V\n\nChangePeer\022\032\n\004peer\030\001 \001(\0132\014.m"
-      "etapb.Peer\022,\n\013change_type\030\002 \001(\0162\027.eraftp"
-      "b.ConfChangeType\",\n\016TransferLeader\022\032\n\004pe"
-      "er\030\001 \001(\0132\014.metapb.Peer\"\'\n\005Merge\022\036\n\006targe"
-      "t\030\001 \001(\0132\016.metapb.Region\"0\n\013SplitRegion\022!"
-      "\n\006policy\030\001 \001(\0162\021.pdpb.CheckPolicy\"\273\002\n\027Re"
-      "gionHeartbeatResponse\022$\n\006header\030\001 \001(\0132\024."
-      "pdpb.ResponseHeader\022%\n\013change_peer\030\002 \001(\013"
-      "2\020.pdpb.ChangePeer\022-\n\017transfer_leader\030\003 "
-      "\001(\0132\024.pdpb.TransferLeader\022\021\n\tregion_id\030\004"
-      " \001(\004\022)\n\014region_epoch\030\005 \001(\0132\023.metapb.Regi"
-      "onEpoch\022!\n\013target_peer\030\006 \001(\0132\014.metapb.Pe"
-      "er\022\032\n\005merge\030\007 \001(\0132\013.pdpb.Merge\022\'\n\014split_"
-      "region\030\010 \001(\0132\021.pdpb.SplitRegion\"V\n\017AskSp"
-      "litRequest\022#\n\006header\030\001 \001(\0132\023.pdpb.Reques"
-      "tHeader\022\036\n\006region\030\002 \001(\0132\016.metapb.Region\""
-      "e\n\020AskSplitResponse\022$\n\006header\030\001 \001(\0132\024.pd"
-      "pb.ResponseHeader\022\025\n\rnew_region_id\030\002 \001(\004"
-      "\022\024\n\014new_peer_ids\030\003 \003(\004\"v\n\022ReportSplitReq"
-      "uest\022#\n\006header\030\001 \001(\0132\023.pdpb.RequestHeade"
-      "r\022\034\n\004left\030\002 \001(\0132\016.metapb.Region\022\035\n\005right"
-      "\030\003 \001(\0132\016.metapb.Region\";\n\023ReportSplitRes"
-      "ponse\022$\n\006header\030\001 \001(\0132\024.pdpb.ResponseHea"
-      "der\"p\n\024AskBatchSplitRequest\022#\n\006header\030\001 "
-      "\001(\0132\023.pdpb.RequestHeader\022\036\n\006region\030\002 \001(\013"
-      "2\016.metapb.Region\022\023\n\013split_count\030\003 \001(\r\"6\n"
-      "\007SplitID\022\025\n\rnew_region_id\030\001 \001(\004\022\024\n\014new_p"
-      "eer_ids\030\002 \003(\004\"Y\n\025AskBatchSplitResponse\022$"
-      "\n\006header\030\001 \001(\0132\024.pdpb.ResponseHeader\022\032\n\003"
-      "ids\030\002 \003(\0132\r.pdpb.SplitID\"_\n\027ReportBatchS"
-      "plitRequest\022#\n\006header\030\001 \001(\0132\023.pdpb.Reque"
-      "stHeader\022\037\n\007regions\030\002 \003(\0132\016.metapb.Regio"
-      "n\"@\n\030ReportBatchSplitResponse\022$\n\006header\030"
-      "\001 \001(\0132\024.pdpb.ResponseHeader\">\n\014TimeInter"
-      "val\022\027\n\017start_timestamp\030\001 \001(\004\022\025\n\rend_time"
-      "stamp\030\002 \001(\004\"\342\002\n\nStoreStats\022\020\n\010store_id\030\001"
-      " \001(\004\022\020\n\010capacity\030\002 \001(\004\022\021\n\tavailable\030\003 \001("
-      "\004\022\024\n\014region_count\030\004 \001(\r\022\032\n\022sending_snap_"
-      "count\030\005 \001(\r\022\034\n\024receiving_snap_count\030\006 \001("
-      "\r\022\022\n\nstart_time\030\007 \001(\r\022\033\n\023applying_snap_c"
-      "ount\030\010 \001(\r\022\017\n\007is_busy\030\t \001(\010\022\021\n\tused_size"
-      "\030\n \001(\004\022\025\n\rbytes_written\030\013 \001(\004\022\024\n\014keys_wr"
-      "itten\030\014 \001(\004\022\022\n\nbytes_read\030\r \001(\004\022\021\n\tkeys_"
-      "read\030\016 \001(\004\022$\n\010interval\030\017 \001(\0132\022.pdpb.Time"
-      "Interval\"]\n\025StoreHeartbeatRequest\022#\n\006hea"
-      "der\030\001 \001(\0132\023.pdpb.RequestHeader\022\037\n\005stats\030"
-      "\002 \001(\0132\020.pdpb.StoreStats\">\n\026StoreHeartbea"
-      "tResponse\022$\n\006header\030\001 \001(\0132\024.pdpb.Respons"
-      "eHeader\"\214\001\n\024ScatterRegionRequest\022#\n\006head"
-      "er\030\001 \001(\0132\023.pdpb.RequestHeader\022\021\n\tregion_"
-      "id\030\002 \001(\004\022\036\n\006region\030\003 \001(\0132\016.metapb.Region"
-      "\022\034\n\006leader\030\004 \001(\0132\014.metapb.Peer\"=\n\025Scatte"
-      "rRegionResponse\022$\n\006header\030\001 \001(\0132\024.pdpb.R"
-      "esponseHeader\"<\n\025GetGCSafePointRequest\022#"
-      "\n\006header\030\001 \001(\0132\023.pdpb.RequestHeader\"R\n\026G"
-      "etGCSafePointResponse\022$\n\006header\030\001 \001(\0132\024."
-      "pdpb.ResponseHeader\022\022\n\nsafe_point\030\002 \001(\004\""
-      "S\n\030UpdateGCSafePointRequest\022#\n\006header\030\001 "
-      "\001(\0132\023.pdpb.RequestHeader\022\022\n\nsafe_point\030\002"
-      " \001(\004\"Y\n\031UpdateGCSafePointResponse\022$\n\006hea"
-      "der\030\001 \001(\0132\024.pdpb.ResponseHeader\022\026\n\016new_s"
-      "afe_point\030\002 \001(\004*\177\n\tErrorType\022\006\n\002OK\020\000\022\013\n\007"
-      "UNKNOWN\020\001\022\024\n\020NOT_BOOTSTRAPPED\020\002\022\023\n\017STORE"
-      "_TOMBSTONE\020\003\022\030\n\024ALREADY_BOOTSTRAPPED\020\004\022\030"
-      "\n\024INCOMPATIBLE_VERSION\020\005*(\n\013CheckPolicy\022"
-      "\010\n\004SCAN\020\000\022\017\n\013APPROXIMATE\020\0012\275\014\n\002PD\022A\n\nGet"
-      "Members\022\027.pdpb.GetMembersRequest\032\030.pdpb."
-      "GetMembersResponse\"\000\0220\n\003Tso\022\020.pdpb.TsoRe"
-      "quest\032\021.pdpb.TsoResponse\"\000(\0010\001\022>\n\tBootst"
-      "rap\022\026.pdpb.BootstrapRequest\032\027.pdpb.Boots"
-      "trapResponse\"\000\022M\n\016IsBootstrapped\022\033.pdpb."
-      "IsBootstrappedRequest\032\034.pdpb.IsBootstrap"
-      "pedResponse\"\000\0228\n\007AllocID\022\024.pdpb.AllocIDR"
-      "equest\032\025.pdpb.AllocIDResponse\"\000\022;\n\010GetSt"
-      "ore\022\025.pdpb.GetStoreRequest\032\026.pdpb.GetSto"
-      "reResponse\"\000\022;\n\010PutStore\022\025.pdpb.PutStore"
-      "Request\032\026.pdpb.PutStoreResponse\"\000\022G\n\014Get"
-      "AllStores\022\031.pdpb.GetAllStoresRequest\032\032.p"
-      "dpb.GetAllStoresResponse\"\000\022M\n\016StoreHeart"
-      "beat\022\033.pdpb.StoreHeartbeatRequest\032\034.pdpb"
-      ".StoreHeartbeatResponse\"\000\022T\n\017RegionHeart"
-      "beat\022\034.pdpb.RegionHeartbeatRequest\032\035.pdp"
-      "b.RegionHeartbeatResponse\"\000(\0010\001\022>\n\tGetRe"
-      "gion\022\026.pdpb.GetRegionRequest\032\027.pdpb.GetR"
-      "egionResponse\"\000\022B\n\rGetPrevRegion\022\026.pdpb."
-      "GetRegionRequest\032\027.pdpb.GetRegionRespons"
-      "e\"\000\022F\n\rGetRegionByID\022\032.pdpb.GetRegionByI"
-      "DRequest\032\027.pdpb.GetRegionResponse\"\000\022>\n\010A"
-      "skSplit\022\025.pdpb.AskSplitRequest\032\026.pdpb.As"
-      "kSplitResponse\"\003\210\002\001\022G\n\013ReportSplit\022\030.pdp"
-      "b.ReportSplitRequest\032\031.pdpb.ReportSplitR"
-      "esponse\"\003\210\002\001\022J\n\rAskBatchSplit\022\032.pdpb.Ask"
-      "BatchSplitRequest\032\033.pdpb.AskBatchSplitRe"
-      "sponse\"\000\022S\n\020ReportBatchSplit\022\035.pdpb.Repo"
-      "rtBatchSplitRequest\032\036.pdpb.ReportBatchSp"
-      "litResponse\"\000\022S\n\020GetClusterConfig\022\035.pdpb"
-      ".GetClusterConfigRequest\032\036.pdpb.GetClust"
-      "erConfigResponse\"\000\022S\n\020PutClusterConfig\022\035"
-      ".pdpb.PutClusterConfigRequest\032\036.pdpb.Put"
-      "ClusterConfigResponse\"\000\022J\n\rScatterRegion"
-      "\022\032.pdpb.ScatterRegionRequest\032\033.pdpb.Scat"
-      "terRegionResponse\"\000\022M\n\016GetGCSafePoint\022\033."
-      "pdpb.GetGCSafePointRequest\032\034.pdpb.GetGCS"
-      "afePointResponse\"\000\022V\n\021UpdateGCSafePoint\022"
-      "\036.pdpb.UpdateGCSafePointRequest\032\037.pdpb.U"
-      "pdateGCSafePointResponse\"\000B&\n\030com.pingca"
-      "p.tikv.kvproto\340\342\036\001\310\342\036\001\320\342\036\001b\006proto3"
+      "ember\"\331\005\n\026RegionHeartbeatRequest\022#\n\006head"
+      "er\030\001 \001(\0132\023.pdpb.RequestHeader\022\036\n\006region\030"
+      "\002 \001(\0132\016.metapb.Region\022\034\n\006leader\030\003 \001(\0132\014."
+      "metapb.Peer\022%\n\ndown_peers\030\004 \003(\0132\021.metapb"
+      ".PeerStats\022#\n\rpending_peers\030\005 \003(\0132\014.meta"
+      "pb.Peer\022\025\n\rbytes_written\030\006 \001(\004\022\022\n\nbytes_"
+      "read\030\007 \001(\004\022\024\n\014keys_written\030\010 \001(\004\022\021\n\tkeys"
+      "_read\030\t \001(\004\022\030\n\020approximate_size\030\n \001(\004\022$\n"
+      "\010interval\030\014 \001(\0132\022.pdpb.TimeInterval\022\030\n\020a"
+      "pproximate_keys\030\r \001(\004\022G\n\016voter_progress\030"
+      "\016 \003(\0132/.pdpb.RegionHeartbeatRequest.Vote"
+      "rProgressEntry\022K\n\020learner_progress\030\017 \003(\013"
+      "21.pdpb.RegionHeartbeatRequest.LearnerPr"
+      "ogressEntry\0224\n\022region_local_state\030\020 \001(\0132"
+      "\030.metapb.RegionLocalState\032F\n\022VoterProgre"
+      "ssEntry\022\013\n\003key\030\001 \001(\004\022\037\n\005value\030\002 \001(\0132\020.me"
+      "tapb.Progress:\0028\001\032H\n\024LearnerProgressEntr"
+      "y\022\013\n\003key\030\001 \001(\004\022\037\n\005value\030\002 \001(\0132\020.metapb.P"
+      "rogress:\0028\001J\004\010\013\020\014\"V\n\nChangePeer\022\032\n\004peer\030"
+      "\001 \001(\0132\014.metapb.Peer\022,\n\013change_type\030\002 \001(\016"
+      "2\027.eraftpb.ConfChangeType\",\n\016TransferLea"
+      "der\022\032\n\004peer\030\001 \001(\0132\014.metapb.Peer\"\'\n\005Merge"
+      "\022\036\n\006target\030\001 \001(\0132\016.metapb.Region\"0\n\013Spli"
+      "tRegion\022!\n\006policy\030\001 \001(\0162\021.pdpb.CheckPoli"
+      "cy\"\273\002\n\027RegionHeartbeatResponse\022$\n\006header"
+      "\030\001 \001(\0132\024.pdpb.ResponseHeader\022%\n\013change_p"
+      "eer\030\002 \001(\0132\020.pdpb.ChangePeer\022-\n\017transfer_"
+      "leader\030\003 \001(\0132\024.pdpb.TransferLeader\022\021\n\tre"
+      "gion_id\030\004 \001(\004\022)\n\014region_epoch\030\005 \001(\0132\023.me"
+      "tapb.RegionEpoch\022!\n\013target_peer\030\006 \001(\0132\014."
+      "metapb.Peer\022\032\n\005merge\030\007 \001(\0132\013.pdpb.Merge\022"
+      "\'\n\014split_region\030\010 \001(\0132\021.pdpb.SplitRegion"
+      "\"V\n\017AskSplitRequest\022#\n\006header\030\001 \001(\0132\023.pd"
+      "pb.RequestHeader\022\036\n\006region\030\002 \001(\0132\016.metap"
+      "b.Region\"e\n\020AskSplitResponse\022$\n\006header\030\001"
+      " \001(\0132\024.pdpb.ResponseHeader\022\025\n\rnew_region"
+      "_id\030\002 \001(\004\022\024\n\014new_peer_ids\030\003 \003(\004\"v\n\022Repor"
+      "tSplitRequest\022#\n\006header\030\001 \001(\0132\023.pdpb.Req"
+      "uestHeader\022\034\n\004left\030\002 \001(\0132\016.metapb.Region"
+      "\022\035\n\005right\030\003 \001(\0132\016.metapb.Region\";\n\023Repor"
+      "tSplitResponse\022$\n\006header\030\001 \001(\0132\024.pdpb.Re"
+      "sponseHeader\"p\n\024AskBatchSplitRequest\022#\n\006"
+      "header\030\001 \001(\0132\023.pdpb.RequestHeader\022\036\n\006reg"
+      "ion\030\002 \001(\0132\016.metapb.Region\022\023\n\013split_count"
+      "\030\003 \001(\r\"6\n\007SplitID\022\025\n\rnew_region_id\030\001 \001(\004"
+      "\022\024\n\014new_peer_ids\030\002 \003(\004\"Y\n\025AskBatchSplitR"
+      "esponse\022$\n\006header\030\001 \001(\0132\024.pdpb.ResponseH"
+      "eader\022\032\n\003ids\030\002 \003(\0132\r.pdpb.SplitID\"_\n\027Rep"
+      "ortBatchSplitRequest\022#\n\006header\030\001 \001(\0132\023.p"
+      "dpb.RequestHeader\022\037\n\007regions\030\002 \003(\0132\016.met"
+      "apb.Region\"@\n\030ReportBatchSplitResponse\022$"
+      "\n\006header\030\001 \001(\0132\024.pdpb.ResponseHeader\">\n\014"
+      "TimeInterval\022\027\n\017start_timestamp\030\001 \001(\004\022\025\n"
+      "\rend_timestamp\030\002 \001(\004\"\342\002\n\nStoreStats\022\020\n\010s"
+      "tore_id\030\001 \001(\004\022\020\n\010capacity\030\002 \001(\004\022\021\n\tavail"
+      "able\030\003 \001(\004\022\024\n\014region_count\030\004 \001(\r\022\032\n\022send"
+      "ing_snap_count\030\005 \001(\r\022\034\n\024receiving_snap_c"
+      "ount\030\006 \001(\r\022\022\n\nstart_time\030\007 \001(\r\022\033\n\023applyi"
+      "ng_snap_count\030\010 \001(\r\022\017\n\007is_busy\030\t \001(\010\022\021\n\t"
+      "used_size\030\n \001(\004\022\025\n\rbytes_written\030\013 \001(\004\022\024"
+      "\n\014keys_written\030\014 \001(\004\022\022\n\nbytes_read\030\r \001(\004"
+      "\022\021\n\tkeys_read\030\016 \001(\004\022$\n\010interval\030\017 \001(\0132\022."
+      "pdpb.TimeInterval\"]\n\025StoreHeartbeatReque"
+      "st\022#\n\006header\030\001 \001(\0132\023.pdpb.RequestHeader\022"
+      "\037\n\005stats\030\002 \001(\0132\020.pdpb.StoreStats\">\n\026Stor"
+      "eHeartbeatResponse\022$\n\006header\030\001 \001(\0132\024.pdp"
+      "b.ResponseHeader\"\214\001\n\024ScatterRegionReques"
+      "t\022#\n\006header\030\001 \001(\0132\023.pdpb.RequestHeader\022\021"
+      "\n\tregion_id\030\002 \001(\004\022\036\n\006region\030\003 \001(\0132\016.meta"
+      "pb.Region\022\034\n\006leader\030\004 \001(\0132\014.metapb.Peer\""
+      "=\n\025ScatterRegionResponse\022$\n\006header\030\001 \001(\013"
+      "2\024.pdpb.ResponseHeader\"<\n\025GetGCSafePoint"
+      "Request\022#\n\006header\030\001 \001(\0132\023.pdpb.RequestHe"
+      "ader\"R\n\026GetGCSafePointResponse\022$\n\006header"
+      "\030\001 \001(\0132\024.pdpb.ResponseHeader\022\022\n\nsafe_poi"
+      "nt\030\002 \001(\004\"S\n\030UpdateGCSafePointRequest\022#\n\006"
+      "header\030\001 \001(\0132\023.pdpb.RequestHeader\022\022\n\nsaf"
+      "e_point\030\002 \001(\004\"Y\n\031UpdateGCSafePointRespon"
+      "se\022$\n\006header\030\001 \001(\0132\024.pdpb.ResponseHeader"
+      "\022\026\n\016new_safe_point\030\002 \001(\004*\177\n\tErrorType\022\006\n"
+      "\002OK\020\000\022\013\n\007UNKNOWN\020\001\022\024\n\020NOT_BOOTSTRAPPED\020\002"
+      "\022\023\n\017STORE_TOMBSTONE\020\003\022\030\n\024ALREADY_BOOTSTR"
+      "APPED\020\004\022\030\n\024INCOMPATIBLE_VERSION\020\005*(\n\013Che"
+      "ckPolicy\022\010\n\004SCAN\020\000\022\017\n\013APPROXIMATE\020\0012\275\014\n\002"
+      "PD\022A\n\nGetMembers\022\027.pdpb.GetMembersReques"
+      "t\032\030.pdpb.GetMembersResponse\"\000\0220\n\003Tso\022\020.p"
+      "dpb.TsoRequest\032\021.pdpb.TsoResponse\"\000(\0010\001\022"
+      ">\n\tBootstrap\022\026.pdpb.BootstrapRequest\032\027.p"
+      "dpb.BootstrapResponse\"\000\022M\n\016IsBootstrappe"
+      "d\022\033.pdpb.IsBootstrappedRequest\032\034.pdpb.Is"
+      "BootstrappedResponse\"\000\0228\n\007AllocID\022\024.pdpb"
+      ".AllocIDRequest\032\025.pdpb.AllocIDResponse\"\000"
+      "\022;\n\010GetStore\022\025.pdpb.GetStoreRequest\032\026.pd"
+      "pb.GetStoreResponse\"\000\022;\n\010PutStore\022\025.pdpb"
+      ".PutStoreRequest\032\026.pdpb.PutStoreResponse"
+      "\"\000\022G\n\014GetAllStores\022\031.pdpb.GetAllStoresRe"
+      "quest\032\032.pdpb.GetAllStoresResponse\"\000\022M\n\016S"
+      "toreHeartbeat\022\033.pdpb.StoreHeartbeatReque"
+      "st\032\034.pdpb.StoreHeartbeatResponse\"\000\022T\n\017Re"
+      "gionHeartbeat\022\034.pdpb.RegionHeartbeatRequ"
+      "est\032\035.pdpb.RegionHeartbeatResponse\"\000(\0010\001"
+      "\022>\n\tGetRegion\022\026.pdpb.GetRegionRequest\032\027."
+      "pdpb.GetRegionResponse\"\000\022B\n\rGetPrevRegio"
+      "n\022\026.pdpb.GetRegionRequest\032\027.pdpb.GetRegi"
+      "onResponse\"\000\022F\n\rGetRegionByID\022\032.pdpb.Get"
+      "RegionByIDRequest\032\027.pdpb.GetRegionRespon"
+      "se\"\000\022>\n\010AskSplit\022\025.pdpb.AskSplitRequest\032"
+      "\026.pdpb.AskSplitResponse\"\003\210\002\001\022G\n\013ReportSp"
+      "lit\022\030.pdpb.ReportSplitRequest\032\031.pdpb.Rep"
+      "ortSplitResponse\"\003\210\002\001\022J\n\rAskBatchSplit\022\032"
+      ".pdpb.AskBatchSplitRequest\032\033.pdpb.AskBat"
+      "chSplitResponse\"\000\022S\n\020ReportBatchSplit\022\035."
+      "pdpb.ReportBatchSplitRequest\032\036.pdpb.Repo"
+      "rtBatchSplitResponse\"\000\022S\n\020GetClusterConf"
+      "ig\022\035.pdpb.GetClusterConfigRequest\032\036.pdpb"
+      ".GetClusterConfigResponse\"\000\022S\n\020PutCluste"
+      "rConfig\022\035.pdpb.PutClusterConfigRequest\032\036"
+      ".pdpb.PutClusterConfigResponse\"\000\022J\n\rScat"
+      "terRegion\022\032.pdpb.ScatterRegionRequest\032\033."
+      "pdpb.ScatterRegionResponse\"\000\022M\n\016GetGCSaf"
+      "ePoint\022\033.pdpb.GetGCSafePointRequest\032\034.pd"
+      "pb.GetGCSafePointResponse\"\000\022V\n\021UpdateGCS"
+      "afePoint\022\036.pdpb.UpdateGCSafePointRequest"
+      "\032\037.pdpb.UpdateGCSafePointResponse\"\000B&\n\030c"
+      "om.pingcap.tikv.kvproto\340\342\036\001\310\342\036\001\320\342\036\001b\006pro"
+      "to3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 6994);
+      descriptor, 7283);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "pdpb.proto", &protobuf_RegisterTypes);
   ::protobuf_metapb_2eproto::AddDescriptors();
@@ -9806,281 +9856,35 @@ void GetMembersResponse::InternalSwap(GetMembersResponse* other) {
 
 // ===================================================================
 
-void PeerStats::InitAsDefaultInstance() {
-  ::pdpb::_PeerStats_default_instance_._instance.get_mutable()->peer_ = const_cast< ::metapb::Peer*>(
-      ::metapb::Peer::internal_default_instance());
+RegionHeartbeatRequest_VoterProgressEntry_DoNotUse::RegionHeartbeatRequest_VoterProgressEntry_DoNotUse() {}
+RegionHeartbeatRequest_VoterProgressEntry_DoNotUse::RegionHeartbeatRequest_VoterProgressEntry_DoNotUse(::google::protobuf::Arena* arena) : SuperType(arena) {}
+void RegionHeartbeatRequest_VoterProgressEntry_DoNotUse::MergeFrom(const RegionHeartbeatRequest_VoterProgressEntry_DoNotUse& other) {
+  MergeFromInternal(other);
 }
-void PeerStats::clear_peer() {
-  if (GetArenaNoVirtual() == NULL && peer_ != NULL) {
-    delete peer_;
-  }
-  peer_ = NULL;
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int PeerStats::kPeerFieldNumber;
-const int PeerStats::kDownSecondsFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
-
-PeerStats::PeerStats()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_pdpb_2eproto::scc_info_PeerStats.base);
-  SharedCtor();
-  // @@protoc_insertion_point(constructor:pdpb.PeerStats)
-}
-PeerStats::PeerStats(const PeerStats& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  if (from.has_peer()) {
-    peer_ = new ::metapb::Peer(*from.peer_);
-  } else {
-    peer_ = NULL;
-  }
-  down_seconds_ = from.down_seconds_;
-  // @@protoc_insertion_point(copy_constructor:pdpb.PeerStats)
-}
-
-void PeerStats::SharedCtor() {
-  ::memset(&peer_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&down_seconds_) -
-      reinterpret_cast<char*>(&peer_)) + sizeof(down_seconds_));
-}
-
-PeerStats::~PeerStats() {
-  // @@protoc_insertion_point(destructor:pdpb.PeerStats)
-  SharedDtor();
-}
-
-void PeerStats::SharedDtor() {
-  if (this != internal_default_instance()) delete peer_;
-}
-
-void PeerStats::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-const ::google::protobuf::Descriptor* PeerStats::descriptor() {
+::google::protobuf::Metadata RegionHeartbeatRequest_VoterProgressEntry_DoNotUse::GetMetadata() const {
   ::protobuf_pdpb_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_pdpb_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+  return ::protobuf_pdpb_2eproto::file_level_metadata[28];
+}
+void RegionHeartbeatRequest_VoterProgressEntry_DoNotUse::MergeFrom(
+    const ::google::protobuf::Message& other) {
+  ::google::protobuf::Message::MergeFrom(other);
 }
 
-const PeerStats& PeerStats::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_pdpb_2eproto::scc_info_PeerStats.base);
-  return *internal_default_instance();
+
+// ===================================================================
+
+RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse::RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse() {}
+RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse::RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse(::google::protobuf::Arena* arena) : SuperType(arena) {}
+void RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse::MergeFrom(const RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse& other) {
+  MergeFromInternal(other);
 }
-
-
-void PeerStats::Clear() {
-// @@protoc_insertion_point(message_clear_start:pdpb.PeerStats)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  if (GetArenaNoVirtual() == NULL && peer_ != NULL) {
-    delete peer_;
-  }
-  peer_ = NULL;
-  down_seconds_ = GOOGLE_ULONGLONG(0);
-  _internal_metadata_.Clear();
+::google::protobuf::Metadata RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse::GetMetadata() const {
+  ::protobuf_pdpb_2eproto::protobuf_AssignDescriptorsOnce();
+  return ::protobuf_pdpb_2eproto::file_level_metadata[29];
 }
-
-bool PeerStats::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:pdpb.PeerStats)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // .metapb.Peer peer = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
-               input, mutable_peer()));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // uint64 down_seconds = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
-                 input, &down_seconds_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      default: {
-      handle_unusual:
-        if (tag == 0) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
-      }
-    }
-  }
-success:
-  // @@protoc_insertion_point(parse_success:pdpb.PeerStats)
-  return true;
-failure:
-  // @@protoc_insertion_point(parse_failure:pdpb.PeerStats)
-  return false;
-#undef DO_
-}
-
-void PeerStats::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:pdpb.PeerStats)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // .metapb.Peer peer = 1;
-  if (this->has_peer()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      1, this->_internal_peer(), output);
-  }
-
-  // uint64 down_seconds = 2;
-  if (this->down_seconds() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt64(2, this->down_seconds(), output);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:pdpb.PeerStats)
-}
-
-::google::protobuf::uint8* PeerStats::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
-  // @@protoc_insertion_point(serialize_to_array_start:pdpb.PeerStats)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // .metapb.Peer peer = 1;
-  if (this->has_peer()) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageToArray(
-        1, this->_internal_peer(), deterministic, target);
-  }
-
-  // uint64 down_seconds = 2;
-  if (this->down_seconds() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(2, this->down_seconds(), target);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:pdpb.PeerStats)
-  return target;
-}
-
-size_t PeerStats::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:pdpb.PeerStats)
-  size_t total_size = 0;
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
-  // .metapb.Peer peer = 1;
-  if (this->has_peer()) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::MessageSize(
-        *peer_);
-  }
-
-  // uint64 down_seconds = 2;
-  if (this->down_seconds() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::UInt64Size(
-        this->down_seconds());
-  }
-
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
-}
-
-void PeerStats::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:pdpb.PeerStats)
-  GOOGLE_DCHECK_NE(&from, this);
-  const PeerStats* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const PeerStats>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:pdpb.PeerStats)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:pdpb.PeerStats)
-    MergeFrom(*source);
-  }
-}
-
-void PeerStats::MergeFrom(const PeerStats& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:pdpb.PeerStats)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (from.has_peer()) {
-    mutable_peer()->::metapb::Peer::MergeFrom(from.peer());
-  }
-  if (from.down_seconds() != 0) {
-    set_down_seconds(from.down_seconds());
-  }
-}
-
-void PeerStats::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:pdpb.PeerStats)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void PeerStats::CopyFrom(const PeerStats& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:pdpb.PeerStats)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool PeerStats::IsInitialized() const {
-  return true;
-}
-
-void PeerStats::Swap(PeerStats* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
-void PeerStats::InternalSwap(PeerStats* other) {
-  using std::swap;
-  swap(peer_, other->peer_);
-  swap(down_seconds_, other->down_seconds_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-}
-
-::google::protobuf::Metadata PeerStats::GetMetadata() const {
-  protobuf_pdpb_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_pdpb_2eproto::file_level_metadata[kIndexInFileMessages];
+void RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse::MergeFrom(
+    const ::google::protobuf::Message& other) {
+  ::google::protobuf::Message::MergeFrom(other);
 }
 
 
@@ -10095,6 +9899,8 @@ void RegionHeartbeatRequest::InitAsDefaultInstance() {
       ::metapb::Peer::internal_default_instance());
   ::pdpb::_RegionHeartbeatRequest_default_instance_._instance.get_mutable()->interval_ = const_cast< ::pdpb::TimeInterval*>(
       ::pdpb::TimeInterval::internal_default_instance());
+  ::pdpb::_RegionHeartbeatRequest_default_instance_._instance.get_mutable()->region_local_state_ = const_cast< ::metapb::RegionLocalState*>(
+      ::metapb::RegionLocalState::internal_default_instance());
 }
 void RegionHeartbeatRequest::clear_region() {
   if (GetArenaNoVirtual() == NULL && region_ != NULL) {
@@ -10108,8 +9914,23 @@ void RegionHeartbeatRequest::clear_leader() {
   }
   leader_ = NULL;
 }
+void RegionHeartbeatRequest::clear_down_peers() {
+  down_peers_.Clear();
+}
 void RegionHeartbeatRequest::clear_pending_peers() {
   pending_peers_.Clear();
+}
+void RegionHeartbeatRequest::clear_voter_progress() {
+  voter_progress_.Clear();
+}
+void RegionHeartbeatRequest::clear_learner_progress() {
+  learner_progress_.Clear();
+}
+void RegionHeartbeatRequest::clear_region_local_state() {
+  if (GetArenaNoVirtual() == NULL && region_local_state_ != NULL) {
+    delete region_local_state_;
+  }
+  region_local_state_ = NULL;
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int RegionHeartbeatRequest::kHeaderFieldNumber;
@@ -10124,6 +9945,9 @@ const int RegionHeartbeatRequest::kKeysReadFieldNumber;
 const int RegionHeartbeatRequest::kApproximateSizeFieldNumber;
 const int RegionHeartbeatRequest::kIntervalFieldNumber;
 const int RegionHeartbeatRequest::kApproximateKeysFieldNumber;
+const int RegionHeartbeatRequest::kVoterProgressFieldNumber;
+const int RegionHeartbeatRequest::kLearnerProgressFieldNumber;
+const int RegionHeartbeatRequest::kRegionLocalStateFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 RegionHeartbeatRequest::RegionHeartbeatRequest()
@@ -10139,6 +9963,8 @@ RegionHeartbeatRequest::RegionHeartbeatRequest(const RegionHeartbeatRequest& fro
       down_peers_(from.down_peers_),
       pending_peers_(from.pending_peers_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  voter_progress_.MergeFrom(from.voter_progress_);
+  learner_progress_.MergeFrom(from.learner_progress_);
   if (from.has_header()) {
     header_ = new ::pdpb::RequestHeader(*from.header_);
   } else {
@@ -10158,6 +9984,11 @@ RegionHeartbeatRequest::RegionHeartbeatRequest(const RegionHeartbeatRequest& fro
     interval_ = new ::pdpb::TimeInterval(*from.interval_);
   } else {
     interval_ = NULL;
+  }
+  if (from.has_region_local_state()) {
+    region_local_state_ = new ::metapb::RegionLocalState(*from.region_local_state_);
+  } else {
+    region_local_state_ = NULL;
   }
   ::memcpy(&bytes_written_, &from.bytes_written_,
     static_cast<size_t>(reinterpret_cast<char*>(&approximate_keys_) -
@@ -10181,6 +10012,7 @@ void RegionHeartbeatRequest::SharedDtor() {
   if (this != internal_default_instance()) delete region_;
   if (this != internal_default_instance()) delete leader_;
   if (this != internal_default_instance()) delete interval_;
+  if (this != internal_default_instance()) delete region_local_state_;
 }
 
 void RegionHeartbeatRequest::SetCachedSize(int size) const {
@@ -10205,6 +10037,8 @@ void RegionHeartbeatRequest::Clear() {
 
   down_peers_.Clear();
   pending_peers_.Clear();
+  voter_progress_.Clear();
+  learner_progress_.Clear();
   if (GetArenaNoVirtual() == NULL && header_ != NULL) {
     delete header_;
   }
@@ -10221,6 +10055,10 @@ void RegionHeartbeatRequest::Clear() {
     delete interval_;
   }
   interval_ = NULL;
+  if (GetArenaNoVirtual() == NULL && region_local_state_ != NULL) {
+    delete region_local_state_;
+  }
+  region_local_state_ = NULL;
   ::memset(&bytes_written_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&approximate_keys_) -
       reinterpret_cast<char*>(&bytes_written_)) + sizeof(approximate_keys_));
@@ -10233,7 +10071,7 @@ bool RegionHeartbeatRequest::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:pdpb.RegionHeartbeatRequest)
   for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(16383u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
@@ -10273,7 +10111,7 @@ bool RegionHeartbeatRequest::MergePartialFromCodedStream(
         break;
       }
 
-      // repeated .pdpb.PeerStats down_peers = 4;
+      // repeated .metapb.PeerStats down_peers = 4;
       case 4: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(34u /* 34 & 0xFF */)) {
@@ -10393,6 +10231,56 @@ bool RegionHeartbeatRequest::MergePartialFromCodedStream(
         break;
       }
 
+      // map<uint64, .metapb.Progress> voter_progress = 14;
+      case 14: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(114u /* 114 & 0xFF */)) {
+          RegionHeartbeatRequest_VoterProgressEntry_DoNotUse::Parser< ::google::protobuf::internal::MapField<
+              RegionHeartbeatRequest_VoterProgressEntry_DoNotUse,
+              ::google::protobuf::uint64, ::metapb::Progress,
+              ::google::protobuf::internal::WireFormatLite::TYPE_UINT64,
+              ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE,
+              0 >,
+            ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress > > parser(&voter_progress_);
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+              input, &parser));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // map<uint64, .metapb.Progress> learner_progress = 15;
+      case 15: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(122u /* 122 & 0xFF */)) {
+          RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse::Parser< ::google::protobuf::internal::MapField<
+              RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse,
+              ::google::protobuf::uint64, ::metapb::Progress,
+              ::google::protobuf::internal::WireFormatLite::TYPE_UINT64,
+              ::google::protobuf::internal::WireFormatLite::TYPE_MESSAGE,
+              0 >,
+            ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress > > parser(&learner_progress_);
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+              input, &parser));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // .metapb.RegionLocalState region_local_state = 16;
+      case 16: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(130u /* 130 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_region_local_state()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -10437,7 +10325,7 @@ void RegionHeartbeatRequest::SerializeWithCachedSizes(
       3, this->_internal_leader(), output);
   }
 
-  // repeated .pdpb.PeerStats down_peers = 4;
+  // repeated .metapb.PeerStats down_peers = 4;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->down_peers_size()); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
@@ -10491,6 +10379,90 @@ void RegionHeartbeatRequest::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt64(13, this->approximate_keys(), output);
   }
 
+  // map<uint64, .metapb.Progress> voter_progress = 14;
+  if (!this->voter_progress().empty()) {
+    typedef ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_pointer
+        ConstPtr;
+    typedef ::google::protobuf::internal::SortItem< ::google::protobuf::uint64, ConstPtr > SortItem;
+    typedef ::google::protobuf::internal::CompareByFirstField<SortItem> Less;
+
+    if (output->IsSerializationDeterministic() &&
+        this->voter_progress().size() > 1) {
+      ::std::unique_ptr<SortItem[]> items(
+          new SortItem[this->voter_progress().size()]);
+      typedef ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::size_type size_type;
+      size_type n = 0;
+      for (::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_iterator
+          it = this->voter_progress().begin();
+          it != this->voter_progress().end(); ++it, ++n) {
+        items[static_cast<ptrdiff_t>(n)] = SortItem(&*it);
+      }
+      ::std::sort(&items[0], &items[static_cast<ptrdiff_t>(n)], Less());
+      ::std::unique_ptr<RegionHeartbeatRequest_VoterProgressEntry_DoNotUse> entry;
+      for (size_type i = 0; i < n; i++) {
+        entry.reset(voter_progress_.NewEntryWrapper(
+            items[static_cast<ptrdiff_t>(i)].second->first, items[static_cast<ptrdiff_t>(i)].second->second));
+        ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+            14, *entry, output);
+      }
+    } else {
+      ::std::unique_ptr<RegionHeartbeatRequest_VoterProgressEntry_DoNotUse> entry;
+      for (::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_iterator
+          it = this->voter_progress().begin();
+          it != this->voter_progress().end(); ++it) {
+        entry.reset(voter_progress_.NewEntryWrapper(
+            it->first, it->second));
+        ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+            14, *entry, output);
+      }
+    }
+  }
+
+  // map<uint64, .metapb.Progress> learner_progress = 15;
+  if (!this->learner_progress().empty()) {
+    typedef ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_pointer
+        ConstPtr;
+    typedef ::google::protobuf::internal::SortItem< ::google::protobuf::uint64, ConstPtr > SortItem;
+    typedef ::google::protobuf::internal::CompareByFirstField<SortItem> Less;
+
+    if (output->IsSerializationDeterministic() &&
+        this->learner_progress().size() > 1) {
+      ::std::unique_ptr<SortItem[]> items(
+          new SortItem[this->learner_progress().size()]);
+      typedef ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::size_type size_type;
+      size_type n = 0;
+      for (::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_iterator
+          it = this->learner_progress().begin();
+          it != this->learner_progress().end(); ++it, ++n) {
+        items[static_cast<ptrdiff_t>(n)] = SortItem(&*it);
+      }
+      ::std::sort(&items[0], &items[static_cast<ptrdiff_t>(n)], Less());
+      ::std::unique_ptr<RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse> entry;
+      for (size_type i = 0; i < n; i++) {
+        entry.reset(learner_progress_.NewEntryWrapper(
+            items[static_cast<ptrdiff_t>(i)].second->first, items[static_cast<ptrdiff_t>(i)].second->second));
+        ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+            15, *entry, output);
+      }
+    } else {
+      ::std::unique_ptr<RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse> entry;
+      for (::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_iterator
+          it = this->learner_progress().begin();
+          it != this->learner_progress().end(); ++it) {
+        entry.reset(learner_progress_.NewEntryWrapper(
+            it->first, it->second));
+        ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+            15, *entry, output);
+      }
+    }
+  }
+
+  // .metapb.RegionLocalState region_local_state = 16;
+  if (this->has_region_local_state()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      16, this->_internal_region_local_state(), output);
+  }
+
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
@@ -10526,7 +10498,7 @@ void RegionHeartbeatRequest::SerializeWithCachedSizes(
         3, this->_internal_leader(), deterministic, target);
   }
 
-  // repeated .pdpb.PeerStats down_peers = 4;
+  // repeated .metapb.PeerStats down_peers = 4;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->down_peers_size()); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
@@ -10579,6 +10551,99 @@ void RegionHeartbeatRequest::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(13, this->approximate_keys(), target);
   }
 
+  // map<uint64, .metapb.Progress> voter_progress = 14;
+  if (!this->voter_progress().empty()) {
+    typedef ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_pointer
+        ConstPtr;
+    typedef ::google::protobuf::internal::SortItem< ::google::protobuf::uint64, ConstPtr > SortItem;
+    typedef ::google::protobuf::internal::CompareByFirstField<SortItem> Less;
+
+    if (deterministic &&
+        this->voter_progress().size() > 1) {
+      ::std::unique_ptr<SortItem[]> items(
+          new SortItem[this->voter_progress().size()]);
+      typedef ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::size_type size_type;
+      size_type n = 0;
+      for (::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_iterator
+          it = this->voter_progress().begin();
+          it != this->voter_progress().end(); ++it, ++n) {
+        items[static_cast<ptrdiff_t>(n)] = SortItem(&*it);
+      }
+      ::std::sort(&items[0], &items[static_cast<ptrdiff_t>(n)], Less());
+      ::std::unique_ptr<RegionHeartbeatRequest_VoterProgressEntry_DoNotUse> entry;
+      for (size_type i = 0; i < n; i++) {
+        entry.reset(voter_progress_.NewEntryWrapper(
+            items[static_cast<ptrdiff_t>(i)].second->first, items[static_cast<ptrdiff_t>(i)].second->second));
+        target = ::google::protobuf::internal::WireFormatLite::
+                   InternalWriteMessageNoVirtualToArray(
+                       14, *entry, deterministic, target);
+;
+      }
+    } else {
+      ::std::unique_ptr<RegionHeartbeatRequest_VoterProgressEntry_DoNotUse> entry;
+      for (::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_iterator
+          it = this->voter_progress().begin();
+          it != this->voter_progress().end(); ++it) {
+        entry.reset(voter_progress_.NewEntryWrapper(
+            it->first, it->second));
+        target = ::google::protobuf::internal::WireFormatLite::
+                   InternalWriteMessageNoVirtualToArray(
+                       14, *entry, deterministic, target);
+;
+      }
+    }
+  }
+
+  // map<uint64, .metapb.Progress> learner_progress = 15;
+  if (!this->learner_progress().empty()) {
+    typedef ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_pointer
+        ConstPtr;
+    typedef ::google::protobuf::internal::SortItem< ::google::protobuf::uint64, ConstPtr > SortItem;
+    typedef ::google::protobuf::internal::CompareByFirstField<SortItem> Less;
+
+    if (deterministic &&
+        this->learner_progress().size() > 1) {
+      ::std::unique_ptr<SortItem[]> items(
+          new SortItem[this->learner_progress().size()]);
+      typedef ::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::size_type size_type;
+      size_type n = 0;
+      for (::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_iterator
+          it = this->learner_progress().begin();
+          it != this->learner_progress().end(); ++it, ++n) {
+        items[static_cast<ptrdiff_t>(n)] = SortItem(&*it);
+      }
+      ::std::sort(&items[0], &items[static_cast<ptrdiff_t>(n)], Less());
+      ::std::unique_ptr<RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse> entry;
+      for (size_type i = 0; i < n; i++) {
+        entry.reset(learner_progress_.NewEntryWrapper(
+            items[static_cast<ptrdiff_t>(i)].second->first, items[static_cast<ptrdiff_t>(i)].second->second));
+        target = ::google::protobuf::internal::WireFormatLite::
+                   InternalWriteMessageNoVirtualToArray(
+                       15, *entry, deterministic, target);
+;
+      }
+    } else {
+      ::std::unique_ptr<RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse> entry;
+      for (::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_iterator
+          it = this->learner_progress().begin();
+          it != this->learner_progress().end(); ++it) {
+        entry.reset(learner_progress_.NewEntryWrapper(
+            it->first, it->second));
+        target = ::google::protobuf::internal::WireFormatLite::
+                   InternalWriteMessageNoVirtualToArray(
+                       15, *entry, deterministic, target);
+;
+      }
+    }
+  }
+
+  // .metapb.RegionLocalState region_local_state = 16;
+  if (this->has_region_local_state()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        16, this->_internal_region_local_state(), deterministic, target);
+  }
+
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
@@ -10596,7 +10661,7 @@ size_t RegionHeartbeatRequest::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
   }
-  // repeated .pdpb.PeerStats down_peers = 4;
+  // repeated .metapb.PeerStats down_peers = 4;
   {
     unsigned int count = static_cast<unsigned int>(this->down_peers_size());
     total_size += 1UL * count;
@@ -10615,6 +10680,34 @@ size_t RegionHeartbeatRequest::ByteSizeLong() const {
       total_size +=
         ::google::protobuf::internal::WireFormatLite::MessageSize(
           this->pending_peers(static_cast<int>(i)));
+    }
+  }
+
+  // map<uint64, .metapb.Progress> voter_progress = 14;
+  total_size += 1 *
+      ::google::protobuf::internal::FromIntSize(this->voter_progress_size());
+  {
+    ::std::unique_ptr<RegionHeartbeatRequest_VoterProgressEntry_DoNotUse> entry;
+    for (::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_iterator
+        it = this->voter_progress().begin();
+        it != this->voter_progress().end(); ++it) {
+      entry.reset(voter_progress_.NewEntryWrapper(it->first, it->second));
+      total_size += ::google::protobuf::internal::WireFormatLite::
+          MessageSizeNoVirtual(*entry);
+    }
+  }
+
+  // map<uint64, .metapb.Progress> learner_progress = 15;
+  total_size += 1 *
+      ::google::protobuf::internal::FromIntSize(this->learner_progress_size());
+  {
+    ::std::unique_ptr<RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse> entry;
+    for (::google::protobuf::Map< ::google::protobuf::uint64, ::metapb::Progress >::const_iterator
+        it = this->learner_progress().begin();
+        it != this->learner_progress().end(); ++it) {
+      entry.reset(learner_progress_.NewEntryWrapper(it->first, it->second));
+      total_size += ::google::protobuf::internal::WireFormatLite::
+          MessageSizeNoVirtual(*entry);
     }
   }
 
@@ -10644,6 +10737,13 @@ size_t RegionHeartbeatRequest::ByteSizeLong() const {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSize(
         *interval_);
+  }
+
+  // .metapb.RegionLocalState region_local_state = 16;
+  if (this->has_region_local_state()) {
+    total_size += 2 +
+      ::google::protobuf::internal::WireFormatLite::MessageSize(
+        *region_local_state_);
   }
 
   // uint64 bytes_written = 6;
@@ -10717,6 +10817,8 @@ void RegionHeartbeatRequest::MergeFrom(const RegionHeartbeatRequest& from) {
 
   down_peers_.MergeFrom(from.down_peers_);
   pending_peers_.MergeFrom(from.pending_peers_);
+  voter_progress_.MergeFrom(from.voter_progress_);
+  learner_progress_.MergeFrom(from.learner_progress_);
   if (from.has_header()) {
     mutable_header()->::pdpb::RequestHeader::MergeFrom(from.header());
   }
@@ -10728,6 +10830,9 @@ void RegionHeartbeatRequest::MergeFrom(const RegionHeartbeatRequest& from) {
   }
   if (from.has_interval()) {
     mutable_interval()->::pdpb::TimeInterval::MergeFrom(from.interval());
+  }
+  if (from.has_region_local_state()) {
+    mutable_region_local_state()->::metapb::RegionLocalState::MergeFrom(from.region_local_state());
   }
   if (from.bytes_written() != 0) {
     set_bytes_written(from.bytes_written());
@@ -10775,10 +10880,13 @@ void RegionHeartbeatRequest::InternalSwap(RegionHeartbeatRequest* other) {
   using std::swap;
   CastToBase(&down_peers_)->InternalSwap(CastToBase(&other->down_peers_));
   CastToBase(&pending_peers_)->InternalSwap(CastToBase(&other->pending_peers_));
+  voter_progress_.Swap(&other->voter_progress_);
+  learner_progress_.Swap(&other->learner_progress_);
   swap(header_, other->header_);
   swap(region_, other->region_);
   swap(leader_, other->leader_);
   swap(interval_, other->interval_);
+  swap(region_local_state_, other->region_local_state_);
   swap(bytes_written_, other->bytes_written_);
   swap(bytes_read_, other->bytes_read_);
   swap(keys_written_, other->keys_written_);
@@ -18271,8 +18379,11 @@ template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::pdpb::GetMembersRequest* Arena::
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::pdpb::GetMembersResponse* Arena::CreateMaybeMessage< ::pdpb::GetMembersResponse >(Arena* arena) {
   return Arena::CreateInternal< ::pdpb::GetMembersResponse >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::pdpb::PeerStats* Arena::CreateMaybeMessage< ::pdpb::PeerStats >(Arena* arena) {
-  return Arena::CreateInternal< ::pdpb::PeerStats >(arena);
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::pdpb::RegionHeartbeatRequest_VoterProgressEntry_DoNotUse* Arena::CreateMaybeMessage< ::pdpb::RegionHeartbeatRequest_VoterProgressEntry_DoNotUse >(Arena* arena) {
+  return Arena::CreateInternal< ::pdpb::RegionHeartbeatRequest_VoterProgressEntry_DoNotUse >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::pdpb::RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse* Arena::CreateMaybeMessage< ::pdpb::RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse >(Arena* arena) {
+  return Arena::CreateInternal< ::pdpb::RegionHeartbeatRequest_LearnerProgressEntry_DoNotUse >(arena);
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::pdpb::RegionHeartbeatRequest* Arena::CreateMaybeMessage< ::pdpb::RegionHeartbeatRequest >(Arena* arena) {
   return Arena::CreateInternal< ::pdpb::RegionHeartbeatRequest >(arena);

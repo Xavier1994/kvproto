@@ -51,7 +51,7 @@ void AddDescriptorsImpl() {
   static const char descriptor[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
       "\n\014tikvpb.proto\022\006tikvpb\032\021coprocessor.prot"
       "o\032\rkvrpcpb.proto\032\023raft_serverpb.proto\032\024g"
-      "ogoproto/gogo.proto2\320\020\n\004Tikv\0224\n\005KvGet\022\023."
+      "ogoproto/gogo.proto2\245\021\n\004Tikv\0224\n\005KvGet\022\023."
       "kvrpcpb.GetRequest\032\024.kvrpcpb.GetResponse"
       "\"\000\0227\n\006KvScan\022\024.kvrpcpb.ScanRequest\032\025.kvr"
       "pcpb.ScanResponse\"\000\022C\n\nKvPrewrite\022\030.kvrp"
@@ -104,11 +104,14 @@ void AddDescriptorsImpl() {
       "vrpcpb.MvccGetByKeyRequest\032\035.kvrpcpb.Mvc"
       "cGetByKeyResponse\"\000\022Y\n\020MvccGetByStartTs\022"
       " .kvrpcpb.MvccGetByStartTsRequest\032!.kvrp"
-      "cpb.MvccGetByStartTsResponse\"\000B&\n\030com.pi"
-      "ngcap.tikv.kvproto\340\342\036\001\310\342\036\001\320\342\036\001b\006proto3"
+      "cpb.MvccGetByStartTsResponse\"\000\022S\n\016GetReg"
+      "ionState\022\036.kvrpcpb.GetRegionStateRequest"
+      "\032\037.kvrpcpb.GetRegionStateResponse\"\000B&\n\030c"
+      "om.pingcap.tikv.kvproto\340\342\036\001\310\342\036\001\320\342\036\001b\006pro"
+      "to3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 2278);
+      descriptor, 2363);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "tikvpb.proto", &protobuf_RegisterTypes);
   ::protobuf_coprocessor_2eproto::AddDescriptors();

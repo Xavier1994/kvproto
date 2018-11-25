@@ -259,6 +259,15 @@ class Tikv final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::kvrpcpb::MvccGetByStartTsResponse>> PrepareAsyncMvccGetByStartTs(::grpc::ClientContext* context, const ::kvrpcpb::MvccGetByStartTsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::kvrpcpb::MvccGetByStartTsResponse>>(PrepareAsyncMvccGetByStartTsRaw(context, request, cq));
     }
+    // get region state from leader, why we get region state from leader, 
+    // because for some state, eg. last_index, committed_index... get from pd is too slow
+    virtual ::grpc::Status GetRegionState(::grpc::ClientContext* context, const ::kvrpcpb::GetRegionStateRequest& request, ::kvrpcpb::GetRegionStateResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::kvrpcpb::GetRegionStateResponse>> AsyncGetRegionState(::grpc::ClientContext* context, const ::kvrpcpb::GetRegionStateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::kvrpcpb::GetRegionStateResponse>>(AsyncGetRegionStateRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::kvrpcpb::GetRegionStateResponse>> PrepareAsyncGetRegionState(::grpc::ClientContext* context, const ::kvrpcpb::GetRegionStateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::kvrpcpb::GetRegionStateResponse>>(PrepareAsyncGetRegionStateRaw(context, request, cq));
+    }
     class experimental_async_interface {
      public:
       virtual ~experimental_async_interface() {}
@@ -296,6 +305,9 @@ class Tikv final {
       // transaction debugger commands.
       virtual void MvccGetByKey(::grpc::ClientContext* context, const ::kvrpcpb::MvccGetByKeyRequest* request, ::kvrpcpb::MvccGetByKeyResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void MvccGetByStartTs(::grpc::ClientContext* context, const ::kvrpcpb::MvccGetByStartTsRequest* request, ::kvrpcpb::MvccGetByStartTsResponse* response, std::function<void(::grpc::Status)>) = 0;
+      // get region state from leader, why we get region state from leader, 
+      // because for some state, eg. last_index, committed_index... get from pd is too slow
+      virtual void GetRegionState(::grpc::ClientContext* context, const ::kvrpcpb::GetRegionStateRequest* request, ::kvrpcpb::GetRegionStateResponse* response, std::function<void(::grpc::Status)>) = 0;
     };
     virtual class experimental_async_interface* experimental_async() { return nullptr; }
   private:
@@ -362,6 +374,8 @@ class Tikv final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::kvrpcpb::MvccGetByKeyResponse>* PrepareAsyncMvccGetByKeyRaw(::grpc::ClientContext* context, const ::kvrpcpb::MvccGetByKeyRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::kvrpcpb::MvccGetByStartTsResponse>* AsyncMvccGetByStartTsRaw(::grpc::ClientContext* context, const ::kvrpcpb::MvccGetByStartTsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::kvrpcpb::MvccGetByStartTsResponse>* PrepareAsyncMvccGetByStartTsRaw(::grpc::ClientContext* context, const ::kvrpcpb::MvccGetByStartTsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::kvrpcpb::GetRegionStateResponse>* AsyncGetRegionStateRaw(::grpc::ClientContext* context, const ::kvrpcpb::GetRegionStateRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::kvrpcpb::GetRegionStateResponse>* PrepareAsyncGetRegionStateRaw(::grpc::ClientContext* context, const ::kvrpcpb::GetRegionStateRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -582,6 +596,13 @@ class Tikv final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::kvrpcpb::MvccGetByStartTsResponse>> PrepareAsyncMvccGetByStartTs(::grpc::ClientContext* context, const ::kvrpcpb::MvccGetByStartTsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::kvrpcpb::MvccGetByStartTsResponse>>(PrepareAsyncMvccGetByStartTsRaw(context, request, cq));
     }
+    ::grpc::Status GetRegionState(::grpc::ClientContext* context, const ::kvrpcpb::GetRegionStateRequest& request, ::kvrpcpb::GetRegionStateResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::kvrpcpb::GetRegionStateResponse>> AsyncGetRegionState(::grpc::ClientContext* context, const ::kvrpcpb::GetRegionStateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::kvrpcpb::GetRegionStateResponse>>(AsyncGetRegionStateRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::kvrpcpb::GetRegionStateResponse>> PrepareAsyncGetRegionState(::grpc::ClientContext* context, const ::kvrpcpb::GetRegionStateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::kvrpcpb::GetRegionStateResponse>>(PrepareAsyncGetRegionStateRaw(context, request, cq));
+    }
     class experimental_async final :
       public StubInterface::experimental_async_interface {
      public:
@@ -612,6 +633,7 @@ class Tikv final {
       void SplitRegion(::grpc::ClientContext* context, const ::kvrpcpb::SplitRegionRequest* request, ::kvrpcpb::SplitRegionResponse* response, std::function<void(::grpc::Status)>) override;
       void MvccGetByKey(::grpc::ClientContext* context, const ::kvrpcpb::MvccGetByKeyRequest* request, ::kvrpcpb::MvccGetByKeyResponse* response, std::function<void(::grpc::Status)>) override;
       void MvccGetByStartTs(::grpc::ClientContext* context, const ::kvrpcpb::MvccGetByStartTsRequest* request, ::kvrpcpb::MvccGetByStartTsResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetRegionState(::grpc::ClientContext* context, const ::kvrpcpb::GetRegionStateRequest* request, ::kvrpcpb::GetRegionStateResponse* response, std::function<void(::grpc::Status)>) override;
      private:
       friend class Stub;
       explicit experimental_async(Stub* stub): stub_(stub) { }
@@ -686,6 +708,8 @@ class Tikv final {
     ::grpc::ClientAsyncResponseReader< ::kvrpcpb::MvccGetByKeyResponse>* PrepareAsyncMvccGetByKeyRaw(::grpc::ClientContext* context, const ::kvrpcpb::MvccGetByKeyRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::kvrpcpb::MvccGetByStartTsResponse>* AsyncMvccGetByStartTsRaw(::grpc::ClientContext* context, const ::kvrpcpb::MvccGetByStartTsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::kvrpcpb::MvccGetByStartTsResponse>* PrepareAsyncMvccGetByStartTsRaw(::grpc::ClientContext* context, const ::kvrpcpb::MvccGetByStartTsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::kvrpcpb::GetRegionStateResponse>* AsyncGetRegionStateRaw(::grpc::ClientContext* context, const ::kvrpcpb::GetRegionStateRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::kvrpcpb::GetRegionStateResponse>* PrepareAsyncGetRegionStateRaw(::grpc::ClientContext* context, const ::kvrpcpb::GetRegionStateRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_KvGet_;
     const ::grpc::internal::RpcMethod rpcmethod_KvScan_;
     const ::grpc::internal::RpcMethod rpcmethod_KvPrewrite_;
@@ -716,6 +740,7 @@ class Tikv final {
     const ::grpc::internal::RpcMethod rpcmethod_SplitRegion_;
     const ::grpc::internal::RpcMethod rpcmethod_MvccGetByKey_;
     const ::grpc::internal::RpcMethod rpcmethod_MvccGetByStartTs_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetRegionState_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -760,6 +785,9 @@ class Tikv final {
     // transaction debugger commands.
     virtual ::grpc::Status MvccGetByKey(::grpc::ServerContext* context, const ::kvrpcpb::MvccGetByKeyRequest* request, ::kvrpcpb::MvccGetByKeyResponse* response);
     virtual ::grpc::Status MvccGetByStartTs(::grpc::ServerContext* context, const ::kvrpcpb::MvccGetByStartTsRequest* request, ::kvrpcpb::MvccGetByStartTsResponse* response);
+    // get region state from leader, why we get region state from leader, 
+    // because for some state, eg. last_index, committed_index... get from pd is too slow
+    virtual ::grpc::Status GetRegionState(::grpc::ServerContext* context, const ::kvrpcpb::GetRegionStateRequest* request, ::kvrpcpb::GetRegionStateResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_KvGet : public BaseClass {
@@ -1361,7 +1389,27 @@ class Tikv final {
       ::grpc::Service::RequestAsyncUnary(29, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_KvGet<WithAsyncMethod_KvScan<WithAsyncMethod_KvPrewrite<WithAsyncMethod_KvCommit<WithAsyncMethod_KvImport<WithAsyncMethod_KvCleanup<WithAsyncMethod_KvBatchGet<WithAsyncMethod_KvBatchRollback<WithAsyncMethod_KvScanLock<WithAsyncMethod_KvResolveLock<WithAsyncMethod_KvGC<WithAsyncMethod_KvDeleteRange<WithAsyncMethod_RawGet<WithAsyncMethod_RawBatchGet<WithAsyncMethod_RawPut<WithAsyncMethod_RawCAS<WithAsyncMethod_RawBatchPut<WithAsyncMethod_RawDelete<WithAsyncMethod_RawBatchDelete<WithAsyncMethod_RawScan<WithAsyncMethod_RawDeleteRange<WithAsyncMethod_RawBatchScan<WithAsyncMethod_UnsafeDestroyRange<WithAsyncMethod_Coprocessor<WithAsyncMethod_CoprocessorStream<WithAsyncMethod_Raft<WithAsyncMethod_Snapshot<WithAsyncMethod_SplitRegion<WithAsyncMethod_MvccGetByKey<WithAsyncMethod_MvccGetByStartTs<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_GetRegionState : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithAsyncMethod_GetRegionState() {
+      ::grpc::Service::MarkMethodAsync(30);
+    }
+    ~WithAsyncMethod_GetRegionState() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetRegionState(::grpc::ServerContext* context, const ::kvrpcpb::GetRegionStateRequest* request, ::kvrpcpb::GetRegionStateResponse* response) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetRegionState(::grpc::ServerContext* context, ::kvrpcpb::GetRegionStateRequest* request, ::grpc::ServerAsyncResponseWriter< ::kvrpcpb::GetRegionStateResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(30, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_KvGet<WithAsyncMethod_KvScan<WithAsyncMethod_KvPrewrite<WithAsyncMethod_KvCommit<WithAsyncMethod_KvImport<WithAsyncMethod_KvCleanup<WithAsyncMethod_KvBatchGet<WithAsyncMethod_KvBatchRollback<WithAsyncMethod_KvScanLock<WithAsyncMethod_KvResolveLock<WithAsyncMethod_KvGC<WithAsyncMethod_KvDeleteRange<WithAsyncMethod_RawGet<WithAsyncMethod_RawBatchGet<WithAsyncMethod_RawPut<WithAsyncMethod_RawCAS<WithAsyncMethod_RawBatchPut<WithAsyncMethod_RawDelete<WithAsyncMethod_RawBatchDelete<WithAsyncMethod_RawScan<WithAsyncMethod_RawDeleteRange<WithAsyncMethod_RawBatchScan<WithAsyncMethod_UnsafeDestroyRange<WithAsyncMethod_Coprocessor<WithAsyncMethod_CoprocessorStream<WithAsyncMethod_Raft<WithAsyncMethod_Snapshot<WithAsyncMethod_SplitRegion<WithAsyncMethod_MvccGetByKey<WithAsyncMethod_MvccGetByStartTs<WithAsyncMethod_GetRegionState<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithGenericMethod_KvGet : public BaseClass {
    private:
@@ -1868,6 +1916,23 @@ class Tikv final {
     }
     // disable synchronous version of this method
     ::grpc::Status MvccGetByStartTs(::grpc::ServerContext* context, const ::kvrpcpb::MvccGetByStartTsRequest* request, ::kvrpcpb::MvccGetByStartTsResponse* response) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetRegionState : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithGenericMethod_GetRegionState() {
+      ::grpc::Service::MarkMethodGeneric(30);
+    }
+    ~WithGenericMethod_GetRegionState() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetRegionState(::grpc::ServerContext* context, const ::kvrpcpb::GetRegionStateRequest* request, ::kvrpcpb::GetRegionStateResponse* response) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -2473,6 +2538,26 @@ class Tikv final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_GetRegionState : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithRawMethod_GetRegionState() {
+      ::grpc::Service::MarkMethodRaw(30);
+    }
+    ~WithRawMethod_GetRegionState() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetRegionState(::grpc::ServerContext* context, const ::kvrpcpb::GetRegionStateRequest* request, ::kvrpcpb::GetRegionStateResponse* response) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetRegionState(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(30, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_KvGet : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service *service) {}
@@ -3012,7 +3097,27 @@ class Tikv final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedMvccGetByStartTs(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::kvrpcpb::MvccGetByStartTsRequest,::kvrpcpb::MvccGetByStartTsResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_KvGet<WithStreamedUnaryMethod_KvScan<WithStreamedUnaryMethod_KvPrewrite<WithStreamedUnaryMethod_KvCommit<WithStreamedUnaryMethod_KvImport<WithStreamedUnaryMethod_KvCleanup<WithStreamedUnaryMethod_KvBatchGet<WithStreamedUnaryMethod_KvBatchRollback<WithStreamedUnaryMethod_KvScanLock<WithStreamedUnaryMethod_KvResolveLock<WithStreamedUnaryMethod_KvGC<WithStreamedUnaryMethod_KvDeleteRange<WithStreamedUnaryMethod_RawGet<WithStreamedUnaryMethod_RawBatchGet<WithStreamedUnaryMethod_RawPut<WithStreamedUnaryMethod_RawCAS<WithStreamedUnaryMethod_RawBatchPut<WithStreamedUnaryMethod_RawDelete<WithStreamedUnaryMethod_RawBatchDelete<WithStreamedUnaryMethod_RawScan<WithStreamedUnaryMethod_RawDeleteRange<WithStreamedUnaryMethod_RawBatchScan<WithStreamedUnaryMethod_UnsafeDestroyRange<WithStreamedUnaryMethod_Coprocessor<WithStreamedUnaryMethod_SplitRegion<WithStreamedUnaryMethod_MvccGetByKey<WithStreamedUnaryMethod_MvccGetByStartTs<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_GetRegionState : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithStreamedUnaryMethod_GetRegionState() {
+      ::grpc::Service::MarkMethodStreamed(30,
+        new ::grpc::internal::StreamedUnaryHandler< ::kvrpcpb::GetRegionStateRequest, ::kvrpcpb::GetRegionStateResponse>(std::bind(&WithStreamedUnaryMethod_GetRegionState<BaseClass>::StreamedGetRegionState, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_GetRegionState() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetRegionState(::grpc::ServerContext* context, const ::kvrpcpb::GetRegionStateRequest* request, ::kvrpcpb::GetRegionStateResponse* response) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGetRegionState(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::kvrpcpb::GetRegionStateRequest,::kvrpcpb::GetRegionStateResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_KvGet<WithStreamedUnaryMethod_KvScan<WithStreamedUnaryMethod_KvPrewrite<WithStreamedUnaryMethod_KvCommit<WithStreamedUnaryMethod_KvImport<WithStreamedUnaryMethod_KvCleanup<WithStreamedUnaryMethod_KvBatchGet<WithStreamedUnaryMethod_KvBatchRollback<WithStreamedUnaryMethod_KvScanLock<WithStreamedUnaryMethod_KvResolveLock<WithStreamedUnaryMethod_KvGC<WithStreamedUnaryMethod_KvDeleteRange<WithStreamedUnaryMethod_RawGet<WithStreamedUnaryMethod_RawBatchGet<WithStreamedUnaryMethod_RawPut<WithStreamedUnaryMethod_RawCAS<WithStreamedUnaryMethod_RawBatchPut<WithStreamedUnaryMethod_RawDelete<WithStreamedUnaryMethod_RawBatchDelete<WithStreamedUnaryMethod_RawScan<WithStreamedUnaryMethod_RawDeleteRange<WithStreamedUnaryMethod_RawBatchScan<WithStreamedUnaryMethod_UnsafeDestroyRange<WithStreamedUnaryMethod_Coprocessor<WithStreamedUnaryMethod_SplitRegion<WithStreamedUnaryMethod_MvccGetByKey<WithStreamedUnaryMethod_MvccGetByStartTs<WithStreamedUnaryMethod_GetRegionState<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedUnaryService;
   template <class BaseClass>
   class WithSplitStreamingMethod_CoprocessorStream : public BaseClass {
    private:
@@ -3034,7 +3139,7 @@ class Tikv final {
     virtual ::grpc::Status StreamedCoprocessorStream(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::coprocessor::Request,::coprocessor::Response>* server_split_streamer) = 0;
   };
   typedef WithSplitStreamingMethod_CoprocessorStream<Service > SplitStreamedService;
-  typedef WithStreamedUnaryMethod_KvGet<WithStreamedUnaryMethod_KvScan<WithStreamedUnaryMethod_KvPrewrite<WithStreamedUnaryMethod_KvCommit<WithStreamedUnaryMethod_KvImport<WithStreamedUnaryMethod_KvCleanup<WithStreamedUnaryMethod_KvBatchGet<WithStreamedUnaryMethod_KvBatchRollback<WithStreamedUnaryMethod_KvScanLock<WithStreamedUnaryMethod_KvResolveLock<WithStreamedUnaryMethod_KvGC<WithStreamedUnaryMethod_KvDeleteRange<WithStreamedUnaryMethod_RawGet<WithStreamedUnaryMethod_RawBatchGet<WithStreamedUnaryMethod_RawPut<WithStreamedUnaryMethod_RawCAS<WithStreamedUnaryMethod_RawBatchPut<WithStreamedUnaryMethod_RawDelete<WithStreamedUnaryMethod_RawBatchDelete<WithStreamedUnaryMethod_RawScan<WithStreamedUnaryMethod_RawDeleteRange<WithStreamedUnaryMethod_RawBatchScan<WithStreamedUnaryMethod_UnsafeDestroyRange<WithStreamedUnaryMethod_Coprocessor<WithSplitStreamingMethod_CoprocessorStream<WithStreamedUnaryMethod_SplitRegion<WithStreamedUnaryMethod_MvccGetByKey<WithStreamedUnaryMethod_MvccGetByStartTs<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_KvGet<WithStreamedUnaryMethod_KvScan<WithStreamedUnaryMethod_KvPrewrite<WithStreamedUnaryMethod_KvCommit<WithStreamedUnaryMethod_KvImport<WithStreamedUnaryMethod_KvCleanup<WithStreamedUnaryMethod_KvBatchGet<WithStreamedUnaryMethod_KvBatchRollback<WithStreamedUnaryMethod_KvScanLock<WithStreamedUnaryMethod_KvResolveLock<WithStreamedUnaryMethod_KvGC<WithStreamedUnaryMethod_KvDeleteRange<WithStreamedUnaryMethod_RawGet<WithStreamedUnaryMethod_RawBatchGet<WithStreamedUnaryMethod_RawPut<WithStreamedUnaryMethod_RawCAS<WithStreamedUnaryMethod_RawBatchPut<WithStreamedUnaryMethod_RawDelete<WithStreamedUnaryMethod_RawBatchDelete<WithStreamedUnaryMethod_RawScan<WithStreamedUnaryMethod_RawDeleteRange<WithStreamedUnaryMethod_RawBatchScan<WithStreamedUnaryMethod_UnsafeDestroyRange<WithStreamedUnaryMethod_Coprocessor<WithSplitStreamingMethod_CoprocessorStream<WithStreamedUnaryMethod_SplitRegion<WithStreamedUnaryMethod_MvccGetByKey<WithStreamedUnaryMethod_MvccGetByStartTs<WithStreamedUnaryMethod_GetRegionState<Service > > > > > > > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace tikvpb
